@@ -1,191 +1,251 @@
-/* style.css — Elegant minimalistic theme using provided palette */
+/* =========================================================
+   BASE THEME SETUP (Color Palette)
+========================================================= */
 :root {
   --accent: #BC0000;
   --bg: #FCF1DB;
   --main: #454545;
+  --soft-bg: #F7EFE5;
+  --light-grey: #F3F3F3;
 }
 
-/* Reset-ish */
-* { box-sizing: border-box; }
+/* Reset */
+* { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { height: 100%; }
 
 body {
-  margin: 0;
   background: var(--bg);
   color: var(--main);
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  font-family: Inter, system-ui;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  /* FIX: konten tidak ketiban navbar */
-  padding-top: 90px;
 }
 
-/* Section Titles */
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+.navbar {
+  position: fixed !important;
+  top: 0; left: 0;
+  width: 100%;
+  z-index: 99999;
+  padding-block: 10px;
+
+  background: linear-gradient(to bottom, #c30000, #a70000) !important;
+  border-bottom: 1px solid rgba(255,255,255,0.25);
+}
+
+.navbar .nav-link,
+.navbar-brand {
+  color: #fff !important;
+  font-weight: 500;
+}
+
+.navbar-toggler { border-color: rgba(255,255,255,0.5); }
+.navbar-toggler-icon { filter: invert(1); }
+
+
+
+/* =========================================================
+   SECTIONS GLOBAL SPACING
+========================================================= */
+section {
+  padding-top: 90px;
+  padding-bottom: 90px;
+}
+
 .section-title {
   text-align: center;
   color: var(--accent);
   font-weight: 700;
-  margin-bottom: 40px;
+  margin-bottom: 35px;
   letter-spacing: 1px;
 }
 
-/* FIXED NAVBAR — Guaranteed sticky always on top */
-.navbar {
-  position: fixed !important;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 99999 !important;
 
-  /* Glassmorphism */
-  background: rgba(255, 255, 255, 0.12) !important;
-  backdrop-filter: blur(18px) saturate(180%);
-  -webkit-backdrop-filter: blur(18px) saturate(180%);
 
-  /* Gradient overlay */
-  background: linear-gradient(
-      to bottom,
-      rgba(255, 255, 255, 0.25),
-      rgba(255, 255, 255, 0.05)
-  ) !important;
-
-  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
-}
-
-.navbar .nav-link {
-  color: var(--main) !important;
-  font-weight: 500;
-}
-
-.logo-left {
-  color: var(--accent);
-  letter-spacing: 1px;
-}
-
-/* HERO */
+/* =========================================================
+   HERO SECTION
+========================================================= */
 #hero {
-  height: 50vh;
+  padding-top: 130px;
+  padding-bottom: 130px;
+  background: var(--soft-bg);
+  background-image: url("./assets/BG Hero.png");
+  background-size: 300px;
+  background-repeat: repeat;
   display: flex;
   align-items: center;
-  padding-top: 80px; /* compensate navbar height */
 }
 
-.hero-container {
+.hero-wrapper {
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  align-items: center;
+  gap: 50px;
 }
 
+/* Text */
 .hero-text h1 {
+  color: var(--accent);
   font-size: 48px;
-  color: var(--main);
 }
-
 .hero-text p {
-  font-size: 20px;
-  margin-top: 10px;
-  color: #555;
+  font-size: 18px;
+  line-height: 1.6;
+  color: #333;
 }
 
-/* HERO IMAGE */
-.hero-img-wrapper img {
-  width: 360px;
+/* Image animation */
+#heroLogo {
+  width: 380px;
   opacity: 0;
-  filter: blur(20px);
   transform: translateY(20px);
-  transition: 1.2s ease;
+  filter: blur(20px);
+  transition: 1s ease;
 }
-
-/* When JS adds class */
-.hero-img-wrapper img.show {
+#heroLogo.show {
   opacity: 1;
-  filter: blur(0px);
   transform: translateY(0);
+  filter: blur(0);
 }
-/* Wrapper lingkaran */
-.partner-cicle {
-  width: 110px;        /* Dulu 85px — sekarang jauh lebih besar */
-  height: 110px;
-  border-radius: 50%;
-  padding: 18px;       /* Ikut dibesarin biar glass edge lebih tebal */
 
-  /* Glass effect */
-  background: rgba(255, 255, 255, 0.20);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.28);
+/* Hero responsive */
+@media (max-width: 992px) {
+  #hero { padding-top: 110px; padding-bottom: 80px; }
+  .hero-wrapper { flex-direction: column; text-align: center; }
+  .hero-text h1 { font-size: 38px; }
+}
+@media (max-width: 576px) {
+  .hero-text h1 { font-size: 30px; }
+  .hero-text p { font-size: 15px; }
+}
 
-  /* Soft glowing shadow */
-  box-shadow:
-    0 6px 16px rgba(0, 0, 0, 0.12),
-    inset 0 0 10px rgba(255, 255, 255, 0.35);
 
+
+/* =========================================================
+   VISION & MISSION
+========================================================= */
+#vision-mission {
+  background-color: #FBF3EA;
+}
+#vision-mission .vm-title {
+  color: var(--accent);
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+#vision-mission .vm-text {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+#vision-mission .vm-logo {
+  width: 150px;
+  margin: 0 auto;
+  display: block;
+}
+
+
+
+/* =========================================================
+   PARTNERS SWIPER (Rounded logos)
+========================================================= */
+#partners .swiper {
+  width: 100%;
+  padding: 15px 0;
+}
+
+.partners-swiper .swiper-slide {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.partner-circle {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: #f5f5f5;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .partner-circle img {
-  width: 78%;          /* Dari 65% → 78% supaya lebih pop */
-  height: auto;
-  object-fit: contain;
-  filter: drop-shadow(0 3px 5px rgba(0,0,0,0.25));
-}
-
-
-/* Hover premium */
-.partner-circle:hover img {
-  transform: scale(1.12);
-}
-
-/* Floating animation (keep your original) */
-.floating-brand {
-  animation: float 4s ease-in-out infinite;
-  animation-delay: calc(var(--i) * -0.08s);
-}
-
-@keyframes float {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-  100% { transform: translateY(0); }
-}
-
-
-/* Services */
-.service-card {
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 6px 20px rgba(69,69,69,0.06);
-  color: var(--main);
-}
-
-/* Portfolio */
-.bg-light-section {
-  background: linear-gradient(180deg, rgba(0,0,0,0.02), transparent);
-}
-
-.portfolio-card {
-  display: block;
-  overflow: hidden;
-  border-radius: 12px;
-  background: #fff;
-  box-shadow: 0 8px 30px rgba(69,69,69,0.06);
-}
-
-.portfolio-card img {
-  width: 100%;
-  height: 220px;
+  width: 140px;
+  height: 140px;
   object-fit: cover;
-  display: block;
+  border-radius: 50%;
+  transition: transform 0.3s;
+}
+.partner-circle img:hover {
+  transform: scale(1.1);
 }
 
-.portfolio-card figcaption {
-  padding: 12px;
+
+
+/* =========================================================
+   PORTFOLIO (Simple Carousel)
+========================================================= */
+/* Portfolio Section */
+#portfolio {
+  background: #2c2c2c;  /* dark grey clean */
+  padding-top: 80px;
+  padding-bottom: 80px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
 }
 
-/* Pricing */
+
+/* Biar carousel lebih besar dan center */
+.portfolio-swiper {
+  padding-left: 60px;
+  padding-right: 60px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.portfolio-swiper .swiper-slide {
+  transition: 0.35s ease;
+  transform: scale(0.85);       /* slide samping mengecil */
+  opacity: 0.5;                 /* sedikit blur */
+}
+
+.portfolio-swiper .swiper-slide-active {
+  transform: scale(1);          /* slide tengah full size */
+  opacity: 1;
+}
+
+.portfolio-swiper .swiper-slide img {
+  width: 100%;
+  height: 600px;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Invisible navigation buttons */
+.portfolio-swiper .swiper-button-next,
+.portfolio-swiper .swiper-button-prev {
+  width: 80px;             /* area klik lebih besar */
+  height: 100%;
+  opacity: 0;              /* transparan */
+  background: transparent; /* no visual */
+  color: transparent;      /* hilang iconnya */
+}
+
+.portfolio-swiper .swiper-button-next:hover,
+.portfolio-swiper .swiper-button-prev:hover {
+  opacity: 0;              /* tetap invisible saat hover */
+}
+
+
+
+
+
+
+/* =========================================================
+   PRICING / OTHER SECTIONS
+========================================================= */
 .price-card img {
   height: 160px;
   object-fit: cover;
@@ -195,33 +255,23 @@ body {
   font-size: 1.05rem;
 }
 
-/* Buttons */
 .btn-accent {
   background: var(--accent);
   color: #fff;
-  border: none;
 }
+
 .btn-outline-accent {
-  border: 1.6px solid rgba(188,0,0,0.12);
+  border: 1.6px solid rgba(188,0,0,0.2);
   color: var(--main);
 }
 
-/* Footer */
+
+/* =========================================================
+   FOOTER
+========================================================= */
 .footer {
   background: var(--main);
   color: #fff;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .hero {
-    flex-direction: column;
-    text-align: center;
-  }
-  .hero-right {
-    margin-top: 1.25rem;
-  }
-  .portfolio-card img {
-    height: 180px;
-  }
+  padding: 40px 0;
+  text-align: center;
 }
