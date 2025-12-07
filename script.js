@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function(){
   const heroLogo = document.getElementById('heroLogo');
   if(heroLogo){
     // wait a small moment then show
-    setTimeout(()=> heroLogo.classList.add('visible'), 350);
+    setTimeout(()=> heroLogo.classList.add('show'), 350);
   }
 
   // Smooth scrolling for internal links
@@ -30,8 +30,35 @@ document.addEventListener('DOMContentLoaded', function(){
   if(yearEl) yearEl.textContent = y;
 });
 
-// Fade-in hero image on load
-window.addEventListener("load", () => {
-  const logo = document.getElementById("hero-logo");
-  if (logo) logo.classList.add("show");
+const partnersSwiper = new Swiper(".partners-swiper", {
+  slidesPerView: 6,
+  spaceBetween: 20,
+  loop: true,
+  autoplay: {
+    delay: 0,
+    disableOnInteraction: false,
+    pauseOnMouseEnter: false,
+  },
+  speed: 4000, // semakin besar, semakin lambat scroll
+  freeMode: true,
+  grabCursor: true,
+  breakpoints: {
+    320: { slidesPerView: 2 },
+    576: { slidesPerView: 3 },
+    768: { slidesPerView: 4 },
+    992: { slidesPerView: 5 },
+    1200: { slidesPerView: 6 },
+  },
+});
+
+const portfolioSwiper = new Swiper(".portfolio-swiper", {
+  slidesPerView: 1.4,         // ada "peek"
+  centeredSlides: true,       // slide tengah fokus
+  spaceBetween: 30,           // jarak antar slide
+  loop: true,
+  grabCursor: true,
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
 });
