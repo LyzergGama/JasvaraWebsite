@@ -1,6 +1,19 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+   const hamburger = document.getElementById('hamburger');
+  const navMenu = document.getElementById('navMenu');
 
+  hamburger.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+  });
+
+  // auto close saat klik menu
+  document.querySelectorAll('.nav-menu a').forEach(link => {
+    link.addEventListener('click', () => {
+      navMenu.classList.remove('active');
+    });
+  });
+  
   /* ========= LAYANAN KAMI ========= */
   document.querySelectorAll(".lk-card").forEach(card => {
     card.addEventListener("click", () => {
