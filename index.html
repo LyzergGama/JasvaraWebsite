@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jasvara</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Local styles -->
+  <link rel="stylesheet" href="style.css">
+
+
+    <script src="script.js"></script>
+  <!-- Favicon placeholder -->
+  <link rel="icon" href="assets/favicon.ico">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@800&display=swap" rel="stylesheet">
+
+  <script src="https://kit.fontawesome.com/638c2d02ba.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<header id="navbar">
+  <nav class="nav-container">
+
+    <!-- LEFT TEXT -->
+    <div class="nav-left">
+      JASVARA MEDIA
+    </div>
+
+    <!-- RIGHT MENU -->
+    <ul class="nav-menu">
+
+      <li class="nav-dropdown">
+        <span>ABOUT US</span>
+        <ul class="dropdown">
+          <li><a href="#hero">About Us</a></li>
+          <li><a href="#vision-mission">Visi & Misi</a></li>
+          <li><a href="#lk-section">Layanan</a></li>
+        </ul>
+      </li>
+
+      <li><a href="#pkg-section">PAKET</a></li>
+      <li><a href="#portofolio-trigger">PORTOFOLIO</a></li>
+      <li><a href="#partners">PARTNERS</a></li>
+      <li><a href="#contact-us">CONTACT US</a></li>
+
+    </ul>
+  </nav>
+</header>
+
+
+
+
+<section id="hero">
+  <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="6000">
+
+    <div class="carousel-inner">
+
+      <!-- SLIDE 1 -->
+      <div class="carousel-item active">
+        <div class="hero-slide">
+          <div class="hero-inner hero-split">
+            <div class="hero-logo">
+              <img src="assets/Logo jasvara media.png" alt="Jasvara Logo">
+            </div>
+
+            <div class="hero-text">
+              <h1 class="hero-title">
+                <span>JASVARA TRUST</span>
+                <span>INSIGHT MEDIA</span>
+              </h1>
+              <p class="hero-tagline">TERPERCAYA   •   REAL   •   NYAMPE</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 2 -->
+      <div class="carousel-item">
+      <div class="hero-slide">
+          <div class="hero-inner center">
+            <h1 class="hero-title-red">JASVARA TRUST INSIGHT MEDIA</h1>
+            <p class="hero-desc">
+              adalah ruang yang memadukan keanggunan <br>
+              nilai, kepercayaan, dan wawasan mendalam, <br>
+              menghadirkan trusted vibes, real connection <br>
+              dalam setiap karya, sehingga informasi yang <br> 
+              disampaikan bukan hanya dibaca tetapi juga <br>
+              dipercaya, dipahami, dan memberi dampak <br>
+              positif bagi masyarakat.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- CONTROLS -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+
+  </div>
+</section>
+
+
+
+
+
+
+
+
+<section id="vision-mission" class="py-5 text-center">
+  <div class="container">
+    <div class="row align-items-center justify-content-center gy-4">
+
+      <!-- VISI -->
+      <div class="col-md-4">
+        <div class="vm-card text-md-end text-center h-100">
+          <h4 class="vm-title">VISI</h4>
+          <p class="vm-text">
+            Menjadi layanan digital terpercaya yang mendukung pertumbuhan brand
+            melalui penyajian konten yang rapi, menarik, dan berkualitas tinggi.
+          </p>
+        </div>
+      </div>
+
+      <!-- LOGO CENTER -->
+      <div class="col-md-4">
+        <div class="vm-center">
+          <img src="assets/Black-Logo.webp" alt="Company Logo" class="vm-logo">
+        </div>
+      </div>
+
+      <!-- MISI -->
+      <div class="col-md-4">
+        <div class="vm-card text-md-start text-center h-100">
+          <h4 class="vm-title">MISI</h4>
+          <ul class="vm-text list-unstyled">
+            <li>1. Menyediakan layanan yang jelas, terstruktur, dan mudah dipahami oleh setiap klien.</li>
+            <li>2. Menghadirkan hasil kerja yang estetis, profesional, dan sesuai kebutuhan brand.</li>
+            <li>3. Memberikan pengalaman layanan yang responsif, efisien, dan bebas hambatan.</li>
+            <li>4. Menjalin kemitraan yang berorientasi pada kepercayaan serta peningkatan nilai brand.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- OVERLAY -->
+<div id="ui-overlay">
+  <div id="ui-popup"></div>
+</div>
+
+
+<section id="lk-section">
+  <h2 class="ui-title">LAYANAN KAMI</h2>
+
+  <div class="lk-cards">
+    
+    <div class="lk-card-wrapper">
+
+  <div class="lk-item">
+    <div class="lk-card" data-popup="lk-popup-1">
+      <img src="assets/package/12.webp" alt="">
+    </div>
+    <p class="lk-text">Social Media Management</p>
+  </div>
+
+  <div class="lk-item">
+    <div class="lk-card" data-popup="lk-popup-2">
+      <img src="assets/package/13.webp" alt="">
+    </div>
+    <p class="lk-text">TikTok Shop Partner</p>
+  </div>
+
+  <div class="lk-item">
+    <div class="lk-card" data-popup="lk-popup-3">
+      <img src="assets/package/14.webp" alt="">
+    </div>
+    <p class="lk-text">Video Commercial</p>
+  </div>
+
+</div>
+
+
+  </div>
+</section>
+
+<!-- POPUP -->
+<div class="lk-popup-overlay" id="lk-popup-1">
+  <div class="lk-popup">
+    <img src="assets/package/12.webp">
+  </div>
+</div>
+
+<div class="lk-popup-overlay" id="lk-popup-2">
+  <div class="lk-popup">
+    <img src="assets/package/13.webp">
+  </div>
+</div>
+
+<div class="lk-popup-overlay" id="lk-popup-3">
+  <div class="lk-popup">
+    <img src="assets/package/14.webp">
+  </div>
+</div>
+
+<section id="pkg-section">
+  <h2 class="ui-title">PACKAGE</h2>
+
+  <div class="pkg-card-wrapper">
+
+    <!-- PACKAGE 1 -->
+    <div class="pkg-item">
+      <div class="pkg-card" data-pkg="1">
+        <img src="assets/package/12.webp" alt="">
+      </div>
+      <p class="pkg-text">Basic Package</p>
+    </div>
+
+    <!-- PACKAGE 2 -->
+    <div class="pkg-item">
+      <div class="pkg-card" data-pkg="2">
+        <img src="assets/package/13.webp" alt="">
+      </div>
+      <p class="pkg-text">Standard Package</p>
+    </div>
+
+    <!-- PACKAGE 3 – COMING SOON -->
+    <div class="pkg-item pkg-muted">
+      <div class="pkg-card">
+        <img src="assets/package/14.webp" alt="">
+      </div>
+      <p class="pkg-text">Premium Package</p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- PACKAGE POPUP -->
+<div id="pkg-overlay">
+  <div id="pkg-popup-content"></div>
+</div>
+
+<!-- ZOOM IMAGE POPUP -->
+<div id="pkg-zoom-overlay">
+  <img id="pkg-zoom-img">
+</div>
+
+
+<!-- TRIGGER -->
+<section id="portfolio-trigger">
+
+  <div class="porto-btn" data-type="smm">
+    <img src="assets/model/porto smm.png">
+    <span>PORTO SMM</span>
+  </div>
+
+  <div class="porto-btn" data-type="tsp">
+    <img src="assets/model/porto tsp.png">
+    <span>PORTO TSP</span>
+  </div>
+</section>
+
+
+<!-- OVERLAY -->
+<div id="portfolio-overlay">
+  <div class="portfolio-box smm">
+
+    <button class="portfolio-close">&times;</button>
+
+    <!-- MODEL -->
+    <div class="portfolio-model">
+      <img id="model-img" src="">
+    </div>
+
+    <!-- CAROUSEL -->
+    <div class="portfolio-carousel">
+      <div id="portfolioCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner" id="carousel-inner"></div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#portfolioCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </button>
+
+        <button class="carousel-control-next" type="button" data-bs-target="#portfolioCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+<!-- PARTNERS SECTION -->
+<section id="partners" class="py-5">
+  <div class="container">
+    <h3 class="section-title mb-4 text-center">PARTNERS</h3>
+
+    <div class="swiper partners-swiper">
+      <div class="swiper-wrapper">
+
+        <!-- LOGO ITEMS -->
+        <div class="swiper-slide partner-slide">
+          <img src="assets/1.webp" alt="partner 1">
+        </div>
+        <div class="swiper-slide partner-slide">
+          <img src="assets/2.webp" alt="partner 2">
+        </div>
+        <div class="swiper-slide partner-slide">
+          <img src="assets/3.webp" alt="partner 3">
+        </div>
+        <div class="swiper-slide partner-slide">
+          <img src="assets/4.webp" alt="partner 4">
+        </div>
+        <div class="swiper-slide partner-slide">
+          <img src="assets/5.webp" alt="partner 5">
+        </div>
+        <div class="swiper-slide partner-slide">
+          <img src="assets/6.webp" alt="partner 6">
+        </div>
+        <div class="swiper-slide partner-slide">
+          <img src="assets/7.webp" alt="partner 7">
+        </div>
+        <div class="swiper-slide partner-slide">
+          <img src="assets/8.webp" alt="partner 8">
+        </div>
+        <div class="swiper-slide partner-slide">
+          <img src="assets/9.webp" alt="partner 9">
+        </div>
+        <div class="swiper-slide partner-slide">
+          <img src="assets/10.webp" alt="partner 10">
+        </div>
+        <div class="swiper-slide partner-slide">
+          <img src="assets/11.webp" alt="partner 11">
+        </div>
+        <div class="swiper-slide partner-slide">
+          <img src="assets/12.webp" alt="partner 12">
+        </div>
+        <div class="swiper-slide partner-slide">
+          <img src="assets/13.webp" alt="partner 13">
+        </div>
+        <div class="swiper-slide partner-slide">
+          <img src="assets/14.webp" alt="partner 14">
+        </div>
+        <div class="swiper-slide partner-slide">
+          <img src="assets/15.webp" alt="partner 15">
+        </div>
+        <div class="swiper-slide partner-slide">
+          <img src="assets/16.webp" alt="partner 16">
+        </div>
+        <div class="swiper-slide partner-slide">
+          <img src="assets/17.webp" alt="partner 17">
+        </div>
+        <div class="swiper-slide partner-slide">
+          <img src="assets/18.webp" alt="partner 18">
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="why-us">
+  <div class="why-overlay"></div>
+
+  <h2 class="why-title">KENAPA HARUS KAMI</h2>
+
+  <div class="why-content">
+    <!-- LEFT TEXT -->
+    <div class="why-points">
+      <div class="why-bubble">
+        Standar kerja profesional yang memastikan setiap detail tertangani dengan rapi dan tepat
+      </div>
+      <div class="why-bubble">
+        Kualitas konten terjamin, estetik, dan mampu menguatkan citra brand
+      </div>
+      <div class="why-bubble">
+        Proses layanan yang sederhana, sehingga klien tidak perlu repot memahami alur kerja
+      </div>
+      <div class="why-bubble">
+        Respons cepat dan solusi tepat, menyesuaikan kebutuhan setiap brand dengan efektif
+      </div>
+    </div>
+
+    <!-- RIGHT IMAGE -->
+    <div class="why-image">
+      <img src="assets/model/kenapa harus kami bg.png" alt="Why Us">
+    </div>
+  </div>
+</section>
+
+<section id="contact-us">
+  <div>
+    <h2>CONTACT US</h2>
+    <p>Tap the button to start a chat</p>
+
+    <a href="https://wa.me/6282288898756" target="_blank">
+      <i class="fa-brands fa-whatsapp"></i>
+      WhatsApp
+    </a>
+  </div>
+</section>
+
+<!-- Swiper CSS & JS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+
+
+<footer id="footer">
+  <div class="footer-container">
+
+    <!-- LEFT -->
+    <div class="footer-left">
+      <p>
+        Taman Permata Indah 1 Block PA A 9,<br>
+        Jl. Telukgong Raya, RT.3 RW.7<br>
+        Jakarta Utara 14450
+      </p>
+    </div>
+
+    <!-- CENTER -->
+    <div class="footer-center">
+      <ul class="footer-menu">
+        <li><a href="#hero">ABOUT US</a></li>
+        <li><a href="#lk-section">PAKET</a></li>
+        <li><a href="#portfolio-trigger">PORTOFOLIO</a></li>
+        <li><a href="#partners">PARTNERS</a></li>
+        <li><a href="#contact-us">CONTACT US</a></li>
+      </ul>
+
+      <span class="footer-copy">
+        © 2025 JASVARA — All rights reserved
+      </span>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="footer-right">
+      <a href="https://wa.me/6282288898756"><i class="fa-brands fa-whatsapp"></i> + 62 82288898756</a>
+      <a href="https://www.instagram.com/jasvara.media/"><i class="fa-brands fa-instagram"></i> Jasvara Media</a>
+      <a href="#"><i class="fa-solid fa-envelope"></i> Jasvaramedia@gmail.com</a>
+      <a href="#"><i class="fa-brands fa-tiktok"></i> asdasdasdasda</a>
+    </div>
+
+  </div>
+</footer>
+
+
+
+
+
+  <!-- Bootstrap & dependencies -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Local script -->
+  <script src="script.js"></script>
+</body>
+</html>

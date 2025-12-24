@@ -1,0 +1,1389 @@
+/* =========================================================
+   BASE THEME SETUP (Color Palette)
+========================================================= */
+:root {
+  --accent: #BC0000;
+  --bg: #FCF1DB;
+  --main: #454545;
+  --soft-bg: #F7EFE5;
+  --light-grey: #F3F3F3;
+}
+
+.poppins-extrabold {
+  font-family: "Poppins", sans-serif;
+  font-weight: 800;
+  font-style: normal;
+}
+
+/* Reset */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+
+body {
+  background: var(--bg);
+  color: var(--main);
+  font-family: Inter, system-ui;
+  -webkit-font-smoothing: antialiased;
+}
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+#navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #b80000;
+  z-index: 999;
+  transition: transform 0.35s ease;
+}
+
+#navbar.hide {
+  transform: translateY(-100%);
+}
+
+.nav-container {
+  max-width: 1400px;
+  margin: auto;
+  padding: 18px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* LEFT TEXT */
+.nav-left {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800;
+  font-size: 20px;
+  color: #fff;
+  letter-spacing: 1px;
+}
+
+/* RIGHT MENU */
+.nav-menu {
+  list-style: none;
+  display: flex;
+  gap: 28px;
+  align-items: center;
+}
+
+.nav-menu a,
+.nav-dropdown span {
+  color: #fff;
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* DROPDOWN */
+.nav-dropdown {
+  position: relative;
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;              /* 🔥 bukan 150% */
+  left: 0;
+  background: #b80000;
+  list-style: none;
+  padding: 10px 0;
+  min-width: 180px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px);
+  transition: 0.25s ease;
+}
+
+.dropdown li {
+  padding: 8px 20px;
+}
+
+.dropdown li a {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.nav-dropdown:hover .dropdown,
+.dropdown:hover {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.nav-menu a:hover,
+.nav-dropdown span:hover {
+  opacity: 0.85;
+}
+
+
+
+/* =========================================================
+   HERO SECTION (FINAL – CLEAN & SAFE)
+========================================================= */
+
+/* HERO WRAPPER */
+#hero {
+  width: 100%;
+  height: 100vh;                 /* FULL layar */
+  position: relative;
+  overflow: hidden;
+}
+
+/* BOOTSTRAP CAROUSEL FIX */
+#hero .carousel,
+#hero .carousel-inner,
+#hero .carousel-item {
+  height: 100%;
+}
+
+/* SLIDE BASE */
+.hero-slide {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+}
+
+/* OVERLAY (TRANSPARANSI BACKGROUND) */
+.hero-slide::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(252, 241, 219, 0.65) 0%,
+    rgba(252, 241, 219, 0.45) 50%,
+    rgba(252, 241, 219, 0.65) 100%
+  );
+  z-index: 1;
+}
+
+/* CONTENT WRAPPER */
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 60px;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  column-gap: 10px; /* 🔥 JARAK LOGO & TEXT */
+}
+
+/* CENTER MODE (SLIDE 2) */
+.hero-inner.center {
+  grid-template-columns: 1fr;
+  text-align: center;
+  max-width: 900px;
+}
+
+
+/* ================= SLIDE 1 ================= */
+
+/* LOGO */
+
+.hero-title {
+  display: flex;
+  flex-direction: column;
+  font-family: "Poppins", sans-serif;
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: 5px;
+}
+
+.hero-title span {
+  display: block;
+  white-space: nowrap;   /* 🔥 GA BOLEH PECAH */
+}
+
+/* RESPONSIVE FONT SCALE */
+.hero-title {
+  font-size: clamp(px, 6vw, 64px);
+}
+
+.hero-tagline {
+  font-size: clamp(16px, 2.5vw, 26px);
+  font-weight: 800;
+  margin-top: 12px;
+  white-space: nowrap;   /* TAGLINE JUGA LOCK */
+}
+
+.hero-logo img {
+  max-width: 500px;
+  width: 100%;
+  display: block;
+}
+
+/* TEXT */
+.hero-text h1 {
+  font-family: "Poppins", sans-serif;
+  margin-top: 100;
+  font-size: 87px;
+  font-weight: 800;  
+  color: black;
+  margin-bottom: 8px;
+}
+
+.hero-tagline {
+  margin-top: 30px;
+  font-family: "Poppins", sans-serif;
+  font-size: 40px;
+  font-weight: 600;
+  color: rgb(188, 0, 0);
+  font-style: italic;
+
+  /* 🔥 BIAR LEBARNYA SAMA DENGAN H1 */
+  max-width: fit-content;
+}
+
+/* ================= SLIDE 2 ================= */
+
+.hero-title-red {
+  font-family: "Poppins", sans-serif;
+  font-size: 48px;
+  font-weight: 800;
+  color: rgb(188, 0, 0);
+  margin-bottom: 20px;
+}
+
+.hero-desc {
+  font-size: 36px;
+  line-height: 45px;
+  color: black;
+  font-style: italic;
+  text-align: left;
+}
+
+/* ================= BACKGROUND PER SLIDE ================= */
+
+.carousel-item:nth-child(1) .hero-slide {
+  background-image: url("assets/background/Image_fx\ \(4\).png");
+}
+
+.carousel-item:nth-child(2) .hero-slide {
+  background-image: url("assets/background/Image_fx\ \(5\).png");
+}
+
+/* ================= NAVBAR SAFETY ================= */
+/* Navbar fixed? kasih padding-top */
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+  #hero {
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .hero-inner {
+    grid-template-columns: 1fr;
+    row-gap: 40px;
+    text-align: center;
+    padding: 0 24px;
+  }
+
+  .hero-text h1 {
+    font-size: 42px;
+  }
+
+  .hero-tagline {
+    font-size: 18px;
+    margin: 0 auto;
+  }
+
+  .hero-title-red {
+    font-size: 32px;
+  }
+
+  .hero-desc {
+    font-size: 15px;
+  }
+}
+
+
+/* =========================================================
+   VISION & MISSION
+========================================================= */
+#vision-mission {
+  position: relative; /* wajib buat overlay */
+  padding: 100px 0;   /* bikin section lebih besar */
+  background-image: url("assets/background/Image_fx\ \(6\).png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding-top: 100px;
+}
+
+/* DARKEN OVERLAY (GREY TIPIS) */
+#vision-mission::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(252, 241, 219, 0.25); /* beige tipis */
+  z-index: 0;
+}
+
+#vision-mission .vm-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+/* PASTIIN CONTENT DI ATAS OVERLAY */
+#vision-mission > .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* ROW & COLUMN BEHAVIOR */
+#vision-mission .row {
+  align-items: stretch;
+}
+
+#vision-mission .col-md-4 {
+  display: flex;
+}
+
+/* CARD VISI & MISI */
+.vm-card {
+  background: rgb(252, 241, 219);
+  padding: 2rem;
+  border-radius: 20px;
+  height: 100%;
+  width: 100%;
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  align-items: center;
+}
+
+#vision-mission .vm-card {
+  min-height: 420px; /* adjust dikit kalo mau */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.vm-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.18);
+}
+
+/* TITLE */
+#vision-mission .vm-title {
+  color: rgb(188, 0, 0);
+  font-weight: 800;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-style: italic;
+}
+
+/* TEXT */
+#vision-mission .vm-text {
+  font-size: 1rem;
+  line-height: 1.7;
+  text-align: left;
+  color: black;
+  font-style: italic;
+}
+
+/* LOGO */
+#vision-mission .vm-logo {
+  width: 300px;
+  display: block;
+  margin: auto; /* biar center vertikal + horizontal */
+  filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.25));
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+#vision-mission .vm-logo:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 25px rgba(0, 0, 0, 0.4));
+}
+
+/* =========================================================
+   VISION & MISSION — MOBILE FIX
+   Tetap horizontal + scale down
+========================================================= */
+@media (max-width: 767px) {
+
+  /* PAKSA GRID TETAP HORIZONTAL */
+  #vision-mission .row {
+    flex-wrap: nowrap;
+    align-items: stretch;
+  }
+
+  #vision-mission .col-md-4 {
+    flex: 0 0 33.3333%;
+    max-width: 33.3333%;
+    display: flex;
+  }
+
+  /* SCALE DOWN SELURUH SECTION */
+  #vision-mission {
+    transform: scale(0.85);
+    transform-origin: top center;
+    padding: 140px 0; /* kompensasi scale */
+  }
+
+  /* CARD TETAP FULL HEIGHT */
+  #vision-mission .vm-card {
+    min-height: 360px;
+    padding: 1.4rem;
+  }
+
+  /* TEXT DIKECILIN SEDIKIT BIAR AMAN */
+  #vision-mission .vm-title {
+    font-size: 0.95rem;
+  }
+
+  #vision-mission .vm-text {
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+
+  /* LOGO IKUT SCALE */
+  #vision-mission .vm-logo {
+    width: 140px;
+  }
+}
+
+
+
+/* ================= GLOBAL ================= */
+.ui-title {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 28px;
+  color: rgb(188, 0, 0);
+}
+
+/* ================= LAYANAN KAMI ================= */
+#lk-section {
+  position: relative;
+  padding: 60px 20px;
+  text-align: center;
+  background-image: url("assets/background/Image_fx (7).png");
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  font-weight: 800;
+  font-family:'poppins';
+}
+
+#lk-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.45); /* putih = faded */
+  z-index: 0;
+}
+
+/* semua isi section naik ke atas overlay */
+#lk-section > * {
+  position: relative;
+  z-index: 1;
+}
+
+#lk-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/* WRAPPER */
+.lk-card-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+/* tiap item dianggap 1 kolom */
+.lk-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 260px; /* FIX lebar kolom */
+}
+
+/* CARD */
+.lk-card {
+  border: 10px solid rgb(188, 0, 0);
+  cursor: pointer;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.lk-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 30px rgba(107,30,30,.45);
+}
+
+.lk-card img {
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+  display: block;
+}
+
+/* TEXT BAWAH */
+.lk-text {
+  margin-top: 14px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 21px;
+  color: rgb(188, 0, 0);
+  line-height: 1.3;
+  min-height: 3.6em; /* 🔥 KUNCI SIMETRIS */
+}
+
+
+
+/* IMAGE */
+.lk-card img {
+  width: clamp(180px, 18vw, 280px);
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+  display: block;
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+  .lk-card-wrapper {
+    gap: 20px;
+  }
+
+  .lk-item {
+    width: 110px;
+  }
+
+  .lk-text {
+    font-size: 13px;
+  }
+}
+
+
+/* ================= POPUP OVERLAY ================= */
+.lk-popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.88);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.lk-popup-overlay.active {
+  display: flex;
+}
+
+/* POPUP BOX */
+.lk-popup {
+  border: 10px solid rgb(188, 0, 0);
+  background: #000;
+  max-width: 420px;
+  width: 90%;
+}
+
+/* POPUP IMAGE */
+.lk-popup img {
+  width: 100%;
+  max-height: 90vh;
+  aspect-ratio: 9 / 16;
+  object-fit: contain;
+}
+
+
+
+
+
+/* ================= PACKAGE ================= */
+#pkg-section {
+  position: relative;
+  padding: 60px 20px;
+  text-align: center;
+  background-image: url("assets/background/Image_fx\ \(7).png");
+  background-size: cover;
+  background-position: center;
+  font-weight: 800;
+  font-family:'poppins';
+}
+
+/* overlay semi-transparent */
+#pkg-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.4); /* atur fade di sini */
+  z-index: 0;
+}
+
+/* semua isi section tetap di atas overlay */
+#pkg-section > * {
+  position: relative;
+  z-index: 1;
+}
+
+.pkg-card-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+/* 1 kolom = 1 item */
+.pkg-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 260px;
+}
+
+/* CARD */
+.pkg-card {
+  border: 10px solid rgb(188, 0, 0);
+  cursor: pointer;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.pkg-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 30px rgba(107,30,30,.45);
+}
+
+.pkg-card img {
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+  display: block;
+}
+
+/* TEXT */
+.pkg-text {
+  margin-top: 14px;
+  text-align: center;
+  font-weight: 600;
+  color: rgb(188, 0, 0);
+  line-height: 1.3;
+  min-height: 3.6em; /* 🔥 biar simetris */
+}
+
+/* ================= MUTED / COMING SOON ================= */
+.pkg-muted {
+  filter: grayscale(1);
+  opacity: 0.55;
+  pointer-events: none;
+  position: relative;
+}
+
+.pkg-muted::after {
+  content: "Coming Soon";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.55);
+  color: #ccc;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+/* ================= POPUP OVERLAY ================= */
+#pkg-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.9);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+#pkg-overlay.active {
+  display: flex;
+}
+
+/* ================= POPUP CONTENT ================= */
+#pkg-popup-content {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 90vw;
+}
+
+/* IMAGE INSIDE POPUP */
+.pkg-popup-img {
+  width: 220px;
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+  cursor: pointer;
+  border: 10px solid rgb(188, 0, 0);
+  transition: transform .25s ease;
+}
+
+.pkg-popup-img:hover {
+  transform: scale(1.05);
+}
+
+/* ================= ZOOM IMAGE ================= */
+#pkg-zoom-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.95);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+}
+
+#pkg-zoom-overlay.active {
+  display: flex;
+}
+
+#pkg-zoom-img {
+  max-height: 90vh;
+  aspect-ratio: 9 / 16;
+  border: 10px solid rgb(188, 0, 0);
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+  .pkg-card-wrapper {
+    gap: 20px;
+  }
+
+  .pkg-item {
+    width: 110px;
+  }
+
+  .pkg-text {
+    font-size: 13px;
+  }
+}
+
+/* ================= TRIGGER ================= */
+#portfolio-trigger {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  background-image: url("assets/background/Image_fx\ \(8).png");
+  background-size: cover;
+  background-position: center;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  overflow: hidden;
+  font-weight: 800;
+  font-family:'poppins';
+}
+
+/* overlay soft grey */
+#portfolio-trigger::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35); /* dark grey */
+  z-index: 0;
+}
+
+/* semua isi section tetap di atas overlay */
+#portfolio-trigger > * {
+  position: relative;
+  z-index: 1;
+}
+
+.porto-btn {
+  position: relative;
+  cursor: pointer;
+  color:red;
+}
+
+.porto-btn img {
+  width: 240px;
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+  border: 10px solid rgb(188, 0, 0);
+}
+
+.porto-btn span {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+  background: rgba(0,0,0,.35);
+}
+
+/* ================= OVERLAY ================= */
+#portfolio-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.7);
+  display: none;
+  z-index: 9999;
+}
+
+#portfolio-overlay.active {
+  display: block;
+}
+
+/* ================= BOX ================= */
+.portfolio-box {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: url("assets/bg/portfolio-bg.jpg") center/cover no-repeat;
+  overflow: hidden;
+}
+
+/* ================= CLOSE ================= */
+.portfolio-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 40px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  z-index: 20;
+}
+
+/* ================= MODEL ================= */
+.portfolio-model {
+  position: absolute;
+  bottom: 0;
+  z-index: 5;
+}
+
+.portfolio-model img {
+  height: 85vh;
+}
+
+/* ================= CAROUSEL ================= */
+/* CAROUSEL WRAPPER */
+.portfolio-carousel {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 60%;
+}
+
+/* 1 SLIDE = 3 IMAGE */
+/* DEFAULT (TSP = 1) */
+.carousel-item .slide-group img {
+  width: 100%;
+}
+
+/* SMM SAJA = 3 */
+.portfolio-box.smm .carousel-item .slide-group {
+  display: flex;
+  gap: 20px;
+}
+
+.portfolio-box.smm .carousel-item .slide-group img {
+  width: calc(100% / 3);
+}
+
+
+/* ================= VARIANT ================= */
+
+/* SMM */
+.portfolio-box.smm .portfolio-model {
+  right: 0;
+}
+
+.portfolio-box.smm .portfolio-carousel {
+  left: 5%;
+}
+
+/* TSP */
+.portfolio-box.tsp .portfolio-model {
+  left: 0;
+}
+
+.portfolio-box.tsp .portfolio-carousel {
+  right: 5%;
+}
+
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+  #lk-grid,
+  #pkg-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  #pf-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .pf-tsp,
+  .pf-smm {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* FORCE CARD BISA DIKLIK */
+.lk-card,
+.pkg-card,
+.pf-card {
+  position: relative;
+  z-index: 5;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+/* PASTIKAN OVERLAY DI ATAS SEMUA */
+#ui-overlay {
+  z-index: 99999;
+}
+
+
+
+/* PARTNERS SECTION */
+#partners {
+  position: relative;
+  background-image: url("assets/background/Image_fx\ \(9).png");
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  color: rgb(188, 0, 0);
+  font-weight: 800;
+  font-family:'poppins';
+}
+
+/* overlay beige */
+#partners::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(252, 241, 219, 0.35); /* beige soft */
+  z-index: 0;
+}
+
+/* semua isi section tetap di atas overlay */
+#partners > * {
+  position: relative;
+  z-index: 1;
+}
+
+.section-title {
+  font-weight: 600;
+}
+
+/* SWIPER */
+.partners-swiper {
+  width: 100%;
+  overflow: hidden;
+}
+
+.partners-swiper .swiper-wrapper {
+  transition-timing-function: linear !important;
+}
+
+/* SLIDE */
+.partner-slide {
+  width: 400px !important;   /* sedikit lebih lebar */
+  height: 200px;             /* logo keliatan lebih gede */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* IMAGE */
+.partner-slide img {
+  max-width: 1000%;            /* gedein */
+  max-height: 100%;
+  object-fit: contain;
+  filter: none;              /* MATIIN hover effect */
+  opacity: 1;
+}
+
+
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .partner-circle {
+    width: 160px;
+    height: 90px;
+  }
+}
+
+
+
+
+/* =========================================================
+   PORTFOLIO (Simple Carousel)
+========================================================= */
+/* Portfolio Section */
+#portfolio {
+  background: #2c2c2c;  /* dark grey clean */
+  padding-top: 80px;
+  padding-bottom: 80px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+}
+
+
+/* Biar carousel lebih besar dan center */
+.portfolio-swiper {
+  padding-left: 60px;
+  padding-right: 60px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.portfolio-swiper .swiper-slide {
+  transition: 0.35s ease;
+  transform: scale(0.85);       /* slide samping mengecil */
+  opacity: 0.5;                 /* sedikit blur */
+}
+
+.portfolio-swiper .swiper-slide-active {
+  transform: scale(1);          /* slide tengah full size */
+  opacity: 1;
+}
+
+.portfolio-swiper .swiper-slide img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+/* Invisible navigation buttons */
+.portfolio-swiper .swiper-button-next,
+.portfolio-swiper .swiper-button-prev {
+  width: 80px;             /* area klik lebih besar */
+  height: 100%;
+  opacity: 0;              /* transparan */
+  background: transparent; /* no visual */
+  color: transparent;      /* hilang iconnya */
+}
+
+.portfolio-swiper .swiper-button-next:hover,
+.portfolio-swiper .swiper-button-prev:hover {
+  opacity: 0;              /* tetap invisible saat hover */
+}
+
+
+
+
+
+/* =========================================================
+   PRICING / OTHER SECTIONS
+========================================================= */
+.price-card img {
+  height: 160px;
+  object-fit: cover;
+}
+.price-tag {
+  color: var(--accent);
+  font-size: 1.05rem;
+}
+
+.btn-accent {
+  background: var(--accent);
+  color: #fff;
+}
+
+.btn-outline-accent {
+  border: 1.6px solid rgba(188,0,0,0.2);
+  color: var(--main);
+}
+
+.why-us {
+  position: relative;
+  min-height: 100vh;
+  background-image: url("assets/background/Image_fx\ \(10).png");
+  background-size: cover;
+  background-position: center;
+  padding-top: 100px;
+  padding-bottom: 20px;
+  padding-left: 100px;
+  color: #000;
+  overflow: hidden;
+}
+
+/* overlay dark grey */
+.why-us::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35); /* dark grey */
+  z-index: 0;
+}
+
+/* semua isi section tetap di atas overlay */
+.why-us > * {
+  position: relative;
+  z-index: 1;
+}
+
+.why-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 0;
+}
+
+.why-title {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 60px;
+}
+
+.why-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+}
+
+/* LEFT */
+.why-points {
+  width: 55%;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.why-bubble {
+  position: relative;
+  background: #fff4df;
+  color: #c40000;
+  padding: 20px 40px 20px 56px;
+  border-radius: 999px;
+  max-width: 720px;
+  font-size: 15px;
+  line-height: 1.6;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+}
+
+/* NOTCH CUT */
+.why-bubble::before {
+  content: "";
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  background: #8f8a7c; /* warna background section */
+  border-radius: 50%;
+}
+
+
+/* RIGHT IMAGE */
+.why-image {
+  width: 80%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.why-image img {
+  width: 100%;
+  max-width: 620px;
+  object-fit: contain;
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+  .why-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .why-points,
+  .why-image {
+    width: 100%;
+  }
+
+  .why-points {
+    align-items: center;
+  }
+
+  .why-bubble {
+    max-width: 90%;
+  }
+}
+
+#contact-us {
+  position: relative;
+  width: 100%;
+  min-height: 420px;
+  background: url('./assets/background/Image_fx\ \(11\).png') center / cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+}
+
+/* beige transparent overlay */
+#contact-us::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(252, 241, 219, 0.35); /* beige soft */
+  z-index: 0;
+}
+
+#contact-us > * {
+  position: relative;
+  z-index: 1;
+}
+
+#contact-us .content {
+  position: relative;
+  z-index: 2;
+}
+
+#contact-us h2 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #000;
+}
+
+#contact-us i.fa-whatsapp {
+  font-size: 200%;
+}
+
+#contact-us p {
+  font-size: 16px;
+  margin-bottom: 30px;
+  color: #000;
+}
+
+#contact-us a {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 28px;
+  background: #25d366;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 14px;
+  text-decoration: none;
+}
+
+#contact-us a i {
+  font-size: 100px;
+}
+
+
+
+
+#footer {
+  background: #c40000;
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  padding: 30px 40px;
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  align-items: center;
+  gap: 20px;
+}
+
+/* LEFT */
+.footer-left p {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* CENTER */
+.footer-center {
+  text-align: center;
+}
+
+.footer-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 15px;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+}
+
+.footer-menu li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.footer-menu li a:hover {
+  text-decoration: underline;
+}
+
+.footer-copy {
+  font-size: 13px;
+  opacity: 0.9;
+}
+
+/* RIGHT */
+.footer-right {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-end;
+}
+
+.footer-right a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-right i {
+  font-size: 16px;
+}
+
+.footer-right a:hover {
+  opacity: 0.8;
+}
+
+/* ===============================
+   GLOBAL RESPONSIVE SAFETY
+================================ */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
