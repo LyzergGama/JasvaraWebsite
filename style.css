@@ -820,8 +820,8 @@ body {
 
 #pkg-popup-carousel {
   position:relative;
-  width:90%;
-  max-width:1200px; /* desktop big */
+  width:100%;
+  max-width:1600px; /* desktop big */
 }
 
 #pkg-popup-close {
