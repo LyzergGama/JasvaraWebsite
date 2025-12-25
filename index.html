@@ -250,6 +250,7 @@
   </div>
 </div>
 
+<!-- ================= PACKAGE SECTION ================= -->
 <section id="pkg-section">
   <h2 class="ui-title">PACKAGE</h2>
 
@@ -287,9 +288,24 @@
   <button id="pkg-popup-close">&times;</button>
   <div id="pkg-popup-carousel" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner" id="pkg-carousel-inner"></div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#pkg-popup-carousel" data-bs-slide="prev"></button>
-    <button class="carousel-control-next" type="button" data-bs-target="#pkg-popup-carousel" data-bs-slide="next"></button>
+
+    <!-- DESKTOP buttons -->
+    <button class="carousel-control-prev desktop" type="button"
+      data-bs-target="#pkg-popup-carousel" data-bs-slide="prev"></button>
+    <button class="carousel-control-next desktop" type="button"
+      data-bs-target="#pkg-popup-carousel" data-bs-slide="next"></button>
+
+    <!-- MOBILE buttons -->
+    <button class="carousel-control-prev mobile" type="button"
+      data-bs-target="#pkg-popup-carousel" data-bs-slide="prev"></button>
+    <button class="carousel-control-next mobile" type="button"
+      data-bs-target="#pkg-popup-carousel" data-bs-slide="next"></button>
   </div>
+</div>
+
+<!-- ================= ZOOM IMAGE ================= -->
+<div id="pkg-zoom-overlay">
+  <img id="pkg-zoom-img">
 </div>
 
 <!-- ================= ZOOM IMAGE ================= -->

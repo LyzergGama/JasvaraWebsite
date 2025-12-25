@@ -708,7 +708,7 @@ body {
 
 
 
-/* ================= PACKAGE ================= */
+/* ================= PACKAGE SECTION ================= */
 #pkg-section {
   position: relative;
   padding: 60px 20px;
@@ -719,6 +719,7 @@ body {
   font-family: 'poppins';
   font-weight: 400;
 }
+
 #pkg-section::before {
   content:"";
   position:absolute;
@@ -726,12 +727,13 @@ body {
   background:rgba(255,255,255,0.4);
   z-index:0;
 }
+
 #pkg-section > * { position:relative; z-index:1; }
 
 .pkg-card-wrapper {
   display: flex;
   justify-content: center;
-  gap:40px;
+  gap: 40px;
   flex-wrap: wrap;
 }
 
@@ -751,6 +753,7 @@ body {
   overflow:hidden;
   transition: transform .25s ease, box-shadow .25s ease;
 }
+
 .pkg-card img {
   width:100%;
   aspect-ratio:9/16;
@@ -758,6 +761,7 @@ body {
   display:block;
   transition: transform .4s ease;
 }
+
 .pkg-card:hover img { transform:scale(1.08); }
 .pkg-card:hover { transform:scale(1.05); box-shadow:0 12px 30px rgba(107,30,30,.45); }
 
@@ -811,21 +815,13 @@ body {
   align-items:center;
   z-index:9999;
 }
+
 #pkg-overlay.active { display:flex; }
 
 #pkg-popup-carousel {
-  max-width: 100%; /* biar bisa selebar layar desktop */
-  width: 90vw;      /* responsive */
-  overflow: hidden; /* masih oke untuk carousel */
-}
-
-.slide-group {
-  display: flex;
-  gap: 10px; /* jarak antar card */
-}
-.pkg-popup-img {
-  width: 100%; /* JS akan mengatur, ini fallback */
-  object-fit: contain; /* biar full kelihatan */
+  position:relative;
+  width:90%;
+  max-width:1200px; /* desktop big */
 }
 
 #pkg-popup-close {
@@ -841,44 +837,41 @@ body {
 }
 
 /* CAROUSEL IMAGES */
-.pkg-popup-img {
-  aspect-ratio:9/16;
-  object-fit:cover;
+.slide-group {
+  display:flex;
+}
+
+.slide-group img {
   border:10px solid rgb(188,0,0);
   cursor:pointer;
   transition: transform .25s ease;
 }
-.pkg-popup-img:hover { transform:scale(1.05); }
+
+.slide-group img:hover { transform:scale(1.05); }
 
 /* ZOOM IMAGE */
-#pkg-zoom-overlay {
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.95);
-  display:none;
-  justify-content:center;
-  align-items:center;
-  z-index:10000;
-}
+#pkg-zoom-overlay { position:fixed; inset:0; background:rgba(0,0,0,.95); display:none; justify-content:center; align-items:center; z-index:10000; }
 #pkg-zoom-overlay.active { display:flex; }
 #pkg-zoom-img { max-height:90vh; aspect-ratio:9/16; border:10px solid rgb(188,0,0); }
 
-/* SLIDE-GROUP FLEX */
-.slide-group {
-  display:flex;
-  gap:10px;
-}
+/* BUTTONS */
+.carousel-control-prev.desktop, .carousel-control-next.desktop { display:block; }
+.carousel-control-prev.mobile, .carousel-control-next.mobile { display:none; }
 
-/* MOBILE OVERRIDE */
+/* MOBILE */
 @media(max-width:768px){
   .pkg-card-wrapper{ gap:20px; }
   .pkg-item{ width:110px; }
   .pkg-text{ font-size:13px; }
   .pkg-card::after{ font-size:14px; padding:8px 16px; }
-  .slide-group { display:block; }
-  .pkg-popup-img { width:100% !important; margin-bottom:10px; }
-}
 
+  /* carousel buttons */
+  .carousel-control-prev.desktop, .carousel-control-next.desktop { display:none; }
+  .carousel-control-prev.mobile, .carousel-control-next.mobile { display:block; }
+
+  .slide-group { display:block !important; }
+  .slide-group img { width:100% !important; margin-bottom:10px; }
+}
 
 /* ================= TRIGGER ================= */
 #portfolio-trigger {

@@ -61,7 +61,6 @@ function chunk(arr, size) {
   return out;
 }
 
-/* ===== OPEN PACKAGE ===== */
 document.querySelectorAll(".pkg-card[data-pkg]").forEach(card => {
   card.addEventListener("click", () => {
     const images = pkgData[card.dataset.pkg];
@@ -76,53 +75,44 @@ document.querySelectorAll(".pkg-card[data-pkg]").forEach(card => {
       const div = document.createElement("div");
       div.className = `carousel-item ${i===0?"active":""}`;
 
-      const slideGroup = document.createElement("div");
-      slideGroup.className = "slide-group";
-      slideGroup.style.display = "flex";
+      const groupHTML = group.map(src => 
+        `<img src="${src}" class="pkg-popup-img" style="width:${100/perSlide}%">`
+      ).join("");
 
-      group.forEach(src => {
-        const img = document.createElement("img");
-        img.src = src;
-        img.className = "pkg-popup-img";
-        img.style.width = `${100/perSlide}%`;
-        img.style.cursor = "pointer";
-
-        // ✅ zoom click handler
-        img.addEventListener("click", () => {
-          if(isMobile()) return; // skip zoom di mobile
-          zoomImg.src = src;
-          zoomOverlay.classList.add("active");
-        });
-
-        slideGroup.appendChild(img);
-      });
-
-      div.appendChild(slideGroup);
+      div.innerHTML = `<div class="slide-group">${groupHTML}</div>`;
       pkgContent.appendChild(div);
     });
 
     pkgOverlay.classList.add("active");
+
+    // zoom for desktop only
+    document.querySelectorAll(".pkg-popup-img").forEach(img => {
+      img.addEventListener("click", () => {
+        if(isMobile()) return;
+        zoomImg.src = img.src;
+        zoomOverlay.classList.add("active");
+      });
+    });
   });
 });
 
-/* ===== CLOSE PACKAGE ===== */
 pkgClose.addEventListener("click", () => {
   pkgOverlay.classList.remove("active");
   pkgContent.innerHTML = "";
 });
 
 pkgOverlay.addEventListener("click", e => {
-  if(e.target === pkgOverlay){
+  if(e.target===pkgOverlay){
     pkgOverlay.classList.remove("active");
-    pkgContent.innerHTML = "";
+    pkgContent.innerHTML="";
   }
 });
 
-/* ===== CLOSE ZOOM ===== */
 zoomOverlay.addEventListener("click", () => {
   zoomOverlay.classList.remove("active");
   zoomImg.src = "";
 });
+
   const overlay = document.getElementById("portfolio-overlay");
   const box = document.querySelector(".portfolio-box");
   const modelImg = document.getElementById("model-img");
