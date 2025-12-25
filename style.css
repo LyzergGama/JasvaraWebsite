@@ -814,9 +814,18 @@ body {
 #pkg-overlay.active { display:flex; }
 
 #pkg-popup-carousel {
-  position:relative;
-  width:90%;
-  max-width:1200px;
+  max-width: 100%; /* biar bisa selebar layar desktop */
+  width: 90vw;      /* responsive */
+  overflow: hidden; /* masih oke untuk carousel */
+}
+
+.slide-group {
+  display: flex;
+  gap: 10px; /* jarak antar card */
+}
+.pkg-popup-img {
+  width: 100%; /* JS akan mengatur, ini fallback */
+  object-fit: contain; /* biar full kelihatan */
 }
 
 #pkg-popup-close {
@@ -858,7 +867,6 @@ body {
 .slide-group {
   display:flex;
   gap:10px;
-  flex-wrap:nowrap;
 }
 
 /* MOBILE OVERRIDE */
