@@ -260,7 +260,7 @@
       <div class="pkg-card" data-pkg="1">
         <img src="assets/package/12.webp" alt="">
       </div>
-      <p class="pkg-text">Basic Package</p>
+      <p class="pkg-text">Social Media Management</p>
     </div>
 
     <!-- PACKAGE 2 -->
@@ -268,7 +268,7 @@
       <div class="pkg-card" data-pkg="2">
         <img src="assets/package/13.webp" alt="">
       </div>
-      <p class="pkg-text">Standard Package</p>
+      <p class="pkg-text">TikTok Shop Partner</p>
     </div>
 
     <!-- PACKAGE 3 – COMING SOON -->
@@ -276,27 +276,29 @@
       <div class="pkg-card">
         <img src="assets/package/14.webp" alt="">
       </div>
-      <p class="pkg-text">Premium Package</p>
+      <p class="pkg-text">Video Commercial</p>
     </div>
 
   </div>
 </section>
 
-
-<!-- PACKAGE POPUP -->
+<!-- ================= PACKAGE POPUP ================= -->
 <div id="pkg-overlay">
-  <div id="pkg-popup-content"></div>
+  <button id="pkg-popup-close">&times;</button>
+  <div id="pkg-popup-carousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner" id="pkg-carousel-inner"></div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#pkg-popup-carousel" data-bs-slide="prev"></button>
+    <button class="carousel-control-next" type="button" data-bs-target="#pkg-popup-carousel" data-bs-slide="next"></button>
+  </div>
 </div>
 
-<!-- ZOOM IMAGE POPUP -->
+<!-- ================= ZOOM IMAGE ================= -->
 <div id="pkg-zoom-overlay">
   <img id="pkg-zoom-img">
 </div>
 
 
-<!-- TRIGGER -->
 <section id="portfolio-trigger">
-
   <div class="porto-btn" data-type="smm">
     <img src="assets/model/porto smm.png">
     <span>PORTO SMM</span>
@@ -308,11 +310,9 @@
   </div>
 </section>
 
-
 <!-- OVERLAY -->
 <div id="portfolio-overlay">
-  <div class="portfolio-box smm">
-
+  <div class="portfolio-box">
     <button class="portfolio-close">&times;</button>
 
     <!-- MODEL -->
@@ -320,28 +320,30 @@
       <img id="model-img" src="">
     </div>
 
-    <!-- CAROUSEL -->
-    <div class="portfolio-carousel">
-      <div id="portfolioCarousel" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner" id="carousel-inner"></div>
-
-        <button class="carousel-control-prev" type="button" data-bs-target="#portfolioCarousel" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon"></span>
-        </button>
-
-        <button class="carousel-control-next" type="button" data-bs-target="#portfolioCarousel" data-bs-slide="next">
-          <span class="carousel-control-next-icon"></span>
-        </button>
+    <!-- ===== CAROUSEL SMM ===== -->
+    <div class="portfolio-carousel smm-carousel">
+      <div id="carousel-smm" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner" id="carousel-inner-smm"></div>
+        <button class="carousel-control-prev" type="button"
+          data-bs-target="#carousel-smm" data-bs-slide="prev"></button>
+        <button class="carousel-control-next" type="button"
+          data-bs-target="#carousel-smm" data-bs-slide="next"></button>
       </div>
     </div>
+
+    <!-- ===== CAROUSEL TSP ===== -->
+    <div class="portfolio-carousel tsp-carousel">
+      <div id="carousel-tsp" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner" id="carousel-inner-tsp"></div>
+        <button class="carousel-control-prev" type="button"
+          data-bs-target="#carousel-tsp" data-bs-slide="prev"></button>
+        <button class="carousel-control-next" type="button"
+          data-bs-target="#carousel-tsp" data-bs-slide="next"></button>
+      </div>
+    </div>
+
   </div>
 </div>
-
-
-
-
-
-
 
 
 <!-- PARTNERS SECTION -->
