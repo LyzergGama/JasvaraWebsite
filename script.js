@@ -1,19 +1,21 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-   const hamburger = document.getElementById('hamburger');
-  const navMenu = document.getElementById('navMenu');
+  const hamburger = document.getElementById("mobileHamburger");
+  const mobileMenu = document.getElementById("mobileMenu");
+  const dropdownToggle = document.querySelector(".mobile-dropdown-toggle");
 
-  hamburger.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-  });
-
-  // auto close saat klik menu
-  document.querySelectorAll('.nav-menu a').forEach(link => {
-    link.addEventListener('click', () => {
-      navMenu.classList.remove('active');
+  if (hamburger && mobileMenu) {
+    hamburger.addEventListener("click", () => {
+      mobileMenu.classList.toggle("active");
     });
-  });
-  
+  }
+
+  if (dropdownToggle) {
+    dropdownToggle.addEventListener("click", () => {
+      dropdownToggle.parentElement.classList.toggle("active");
+    });
+  }
+
   /* ========= LAYANAN KAMI ========= */
   document.querySelectorAll(".lk-card").forEach(card => {
     card.addEventListener("click", () => {
