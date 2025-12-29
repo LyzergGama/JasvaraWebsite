@@ -197,7 +197,8 @@
 </div>
 
 
-<section id="lk-section">
+<section id="lk-section" data-bg="assets/background/Image_fx (7).png">
+
   <h2 class="ui-title">LAYANAN KAMI</h2>
 
   <div class="lk-cards">
@@ -251,8 +252,8 @@
 </div>
 
 <!-- ================= PACKAGE SECTION ================= -->
-<section id="pkg-section">
-  <h2 class="ui-title">PACKAGE</h2>
+<section id="pkg-section" data-bg="assets/background/Image_fx (7).png">
+  <h2 class="pkg-title">PACKAGE</h2>
 
   <div class="pkg-card-wrapper">
 
@@ -289,11 +290,6 @@
   <div id="pkg-popup-carousel" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner" id="pkg-carousel-inner"></div>
 
-    <!-- DESKTOP buttons -->
-    <button class="carousel-control-prev desktop" type="button"
-      data-bs-target="#pkg-popup-carousel" data-bs-slide="prev"></button>
-    <button class="carousel-control-next desktop" type="button"
-      data-bs-target="#pkg-popup-carousel" data-bs-slide="next"></button>
 
     <!-- MOBILE buttons -->
     <button class="carousel-control-prev mobile" type="button"
@@ -314,21 +310,30 @@
 </div>
 
 
+<!-- ================= PORTFOLIO TRIGGER ================= -->
 <section id="portfolio-trigger">
-  <div class="porto-btn" data-type="smm">
-    <img src="assets/model/porto smm.png">
-    <span>PORTO SMM</span>
+
+  <h2 class="portfolio-title">PORTOFOLIO</h2>
+
+  <div class="portfolio-content">
+    <div class="porto-btn" data-type="smm">
+      <img src="assets/model/porto smm.png">
+      <span>PORTO SMM</span>
+    </div>
+
+    <div class="porto-btn" data-type="tsp">
+      <img src="assets/model/porto tsp.png">
+      <span>PORTO TSP</span>
+    </div>
   </div>
 
-  <div class="porto-btn" data-type="tsp">
-    <img src="assets/model/porto tsp.png">
-    <span>PORTO TSP</span>
-  </div>
 </section>
 
-<!-- OVERLAY -->
+
+<!-- ================= OVERLAY ================= -->
 <div id="portfolio-overlay">
   <div class="portfolio-box">
+
     <button class="portfolio-close">&times;</button>
 
     <!-- MODEL -->
@@ -338,23 +343,35 @@
 
     <!-- ===== CAROUSEL SMM ===== -->
     <div class="portfolio-carousel smm-carousel">
-      <div id="carousel-smm" class="carousel slide" data-bs-ride="carousel">
+      <div id="carousel-smm" class="carousel slide">
         <div class="carousel-inner" id="carousel-inner-smm"></div>
+
         <button class="carousel-control-prev" type="button"
-          data-bs-target="#carousel-smm" data-bs-slide="prev"></button>
+          data-bs-target="#carousel-smm" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </button>
+
         <button class="carousel-control-next" type="button"
-          data-bs-target="#carousel-smm" data-bs-slide="next"></button>
+          data-bs-target="#carousel-smm" data-bs-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </button>
       </div>
     </div>
 
     <!-- ===== CAROUSEL TSP ===== -->
     <div class="portfolio-carousel tsp-carousel">
-      <div id="carousel-tsp" class="carousel slide" data-bs-ride="carousel">
+      <div id="carousel-tsp" class="carousel slide">
         <div class="carousel-inner" id="carousel-inner-tsp"></div>
+
         <button class="carousel-control-prev" type="button"
-          data-bs-target="#carousel-tsp" data-bs-slide="prev"></button>
+          data-bs-target="#carousel-tsp" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </button>
+
         <button class="carousel-control-next" type="button"
-          data-bs-target="#carousel-tsp" data-bs-slide="next"></button>
+          data-bs-target="#carousel-tsp" data-bs-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </button>
       </div>
     </div>
 

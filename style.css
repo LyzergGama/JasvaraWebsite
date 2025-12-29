@@ -227,32 +227,48 @@ body {
   align-items: center;
 }
 
-/* OVERLAY (TRANSPARANSI BACKGROUND) */
+/* =========================================================
+   LAYER 1 — BEIGE TEBEL
+========================================================= */
 .hero-slide::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    90deg,
-    rgba(252, 241, 219, 0.65) 0%,
-    rgba(252, 241, 219, 0.45) 50%,
-    rgba(252, 241, 219, 0.65) 100%
-  );
+  background: #f3e4c8; /* beige solid */
   z-index: 1;
 }
 
-/* CONTENT WRAPPER */
+/* =========================================================
+   LAYER 2 — NOISE (NO REPEAT, NO CROP)
+========================================================= */
+.hero-slide::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("assets/background/Image_fx (4).png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* =========================================================
+   CONTENT WRAPPER
+========================================================= */
 .hero-inner {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 60px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
-  column-gap: 10px; /* 🔥 JARAK LOGO & TEXT */
+  column-gap: 10px;
   min-height: 100dvh;
+  margin-bottom: 12%;
 }
 
 /* CENTER MODE (SLIDE 2) */
@@ -263,35 +279,33 @@ body {
   row-gap: 16px;
 }
 
-
 /* ================= SLIDE 1 ================= */
 
 /* LOGO */
-
 .hero-title {
   display: flex;
   flex-direction: column;
   font-family: "Poppins", sans-serif;
   font-weight: 800;
   line-height: 1.05;
-  letter-spacing: 5px;
+  letter-spacing: 2px;
+  margin-bottom: 20%;
 }
 
 .hero-title span {
   display: block;
-  white-space: nowrap;   /* 🔥 GA BOLEH PECAH */
+  white-space: nowrap;
 }
 
 /* RESPONSIVE FONT SCALE */
 .hero-title {
-  font-size: clamp(px, 6vw, 64px);
+  font-size: clamp(42px, 8vw, 84px);
 }
 
 .hero-tagline {
   font-size: clamp(16px, 2.5vw, 26px);
   font-weight: 800;
-  margin-top: 12px;
-  white-space: nowrap;   /* TAGLINE JUGA LOCK */
+  white-space: nowrap;
 }
 
 .hero-logo img {
@@ -301,31 +315,27 @@ body {
 }
 
 /* TEXT */
-
 .carousel-item:nth-child(1) .hero-inner {
   padding-top: var(--nav-height);
 }
 
-
 .hero-text h1 {
   font-family: "Poppins", sans-serif;
-  margin-top: 100;
+  margin-top: 100px;
   font-size: 87px;
   font-weight: 800;  
   color: black;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .hero-tagline {
-  margin-top: 30px;
   font-family: "Poppins", sans-serif;
   font-size: 40px;
   font-weight: 600;
   color: rgb(188, 0, 0);
   font-style: italic;
-
-  /* 🔥 BIAR LEBARNYA SAMA DENGAN H1 */
   max-width: fit-content;
+  margin-bottom: 50px;
 }
 
 /* ================= SLIDE 2 ================= */
@@ -333,7 +343,7 @@ body {
 .carousel-item:nth-child(2) .hero-inner.center {
   display: flex;
   flex-direction: column;
-  align-items: cennter; /* atau center kalau mau */
+  align-items: center;
   justify-content: center;
   height: auto;
   max-width: 900px;
@@ -348,8 +358,7 @@ body {
   font-size: 48px;
   font-weight: 800;
   color: rgb(188, 0, 0);
-  margin-bottom: 20px;
-  margin: 0;
+  margin: 0 0 20px 0;
 }
 
 .hero-desc {
@@ -364,86 +373,129 @@ body {
 /* ================= BACKGROUND PER SLIDE ================= */
 
 .carousel-item:nth-child(1) .hero-slide {
-  background-image: url("assets/background/Image_fx\ \(4\).png");
+  background-image: url("assets/background/Image_fx (4).png");
 }
 
 .carousel-item:nth-child(2) .hero-slide {
-  background-image: url("assets/background/Image_fx\ \(5\).png");
+  background-image: url("assets/background/Image_fx (5).png");
 }
 
-/* ================= NAVBAR SAFETY ================= */
-/* Navbar fixed? kasih padding-top */
-
 /* ================= MOBILE ================= */
+
 @media (max-width: 768px) {
+
+  /* HERO JANGAN TERLALU TINGGI */
   #hero {
-    height: auto;
-    min-height: 100vh;
+    min-height: 100svh;
   }
 
+  .hero-slide {
+    align-items: flex-start;
+  }
+
+  /* TETAP 2 KOLOM, TAPI DIKECILIN */
   .hero-inner {
-    grid-template-columns: 1fr 1fr; /* TETAP 2 KOLOM */
+    grid-template-columns: 0.9fr 1.1fr; /* logo : text */
     column-gap: 16px;
-    padding: 0 24px;
-    text-align: left;
+    padding: 90px 16px 48px;
+    min-height: auto;
+    align-items: flex-start;
+  }
+
+  /* LOGO — NAIK & DIKECILIN */
+  .hero-logo img {
+    max-width: 200px;
+    margin-top: 0;
+  }
+
+  /* TEXT ALIGNMENT */
+  .hero-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .hero-text h1 {
-    font-size: clamp(28px, 6vw, 87px);
+    font-size: 34px;
+    line-height: 1.1;
+    margin-top: 0;
   }
 
   .hero-tagline {
-    font-size: clamp(14px, 3vw, 40px);
+    font-size: 16px;
+    margin-top: 10px;
+    white-space: normal;
+  }
+
+  /* SLIDE 2 */
+  .hero-inner.center {
+    grid-template-columns: 1fr;
+    text-align: left;
   }
 
   .hero-title-red {
-    font-size: 32px;
+    font-size: 26px;
   }
 
   .hero-desc {
     font-size: 15px;
-    max-width: 900px;
-    margin: 0 auto;
+    line-height: 1.45;
   }
 }
+
 
 
 /* =========================================================
    VISION & MISSION
 ========================================================= */
+
+/* ================= VISION & MISSION ================= */
 #vision-mission {
-  position: relative; /* wajib buat overlay */
-  padding: 100px 0;   /* bikin section lebih besar */
-  background-image: url("assets/background/Image_fx\ \(6\).png");
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+
+  background-image: url("assets/background/Image_fx (6).png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  padding-top: 100px;
 }
 
-/* DARKEN OVERLAY (GREY TIPIS) */
+/* GREY GRADIENT */
 #vision-mission::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(252, 241, 219, 0.25); /* beige tipis */
-  z-index: 0;
-}
-
-#vision-mission .vm-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-}
-
-/* PASTIIN CONTENT DI ATAS OVERLAY */
-#vision-mission > .container {
-  position: relative;
+  background: linear-gradient(
+    90deg,
+    rgba(40,40,40,0.65) 0%,
+    rgba(60,60,60,0.55) 50%,
+    rgba(40,40,40,0.65) 100%
+  );
   z-index: 1;
 }
 
-/* ROW & COLUMN BEHAVIOR */
+/* NOISE */
+#vision-mission::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("assets/background/noise-dark.png");
+  background-size: 180px 180px;
+  opacity: 0.32;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* CONTENT */
+#vision-mission > * {
+  position: relative;
+  z-index: 3;
+}
+
+/* =========================================================
+   ROW & COLUMN BEHAVIOR
+========================================================= */
 #vision-mission .row {
   align-items: stretch;
 }
@@ -452,9 +504,11 @@ body {
   display: flex;
 }
 
-/* CARD VISI & MISI */
+/* =========================================================
+   CARD VISI & MISI
+========================================================= */
 .vm-card {
-  background: rgb(252, 241, 219);
+  background: #f5f5f5;
   padding: 2rem;
   border-radius: 20px;
   height: 100%;
@@ -463,14 +517,14 @@ body {
     0 10px 25px rgba(0, 0, 0, 0.12),
     inset 0 1px 0 rgba(255, 255, 255, 0.6);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  align-items: center;
-}
 
-#vision-mission .vm-card {
-  min-height: 420px; /* adjust dikit kalo mau */
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  margin-top: 50%;
+  margin-bottom: 50%;
+  min-height: 420px;
 }
 
 .vm-card:hover {
@@ -478,7 +532,9 @@ body {
   box-shadow: 0 18px 35px rgba(0, 0, 0, 0.18);
 }
 
-/* TITLE */
+/* =========================================================
+   TITLE & TEXT
+========================================================= */
 #vision-mission .vm-title {
   color: rgb(188, 0, 0);
   font-weight: 800;
@@ -487,7 +543,6 @@ body {
   font-style: italic;
 }
 
-/* TEXT */
 #vision-mission .vm-text {
   font-size: 1rem;
   line-height: 1.7;
@@ -496,13 +551,18 @@ body {
   font-style: italic;
 }
 
-/* LOGO */
+/* =========================================================
+   LOGO
+========================================================= */
 #vision-mission .vm-logo {
-  width: 300px;
+  width: 600px;
   display: block;
-  margin: auto; /* biar center vertikal + horizontal */
+  margin: auto;
   filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.25));
   transition: filter 0.3s ease, transform 0.3s ease;
+
+  margin-top: 50%;
+  margin-bottom: 50%;
 }
 
 #vision-mission .vm-logo:hover {
@@ -511,12 +571,11 @@ body {
 }
 
 /* =========================================================
-   VISION & MISSION — MOBILE FIX
-   Tetap horizontal + scale down
+   MOBILE FIX — TETAP HORIZONTAL
 ========================================================= */
 @media (max-width: 767px) {
 
-  /* PAKSA GRID TETAP HORIZONTAL */
+  /* ROW TETAP 3 KOLOM */
   #vision-mission .row {
     flex-wrap: nowrap;
     align-items: stretch;
@@ -528,20 +587,21 @@ body {
     display: flex;
   }
 
-  /* SCALE DOWN SELURUH SECTION */
+  /* SCALE DOWN SECTION */
   #vision-mission {
     transform: scale(0.85);
     transform-origin: top center;
-    padding: 140px 0; /* kompensasi scale */
+    padding: 140px 0;
   }
 
-  /* CARD TETAP FULL HEIGHT */
+  /* CARD */
   #vision-mission .vm-card {
     min-height: 360px;
     padding: 1.4rem;
+    margin-bottom: 50%;
   }
 
-  /* TEXT DIKECILIN SEDIKIT BIAR AMAN */
+  /* TEXT */
   #vision-mission .vm-title {
     font-size: 0.95rem;
   }
@@ -551,11 +611,12 @@ body {
     line-height: 1.5;
   }
 
-  /* LOGO IKUT SCALE */
+  /* LOGO */
   #vision-mission .vm-logo {
     width: 140px;
   }
 }
+
 
 
 
@@ -572,61 +633,83 @@ body {
   position: relative;
   padding: 60px 20px;
   text-align: center;
+  font-weight: 800;
+  font-family: 'Poppins';
+  height: 100vh;
+  overflow: hidden;
+
   background-image: url("assets/background/Image_fx (7).png");
   background-size: cover;
   background-position: center;
-  overflow: hidden;
-  font-weight: 800;
-  font-family:'poppins';
+  background-repeat: no-repeat;
 }
 
+
+
+/* =================================================
+   LAYER 1 — BEIGE SOLID
+================================================= */
 #lk-section::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(255, 255, 255, 0.45); /* putih = faded */
-  z-index: 0;
+  background: #f3ead6; /* BEIGE BASE */
+  z-index: 1;
+}
+
+/* =================================================
+   LAYER 2 — NOISE / TEXTURE
+================================================= */
+#lk-section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("assets/background/Image_fx (7).png");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.18; /* texture */
+  pointer-events: none;
+  z-index: 2;
 }
 
 /* semua isi section naik ke atas overlay */
 #lk-section > * {
   position: relative;
-  z-index: 1;
+  z-index: 3;
 }
 
-#lk-section::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-
-/* WRAPPER */
+/* =================================================
+   WRAPPER
+================================================= */
 .lk-card-wrapper {
   display: flex;
   justify-content: center;
+  align-items: center; /* 🔥 penting */
   gap: 40px;
-  align-items: flex-start;
 }
 
-/* tiap item dianggap 1 kolom */
-.lk-item {
+/* tiap item = 1 kolom */
+.lk-content {
+  height: calc(100vh - 120px); /* sisa setelah title */
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 260px; /* FIX lebar kolom */
+  align-items: center;        /* vertical center */
+  justify-content: center;    /* horizontal center */
 }
 
-/* CARD */
+
+/* =================================================
+   CARD
+================================================= */
 .lk-card {
   border: 10px solid rgb(188, 0, 0);
   cursor: pointer;
+  background: #f8f1e1; /* beige card */
   transition: transform .25s ease, box-shadow .25s ease;
 }
 
 .lk-card:hover {
   transform: scale(1.05);
-  box-shadow: 0 12px 30px rgba(107,30,30,.45);
+  box-shadow: 0 14px 32px rgba(120, 60, 40, 0.35);
 }
 
 .lk-card img {
@@ -636,7 +719,9 @@ body {
   display: block;
 }
 
-/* TEXT BAWAH */
+/* =================================================
+   TEXT BAWAH
+================================================= */
 .lk-text {
   margin-top: 14px;
   text-align: center;
@@ -644,12 +729,12 @@ body {
   font-size: 21px;
   color: rgb(188, 0, 0);
   line-height: 1.3;
-  min-height: 3.6em; /* 🔥 KUNCI SIMETRIS */
+  min-height: 3.6em; /* SIMETRIS */
 }
 
-
-
-/* IMAGE */
+/* =================================================
+   IMAGE SIZE
+================================================= */
 .lk-card img {
   width: clamp(180px, 18vw, 280px);
   aspect-ratio: 9 / 16;
@@ -657,7 +742,9 @@ body {
   display: block;
 }
 
-/* ================= MOBILE ================= */
+/* =================================================
+   MOBILE
+================================================= */
 @media (max-width: 768px) {
   .lk-card-wrapper {
     gap: 20px;
@@ -672,16 +759,35 @@ body {
   }
 }
 
-
-/* ================= POPUP OVERLAY ================= */
+/* =================================================
+   POPUP OVERLAY
+================================================= */
 .lk-popup-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.88);
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
   display: none;
   align-items: center;
   justify-content: center;
+
   z-index: 9999;
+}
+
+.lk-popup-overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 0;
+}
+
+.lk-popup {
+  position: relative;
+  z-index: 1;
 }
 
 .lk-popup-overlay.active {
@@ -704,235 +810,513 @@ body {
   object-fit: contain;
 }
 
-
-
-
-
 /* ================= PACKAGE SECTION ================= */
 #pkg-section {
   position: relative;
-  padding: 60px 20px;
-  text-align: center;
-  background-image: url("assets/background/Image_fx (7).png");
+  height: 100vh;
+  overflow: hidden;
+
+  /* BASE IMAGE */
+  background-image: url("assets/background/Image_fx (9).png");
   background-size: cover;
   background-position: center;
-  font-family: 'poppins';
-  font-weight: 400;
+  background-repeat: no-repeat;
+
+  font-family: poppins;
+  padding: 60px 20px;
 }
 
+/* ================= LAYER 1 — GREY GRADIENT ================= */
 #pkg-section::before {
-  content:"";
-  position:absolute;
-  inset:0;
-  background:rgba(255,255,255,0.4);
-  z-index:0;
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(35,35,35,0.75) 0%,
+    rgba(55,55,55,0.65) 50%,
+    rgba(35,35,35,0.75) 100%
+  );
+  z-index: 1;
 }
 
-#pkg-section > * { position:relative; z-index:1; }
+/* ================= LAYER 2 — NOISE / GRAIN ================= */
+#pkg-section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("assets/background/noise-dark.png");
+  background-size: 160px 160px;
+  opacity: 0.4; /* 🔥 kerasa */
+  pointer-events: none;
+  z-index: 2;
+}
 
+/* CONTENT */
+#pkg-section > * {
+  position: relative;
+  z-index: 3;
+}
+
+
+
+
+/* ================= CARD WRAPPER ================= */
 .pkg-card-wrapper {
   display: flex;
   justify-content: center;
-  gap: 40px;
-  flex-wrap: wrap;
+  align-items: center;
+  gap: 40px; /* DESKTOP = SAMA */
 }
 
-.pkg-item {
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  width:260px;
-  position:relative;
+/* TITLE */
+.pkg-title {
+  position: relative;
+  z-index: 4; /* 🔥 di atas overlay */
+  margin-bottom: 0;
+  padding-top: 40px;
+  font-size: 28px;
+  font-weight: 800;
+  color: rgb(188,0,0);
+  align-items: center;
+  text-align: center;
+  margin-bottom: 40px;
 }
 
-/* CARD */
+/* CONTENT AREA — IKUT POLA LK */
+.pkg-content {
+  height: calc(100vh - 120px); /* IDENTIK */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ================= CARD ================= */
 .pkg-card {
-  position:relative;
-  border:10px solid rgb(188,0,0);
-  cursor:pointer;
-  overflow:hidden;
+  border: 10px solid rgb(188,0,0);
+  cursor: pointer;
   transition: transform .25s ease, box-shadow .25s ease;
 }
 
 .pkg-card img {
-  width:100%;
-  aspect-ratio:9/16;
-  object-fit:cover;
-  display:block;
-  transition: transform .4s ease;
+  width: clamp(180px, 18vw, 280px); /* SAME FORMULA */
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+  display: block;
 }
 
-.pkg-card:hover img { transform:scale(1.08); }
-.pkg-card:hover { transform:scale(1.05); box-shadow:0 12px 30px rgba(107,30,30,.45); }
+/* HOVER — MAIN PAGE */
+.pkg-card:hover img {
+  filter: blur(3px) brightness(0.8);
+  transform: scale(1.03);
+}
 
-/* SHOW MORE overlay */
+.pkg-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 30px rgba(107,30,30,.45);
+}
+
+/* SHOW ALL PACKAGE */
 .pkg-card::after {
-  content:"Show More →";
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%, -50%);
-  padding:12px 26px;
-  font-size:18px;
-  font-weight:700;
-  letter-spacing:1px;
-  color:#fff;
-  background:rgba(0,0,0,.55);
-  border:2px solid #fff;
-  pointer-events:none;
-  z-index:2;
-  border-radius:0;
-}
-
-/* TEXT */
-.pkg-text {
-  margin-top:14px;
-  text-align:center;
-  font-size:22px;
-  font-weight:300;
-  color:rgb(188,0,0);
-  line-height:1.3;
-  min-height:3.6em;
-}
-
-/* MUTED / COMING SOON */
-.pkg-item.pkg-muted { filter:grayscale(1); opacity:.55; pointer-events:none; }
-.pkg-item.pkg-muted::after {
-  content:"Coming Soon";
-  position:absolute; inset:0;
-  color:#ccc; font-weight:600; font-size:14px; text-transform:uppercase;
-  display:flex; justify-content:center; align-items:center; letter-spacing:1px;
-}
-.pkg-item.pkg-muted .pkg-card::after { display:none; }
-
-/* ================= POPUP ================= */
-#pkg-overlay {
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.9);
-  display:none;
-  justify-content:center;
-  align-items:center;
-  z-index:9999;
-}
-
-#pkg-overlay.active { display:flex; }
-
-#pkg-popup-carousel {
-  position:relative;
-  width:100%;
-  max-width:1600px; /* desktop big */
-}
-
-#pkg-popup-close {
-  position:absolute;
-  top:10px;
-  right:10px;
-  font-size:30px;
-  background:none;
-  border:none;
-  color:#fff;
-  cursor:pointer;
-  z-index:10;
-}
-
-/* CAROUSEL IMAGES */
-.slide-group {
-  display:flex;
-}
-
-.slide-group img {
-  border:10px solid rgb(188,0,0);
-  cursor:pointer;
-  transition: transform .25s ease;
-}
-
-.slide-group img:hover { transform:scale(1.05); }
-
-/* ZOOM IMAGE */
-#pkg-zoom-overlay { position:fixed; inset:0; background:rgba(0,0,0,.95); display:none; justify-content:center; align-items:center; z-index:10000; }
-#pkg-zoom-overlay.active { display:flex; }
-#pkg-zoom-img { max-height:90vh; aspect-ratio:9/16; border:10px solid rgb(188,0,0); }
-
-/* BUTTONS */
-.carousel-control-prev.desktop, .carousel-control-next.desktop { display:block; }
-.carousel-control-prev.mobile, .carousel-control-next.mobile { display:none; }
-
-/* MOBILE */
-@media(max-width:768px){
-  .pkg-card-wrapper{ gap:20px; }
-  .pkg-item{ width:110px; }
-  .pkg-text{ font-size:13px; }
-  .pkg-card::after{ font-size:14px; padding:8px 16px; }
-
-  /* carousel buttons */
-  .carousel-control-prev.desktop, .carousel-control-next.desktop { display:none; }
-  .carousel-control-prev.mobile, .carousel-control-next.mobile { display:block; }
-
-  .slide-group { display:block !important; }
-  .slide-group img { width:100% !important; margin-bottom:10px; }
-}
-
-/* ================= TRIGGER ================= */
-#portfolio-trigger {
-  position: relative;
+  content: "Show All Package";
+  position: absolute;
+  inset: 0;
   display: flex;
   justify-content: center;
-  gap: 40px;
-  background-image: url("assets/background/Image_fx\\ (8).png");
-  background-size: cover;
-  background-position: center;
-  padding-top: 100px;
-  padding-bottom: 100px;
-  overflow: hidden;
-  font-weight: 800;
-  font-family:'poppins';
+  align-items: center;
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-size: 18px;
+  color: #fff;
+  background: rgba(0,0,0,0.45);
+  opacity: 0;
+  transition: opacity .3s ease;
+  pointer-events: none;
 }
 
-#portfolio-trigger::before {
+.pkg-card:hover::after {
+  opacity: 1;
+}
+
+/* TEXT BAWAH CARD */
+.pkg-text {
+  margin-top: 14px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 21px;
+  color: rgb(188,0,0);
+  line-height: 1.3;
+  min-height: 3.6em; /* biar rapi */
+}
+
+.pkg-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ================= MUTED / COMING SOON ================= */
+.pkg-item.pkg-muted {
+  pointer-events: auto; /* BIAR HOVER TETEP JALAN */
+}
+
+/* card tetep merah */
+.pkg-item.pkg-muted .pkg-card {
+  border-color: rgb(188,0,0);
+  background: transparent;
+}
+
+/* image normal */
+.pkg-item.pkg-muted img {
+  filter: none;
+}
+
+/* default: ga ada tulisan */
+.pkg-item.pkg-muted .pkg-card::after {
+  content: "";
+  opacity: 0;
+}
+
+/* hover: tampil Coming Soon */
+.pkg-item.pkg-muted:hover .pkg-card::after {
+  content: "Coming Soon";
+  opacity: 1;
+  background: rgba(0,0,0,0.55);
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+
+/* ================= POPUP OVERLAY ================= */
+#pkg-overlay {
+  position: fixed;
+  inset: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+
+  background-image: url("assets/background/Image_fx (7).png");
+  background-size: cover;
+  background-position: center;
+}
+
+#pkg-overlay::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.35);
-  z-index: 0;
+  background: rgba(60,60,60,0.45);
 }
 
-#portfolio-trigger > * {
+#pkg-overlay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("assets/background/Image_fx (7).png");
+  opacity: 0.1;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+#pkg-overlay.active {
+  display: flex;
+}
+
+/* ================= POPUP CONTENT ================= */
+#pkg-popup-carousel {
+  position: relative;
+  width: 200%;
+  max-width: 1600px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  z-index: 1;
+}
+
+.pkg-popup-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* INI KUNCI */
+}
+
+.pkg-popup-item img {
+  display: block;
+}
+
+.pkg-popup-text {
+  margin-top: 8px;
+  font-size: 30px;
+  color: rgb(188, 0, 0); /* merah sesuai request */
+  text-align: center;   /* CENTER ke card */
+  font-weight: 500;
+  font-family: poppins;
+}
+
+/* SLIDE GROUP */
+.slide-group {
+  display: flex;
+  gap: 5px; /* 🔥 SWEET SPOT */
+  justify-content: center;
+}
+
+/* POPUP IMAGES */
+.slide-group img {
+  border: 5px solid rgb(188,0,0);
+  cursor: pointer;
+  transition: transform .25s ease;
+}
+
+.slide-group img:hover {
+  transform: scale(1.05);
+}
+
+/* ================= ZOOM OVERLAY ================= */
+#pkg-zoom-overlay {
+  position: fixed;
+  inset: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+
+  background-image: url("assets/background/Image_fx (7).png");
+  background-size: cover;
+  background-position: center;
+}
+
+#pkg-zoom-overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(50,50,50,0.55);
+}
+
+#pkg-zoom-overlay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("assets/background/Image_fx (7).png");
+  opacity: 0.12;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+#pkg-zoom-overlay.active {
+  display: flex;
+}
+
+#pkg-zoom-img {
+  max-height: 90vh;
+  aspect-ratio: 9 / 16;
+  border: 10px solid rgb(188,0,0);
   position: relative;
   z-index: 1;
 }
 
+/* ================= CAROUSEL BUTTON VISIBILITY ================= */
+.carousel-control-prev,
+.carousel-control-next {
+  display: none;
+}
+
+/* DESKTOP */
+@media (min-width: 769px) {
+  .carousel-control-prev.desktop,
+  .carousel-control-next.desktop {
+    display: flex;
+  }
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .carousel-control-prev.mobile,
+  .carousel-control-next.mobile {
+    display: flex;
+  }
+
+  .pkg-card-wrapper {
+    gap: 10px;
+  }
+
+  .pkg-item {
+    width: 110px;
+  }
+
+  .pkg-text {
+    font-size: 13px;
+  }
+
+  .slide-group {
+    display: block;
+  }
+
+  .slide-group img {
+    width: 100% !important;
+    margin-bottom: 10px;
+  }
+}
+
+/* ================= PORTFOLIO SECTION ================= */
+#portfolio-trigger {
+  position: relative;
+  padding: 60px 20px;
+  height: 100vh;
+  overflow: hidden;
+
+  font-family: 'Poppins';
+  font-weight: 800;
+
+  background-image: url("assets/model/kenapa harus kami bg.png");
+  background-size: cover;
+  background-position: center;
+}
+
+/* BEIGE LAYER (SAMA KAYAK LK) */
+#portfolio-trigger::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #f3ead6;
+  z-index: 1;
+}
+
+#portfolio-trigger::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("assets/model/kenapa harus kami bg.png");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.18;
+  z-index: 2;
+  pointer-events: none;
+}
+
+#portfolio-trigger > * {
+  position: relative;
+  z-index: 3;
+}
+
+/* HEADER */
+.portfolio-title {
+  text-align: center;
+  color: rgb(188,0,0);
+  font-size: 28px;
+  margin-bottom: 40px;
+}
+
+/* CONTENT */
+.portfolio-content {
+  height: calc(100vh - 160px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+}
+
+/* BUTTON */
 .porto-btn {
   position: relative;
   cursor: pointer;
-  color: red;
 }
 
 .porto-btn img {
   width: 240px;
   aspect-ratio: 9 / 16;
   object-fit: cover;
-  border: 10px solid rgb(188, 0, 0);
+  border: 10px solid rgb(188,0,0);
 }
 
 .porto-btn span {
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+  color: rgb(188,0,0);
+}
+
+/* ================= PORTFOLIO SECTION ================= */
+#portfolio-trigger {
+  position: relative;
+  height: 100vh;
+  padding: 60px 20px;
+  font-family: 'Poppins';
+  font-weight: 800;
+  overflow: hidden;
+
+  background-image: url("assets/model/kenapa harus kami bg.png");
+  background-size: cover;
+  background-position: center;
+}
+
+/* BEIGE BASE (COPY LK) */
+#portfolio-trigger::before {
+  content: "";
   position: absolute;
   inset: 0;
+  background: #f3ead6;
+  z-index: 1;
+}
+
+/* NOISE */
+#portfolio-trigger::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("assets/model/kenapa harus kami bg.png");
+  background-size: cover;
+  background-position: center;
+  opacity: .18;
+  pointer-events: none;
+  z-index: 2;
+}
+
+#portfolio-trigger > * {
+  position: relative;
+  z-index: 3;
+}
+
+.portfolio-title {
+  text-align: center;
+  font-size: 28px;
+  color: rgb(188,0,0);
+  margin-bottom: 40px;
+}
+
+.portfolio-content {
+  height: calc(100vh - 160px);
   display: flex;
-  align-items: center;
   justify-content: center;
-  color: white;
-  font-weight: 700;
-  background: rgba(0,0,0,.35);
-  pointer-events: none; /* click tembus ke porto-btn */
+  align-items: center;
+  gap: 40px;
+}
+
+/* BUTTON CARD */
+.porto-btn {
+  position: relative;
+  cursor: pointer;
+}
+
+.porto-btn img {
+  width: 220px;
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+  border: 10px solid rgb(188,0,0);
+}
+
+.porto-btn span {
+  display: block;
+  margin-top: 12px;
+  text-align: center;
+  font-size: 18px;
+  color: rgb(188,0,0);
 }
 
 /* ================= OVERLAY ================= */
 #portfolio-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,.7);
   display: none;
+  background: rgba(0,0,0,.85);
   z-index: 9999;
 }
 
@@ -940,165 +1324,142 @@ body {
   display: block;
 }
 
-/* ================= BOX ================= */
 .portfolio-box {
+  position: relative;
   width: 100%;
   height: 100%;
-  position: relative;
-  background: url("assets/bg/portfolio-bg.jpg") center/cover no-repeat;
   overflow: hidden;
+
+  background-image: url("assets/model/kenapa harus kami bg.png");
+  background-size: cover;
+  background-position: center;
 }
 
-/* ================= CLOSE ================= */
+/* BEIGE BASE */
+.portfolio-box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #f3ead6;
+  z-index: 1;
+}
+
+/* NOISE */
+.portfolio-box::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("assets/model/kenapa harus kami bg.png");
+  background-size: cover;
+  background-position: center;
+  opacity: .18;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* ISI DI ATAS */
+.portfolio-box > * {
+  position: relative;
+  z-index: 3;
+}
+
+
+/* CLOSE */
 .portfolio-close {
   position: absolute;
   top: 20px;
   right: 30px;
   font-size: 40px;
+  color: #fff;
   background: none;
   border: none;
-  color: white;
   cursor: pointer;
-  z-index: 20;
+  z-index: 50;
 }
 
-/* ================= MODEL ================= */
+/* MODEL */
 .portfolio-model {
   position: absolute;
+  right: 0;
   bottom: 0;
-  z-index: 5;
+  z-index: 10;
+  pointer-events: none;
 }
 
 .portfolio-model img {
-  height: 60vh;
+  height: 65vh;
 }
 
-/* ================= CAROUSEL ================= */
+/* CAROUSEL */
 .portfolio-carousel {
   position: absolute;
   top: 50%;
+  left: 5%;
   transform: translateY(-50%);
   width: 60%;
-  display: none; /* semua carousel default disembunyikan */
+  display: none;
+  z-index: 30;
+  pointer-events: auto;
 }
 
 .portfolio-carousel.active {
-  display: block; /* carousel yang dipilih tampil */
-}
-
-/* ================= SLIDE GROUP ================= */
-.slide-group img {
-  width: 80%;
-  border: 10px solid rgb(188, 0, 0);
-}
-
-/* ================= SMM SPECIFIC ================= */
-.portfolio-box.smm .portfolio-model {
-  right: 0;
-}
-
-.portfolio-box.smm .portfolio-carousel.smm-carousel {
-  left: 5%;
-}
-
-.portfolio-box.smm .carousel-item .slide-group {
-  display: flex;
-  gap: 10px;
-}
-
-.portfolio-box.smm .carousel-item .slide-group img {
-  width: calc(90% / 3);
-}
-
-/* ================= TSP SPECIFIC ================= */
-.portfolio-box.tsp .portfolio-model {
-  left: 0;
-}
-
-.portfolio-box.tsp .portfolio-carousel.tsp-carousel {
-  right: 5%;
-}
-
-.portfolio-box.tsp .carousel-item .slide-group {
   display: block;
 }
 
-.portfolio-box.tsp .carousel-item .slide-group img {
+/* 🔥 INI KUNCI BOOTSTRAP */
+.carousel {
+  position: relative;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  z-index: 50;
+  width: 60px;
+  opacity: 1;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  filter: invert(1);
+  width: 40px;
+  height: 40px;
+}
+
+/* SLIDE */
+.slide-group {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.portfolio-slide-img {
+  border: 10px solid rgb(188,0,0);
+  transition: .3s ease;
+}
+
+.portfolio-slide-img:hover {
+  transform: scale(1.05);
+  filter: brightness(.8);
+}
+
+/* SMM */
+.portfolio-box.smm .portfolio-slide-img {
+  width: calc(90% / 3);
+}
+
+/* TSP */
+.portfolio-box.tsp .slide-group {
+  display: block;
+}
+
+.portfolio-box.tsp .portfolio-slide-img {
   width: 80%;
 }
-
-/* ================= MOBILE ================= */
-@media (max-width: 768px) {
-  .portfolio-model img {
-    height: 50vh;
-  }
-
-  .portfolio-carousel {
-    width: 80%;
-  }
-
-  /* MOBILE: semua slide 1 per slide */
-  .portfolio-box.smm .carousel-item .slide-group img,
-  .portfolio-box.tsp .carousel-item .slide-group img {
-    width: 100%;
-  }
-
-  .slide-group {
-    display: block !important;
-  }
-}
-
-
-/* ================= MOBILE ================= */
-@media (max-width: 768px) {
-  #lk-grid,
-  #pkg-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  #pf-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .pf-tsp,
-  .pf-smm {
-    grid-template-columns: 1fr;
-  }
-  .portfolio-model img {
-    height: 50vh;
-  }
-  .portfolio-carousel {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 80%;
-  }
-  .portfolio-box.smm .carousel-item .slide-group img {
-    width: calc(100% / 1);
-  }
-}
-
-/* FORCE CARD BISA DIKLIK */
-.lk-card,
-.pkg-card,
-.pf-card {
-  position: relative;
-  z-index: 5;
-  pointer-events: auto;
-  cursor: pointer;
-}
-
-/* PASTIKAN OVERLAY DI ATAS SEMUA */
-#ui-overlay {
-  z-index: 99999;
-}
-
 
 
 /* PARTNERS SECTION */
 #partners {
   position: relative;
-  background-image: url("assets/background/Image_fx\ \(9).png");
   background-size: cover;
   background-position: center;
   overflow: hidden;
@@ -1107,19 +1468,33 @@ body {
   font-family:'poppins';
 }
 
-/* overlay beige */
+/* BEIGE BASE */
 #partners::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(252, 241, 219, 0.35); /* beige soft */
+  background: #f3e4c8; /* beige tebel */
   z-index: 0;
 }
 
-/* semua isi section tetap di atas overlay */
+/* NOISE — NON REPEAT, FULL COVER */
+#partners::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("assets/background/Image_fx\ \(9).png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.2; /* adjust feel */
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* CONTENT */
 #partners > * {
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 .section-title {
@@ -1250,7 +1625,7 @@ body {
 .why-us {
   position: relative;
   min-height: 100vh;
-  background-image: url("assets/background/Image_fx\ \(10).png");
+  background-image: url("assets/model/bg\ contact\ us\ .png");
   background-size: cover;
   background-position: center;
   padding-top: 100px;
