@@ -23,11 +23,6 @@ section {
   scroll-margin-top: var(--nav-height);
 }
 
-.poppins-extrabold {
-  font-family: "Poppins", sans-serif;
-  font-weight: 800;
-  font-style: normal;
-}
 
 /* Reset */
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -58,7 +53,6 @@ html {
 
 body {
   margin: 0;
-  font-family: 'Poppins', system-ui, sans-serif;
   line-height: 1.5;
   background: #fff;
   color: #111;
@@ -400,6 +394,7 @@ body :where(p, span)
   height: 100vh;
   position: relative;
   overflow: hidden;
+  margin-top:20px;
 }
 
 /* BOOTSTRAP CAROUSEL FIX */
@@ -647,6 +642,43 @@ body :where(p, span)
     line-height: 1.45;
   }
 }
+#heroCarousel .carousel-control-prev,
+#heroCarousel .carousel-control-next {
+  width: 70px;
+  height: 70px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 1;
+  z-index: 99999;
+}
+
+#heroCarousel .carousel-control-prev {
+  left: 30px;
+}
+
+#heroCarousel .carousel-control-next {
+  right: 30px;
+}
+
+.custom-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: rgb(188,0,0);
+  color: #fff;
+  font-size: 40px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: .3s ease;
+}
+
+.custom-arrow:hover {
+  background: #000;
+}
+
 
 
 
