@@ -10,6 +10,15 @@
   --nav-height: 72px;
 }
 
+.row {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+#hero .row {
+  margin: 0;
+}
+
 section {
   scroll-margin-top: var(--nav-height);
 }
@@ -31,6 +40,190 @@ body {
   -webkit-font-smoothing: antialiased;
   padding-top: var(--nav-height);
 }
+
+/* =========================
+   GLOBAL RESET & FOUNDATION
+   ========================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', system-ui, sans-serif;
+  line-height: 1.5;
+  background: #fff;
+  color: #111;
+  overflow-x: hidden;
+}
+
+/* =========================
+   SAFE VIEWPORT SYSTEM
+   ========================= */
+/* FIX mobile address bar & zoom */
+:root {
+  --vh-safe: 100svh;
+}
+
+/* =========================
+   SECTION BASE SYSTEM
+   ========================= */
+
+section {
+  position: relative;
+  width: 100%;
+  min-height: var(--vh-safe);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  overflow: hidden;
+}
+
+/* CONTENT LAYER */
+section > * {
+  position: relative;
+  z-index: 3;
+}
+
+/* =========================
+   OVERLAY SYSTEM (BEIGE + NOISE)
+   ========================= */
+
+/* BASE COLOR */
+.section-overlay {
+  position: absolute;
+  inset: 0;
+  background: #f3ead6;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* NOISE / TEXTURE */
+.section-noise {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: .18;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* =========================
+   CENTER UTILITIES
+   ========================= */
+
+.center-x {
+  display: flex;
+  justify-content: center;
+}
+
+.center-y {
+  display: flex;
+  align-items: center;
+}
+
+.center-xy {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* =========================
+   TYPO SCALE (ZOOM SAFE)
+   ========================= */
+/* =========================
+   IMAGE SAFETY
+   ========================= */
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* =========================
+   INTERACTION SAFETY
+   ========================= */
+
+button,
+a {
+  cursor: pointer;
+}
+
+button:focus,
+a:focus {
+  outline: none;
+}
+
+/* =========================
+   MOBILE ADJUSTMENT
+   ========================= */
+
+@media (max-width: 768px) {
+  section {
+    padding: 48px 20px;
+  }
+}
+
+/* ===============================
+   GLOBAL ZOOM & ACCESSIBILITY SAFE
+================================ */
+
+/* SEMUA SECTION KECUALI HERO */
+section:not(#hero) {
+  min-height: 100vh;
+  height: auto;
+}
+
+/* Jangan crop konten pas zoom */
+section:not(#hero) {
+  overflow: visible;
+}
+
+#vision-mission,
+#lk-section,
+#pkg-section,
+#portfolio-trigger {
+  min-height: 100vh;
+  height: auto;
+}
+
+
+#vision-mission {
+  position: relative;
+}
+
+#vision-mission::before,
+#vision-mission::after {
+  pointer-events: none;
+}
+
+#vision-mission .container,
+#vision-mission .row {
+  overflow: visible;
+}
+
+
+/* ===============================
+   GLOBAL TYPOGRAPHY (NO HERO)
+================================ */
+body :where(p, span)
+:not(#hero p)
+:not(#hero span) {
+  font-size: clamp(14px, 1.2vw, 18px);
+}
+
 
 
 /* =========================================================
@@ -216,6 +409,10 @@ body {
   height: 100%;
 } 
 
+.carousel-item {
+  min-height: 100vh;
+}
+
 /* SLIDE BASE */
 .hero-slide {
   position: relative;
@@ -368,6 +565,14 @@ body {
   font-style: italic;
   text-align: left;
   margin: 0;
+}
+
+#hero,
+#heroCarousel,
+#heroCarousel .carousel-inner,
+#heroCarousel .carousel-item,
+.hero-slide {
+  min-height: 100vh;
 }
 
 /* ================= BACKGROUND PER SLIDE ================= */
@@ -1935,10 +2140,11 @@ body {
    GLOBAL RESPONSIVE SAFETY
 ================================ */
 html, body {
-  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
   overflow-x: hidden;
 }
-
 img {
   max-width: 100%;
   height: auto;
