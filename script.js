@@ -1,257 +1,333 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  const hamburger = document.getElementById("mobileHamburger");
-  const mobileMenu = document.getElementById("mobileMenu");
-  const dropdownToggle = document.querySelector(".mobile-dropdown-toggle");
+  const App = {};
 
-  if (hamburger && mobileMenu) {
-    hamburger.addEventListener("click", () => {
-      mobileMenu.classList.toggle("active");
-    });
-  }
+  /* ================= MOBILE NAV ================= */
+  App.mobileNav = (() => {
+    const hamburger = document.getElementById("mobileHamburger");
+    const mobileMenu = document.getElementById("mobileMenu");
+    const dropdownToggle = document.querySelector(".mobile-dropdown-toggle");
 
-  if (dropdownToggle) {
-    dropdownToggle.addEventListener("click", () => {
-      dropdownToggle.parentElement.classList.toggle("active");
-    });
-  }
+    function init() {
+      if (!hamburger || !mobileMenu) return;
 
-const popupOverlay = document.querySelector(".lk-popup-overlay");
-const popupImg = popupOverlay.querySelector("img");
-const section = document.querySelector("#lk-section");
+      hamburger.onclick = () => mobileMenu.classList.toggle("active");
+      if (dropdownToggle) {
+        dropdownToggle.onclick = () =>
+          dropdownToggle.parentElement.classList.toggle("active");
+      }
+    }
 
-/* OPEN POPUP */
-document.querySelectorAll(".lk-card").forEach(card => {
-  card.addEventListener("click", () => {
-    const img = card.querySelector("img");
-    const bg = section.dataset.bg;
-
-    popupOverlay.style.backgroundImage = `url('${bg}')`;
-    popupImg.src = img.src;
-
-    popupOverlay.classList.add("active");
-  });
-});
-
-/* CLOSE POPUP (CLICK OUTSIDE) */
-popupOverlay.addEventListener("click", e => {
-  if (e.target === popupOverlay) {
-    popupOverlay.classList.remove("active");
-  }
-});
-
-/* CLOSE POPUP (ESC) */
-document.addEventListener("keydown", e => {
-  if (e.key === "Escape") {
-    popupOverlay.classList.remove("active");
-  }
-});
-/* ========= PACKAGE POPUP ========= */
-const pkgData = {
-  1: [
-    { src: "assets/package/16.webp", title: "Paket Gen Z" },
-    { src: "assets/package/17.webp", title: "Paket Gen Alpha" },
-    { src: "assets/package/18.webp", title: "Paket Gen Beta" },
-    { src: "assets/package/19.webp", title: "Paket Gen Sandwich" }
-  ],
-  2: [
-    { src: "assets/package/21.webp", title: "Paket Gen Z" },
-    { src: "assets/package/22.webp", title: "Paket Gen Alpha" },
-    { src: "assets/package/23.webp", title: "Paket Gen Beta" },
-    { src: "assets/package/24.webp", title: "Paket Gen Sandwich" }
-  ]
-};
+    return { init };
+  })();
 
 
-/* ================= PACKAGE SECTION ================= */
+  /* ================= LK POPUP ================= */
+  App.lkPopup = (() => {
+    const overlay = document.querySelector(".lk-popup-overlay");
+    const imgEl = overlay?.querySelector("img");
+    const section = document.querySelector("#lk-section");
 
-// ELEMENTS
-const pkgSection = document.getElementById("pkg-section");
-const pkgOverlay = document.getElementById("pkg-overlay");
-const pkgContent = document.getElementById("pkg-carousel-inner");
-const pkgClose = document.getElementById("pkg-popup-close");
+    function init() {
+      if (!overlay || !imgEl || !section) return;
 
-const pkgZoomOverlay = document.getElementById("pkg-zoom-overlay");
-const pkgZoomImg = document.getElementById("pkg-zoom-img");
-
-const isMobile = () => window.innerWidth <= 768;
-
-// UTILITY
-function chunk(arr, size) {
-  const result = [];
-  for (let i = 0; i < arr.length; i += size) {
-    result.push(arr.slice(i, i + size));
-  }
-  return result;
-}
-
-// OPEN PACKAGE POPUP
-document.querySelectorAll(".pkg-card[data-pkg]").forEach(card => {
-  card.addEventListener("click", () => {
-    const data = pkgData[card.dataset.pkg];
-    if (!data) return;
-
-    pkgContent.innerHTML = "";
-
-    const perSlide = isMobile() ? 1 : 4;
-    const slides = chunk(data, perSlide);
-
-    slides.forEach((group, index) => {
-      const slide = document.createElement("div");
-      slide.className = `carousel-item ${index === 0 ? "active" : ""}`;
-
-      const itemsHTML = group.map(item => `
-        <div class="pkg-popup-item" style="width:${100 / perSlide}%">
-          <img src="${item.src}" class="pkg-popup-img" />
-          <div class="pkg-popup-text">${item.title}</div>
-        </div>
-      `).join("");
-
-      slide.innerHTML = `<div class="slide-group">${itemsHTML}</div>`;
-      pkgContent.appendChild(slide);
-    });
-
-    pkgOverlay.classList.add("active");
-
-    // DESKTOP ZOOM (SECOND ZOOM)
-    document.querySelectorAll(".pkg-popup-img").forEach(img => {
-      img.addEventListener("click", () => {
-        if (isMobile()) return;
-        pkgZoomImg.src = img.src;
-        pkgZoomOverlay.classList.add("active");
+      document.querySelectorAll(".lk-card").forEach(card => {
+        card.onclick = () => {
+          const img = card.querySelector("img");
+          overlay.style.backgroundImage = `url('${section.dataset.bg}')`;
+          imgEl.src = img.src;
+          overlay.classList.add("active");
+        };
       });
-    });
-  });
-});
 
-// CLOSE MAIN POPUP
-pkgClose.addEventListener("click", () => {
-  pkgOverlay.classList.remove("active");
-  pkgContent.innerHTML = "";
-});
+      overlay.onclick = e => {
+        if (e.target === overlay) overlay.classList.remove("active");
+      };
 
-// CLICK OUTSIDE POPUP
-pkgOverlay.addEventListener("click", e => {
-  if (e.target === pkgOverlay) {
-    pkgOverlay.classList.remove("active");
-    pkgContent.innerHTML = "";
-  }
-});
+      document.addEventListener("keydown", e => {
+        if (e.key === "Escape") overlay.classList.remove("active");
+      });
+    }
 
-// CLOSE ZOOM
-pkgZoomOverlay.addEventListener("click", () => {
-  pkgZoomOverlay.classList.remove("active");
-  pkgZoomImg.src = "";
-});
+    return { init };
+  })();
 
 
+  /* ================= PACKAGE POPUP ================= */
+  App.packagePopup = (() => {
+    const data = {
+      1: [
+        { src: "assets/package/16.webp", title: "Paket Gen Z" },
+        { src: "assets/package/17.webp", title: "Paket Gen Alpha" },
+        { src: "assets/package/18.webp", title: "Paket Gen Beta" },
+        { src: "assets/package/19.webp", title: "Paket Gen Sandwich" }
+      ],
+      2: [
+        { src: "assets/package/21.webp", title: "Paket Gen Z" },
+        { src: "assets/package/22.webp", title: "Paket Gen Alpha" },
+        { src: "assets/package/23.webp", title: "Paket Gen Beta" },
+        { src: "assets/package/24.webp", title: "Paket Gen Sandwich" }
+      ]
+    };
 
-const overlay = document.getElementById("portfolio-overlay");
-const box = document.querySelector(".portfolio-box");
-const modelImg = document.getElementById("model-img");
-const closeBtn = document.querySelector(".portfolio-close");
+    const section = document.getElementById("pkg-section");
+    const overlay = document.getElementById("pkg-overlay");
+    const inner = document.getElementById("pkg-carousel-inner");
+    const closeBtn = document.getElementById("pkg-popup-close");
 
-const carouselInnerSMM = document.getElementById("carousel-inner-smm");
-const carouselInnerTSP = document.getElementById("carousel-inner-tsp");
+    const zoomOverlay = document.getElementById("pkg-zoom-overlay");
+    const zoomImg = document.getElementById("pkg-zoom-img");
 
+    const isMobile = () => window.innerWidth <= 768;
+
+    function chunk(arr, size) {
+      const out = [];
+      for (let i = 0; i < arr.length; i += size)
+        out.push(arr.slice(i, i + size));
+      return out;
+    }
+
+    function init() {
+      if (!section || !overlay || !inner) return;
+
+      document.querySelectorAll(".pkg-card[data-pkg]").forEach(card => {
+        card.onclick = () => {
+          const items = data[card.dataset.pkg];
+          if (!items) return;
+
+          inner.innerHTML = "";
+          const perSlide = isMobile() ? 1 : 4;
+
+          chunk(items, perSlide).forEach((group, i) => {
+            const slide = document.createElement("div");
+            slide.className = `carousel-item ${i === 0 ? "active" : ""}`;
+            slide.innerHTML = `
+              <div class="slide-group">
+                ${group.map(it => `
+                  <div class="pkg-popup-item" style="width:${100/perSlide}%">
+                    <img src="${it.src}" class="pkg-popup-img">
+                    <div class="pkg-popup-text">${it.title}</div>
+                  </div>`).join("")}
+              </div>`;
+            inner.appendChild(slide);
+          });
+
+          overlay.classList.add("active");
+
+          document.querySelectorAll(".pkg-popup-img").forEach(img => {
+            img.onclick = () => {
+              if (isMobile()) return;
+              zoomImg.src = img.src;
+              zoomOverlay.classList.add("active");
+            };
+          });
+        };
+      });
+
+      closeBtn.onclick = () => {
+        overlay.classList.remove("active");
+        inner.innerHTML = "";
+      };
+
+      overlay.onclick = e => {
+        if (e.target === overlay) closeBtn.onclick();
+      };
+
+      zoomOverlay.onclick = () => zoomOverlay.classList.remove("active");
+    }
+
+    return { init };
+  })();
+
+/* ===============================
+   PORTFOLIO DATA (HARDCODED)
+================================ */
 const data = {
   smm: {
     model: "assets/model/POP UP ORANG SMM.png",
-    path: "assets/portofolio/SMM/",
+    perSlide: 3,
     images: [
-      "1.jpg","2.jpg","3.jpg","4.jpg","5.jpg","6.jpg",
-      "7.jpg","8.jpg","9.jpg","10.jpg","11.jpg","12.jpg",
-      "13.jpg","14.jpg","15.jpg","16.jpg","17.jpg"
+      { src: "assets/portofolio/SMM/1.jpg", name: "Brand 1" },
+      { src: "assets/portofolio/SMM/2.jpg", name: "Brand 2" },
+      { src: "assets/portofolio/SMM/3.jpg", name: "Brand 3" },
+      { src: "assets/portofolio/SMM/4.jpg", name: "Brand 4" },
+      { src: "assets/portofolio/SMM/5.jpg", name: "Brand 5" },
+      { src: "assets/portofolio/SMM/6.jpg", name: "Brand 6" },
+      { src: "assets/portofolio/SMM/7.jpg", name: "Brand 7" },
+      { src: "assets/portofolio/SMM/8.jpg", name: "Brand 8" },
+      { src: "assets/portofolio/SMM/9.jpg", name: "Brand 9" },
+      { src: "assets/portofolio/SMM/10.jpg", name: "Brand 10" },
+      { src: "assets/portofolio/SMM/11.jpg", name: "Brand 11" },
+      { src: "assets/portofolio/SMM/12.jpg", name: "Brand 12" },
+      { src: "assets/portofolio/SMM/13.jpg", name: "Brand 13" },
+      { src: "assets/portofolio/SMM/14.jpg", name: "Brand 14" },
+      { src: "assets/portofolio/SMM/15.jpg", name: "Brand 15" },
+      { src: "assets/portofolio/SMM/16.jpg", name: "Brand 16" },
+      { src: "assets/portofolio/SMM/17.jpg", name: "Brand 17" }
     ]
   },
+
   tsp: {
     model: "assets/model/POP UP ORANG TSP.png",
-    path: "assets/portofolio/TSP/",
-    images: ["1.jpg","2.jpg","3.jpg","4.jpg","5.jpg","6.jpg","7.jpg","8.jpg"]
+    perSlide: 1,
+    images: [
+      { src: "assets/portofolio/TSP/1.jpg", name: "Brand A" },
+      { src: "assets/portofolio/TSP/2.jpg", name: "Brand B" },
+      { src: "assets/portofolio/TSP/3.jpg", name: "Brand C" },
+      { src: "assets/portofolio/TSP/4.jpg", name: "Brand D" },
+      { src: "assets/portofolio/TSP/5.jpg", name: "Brand E" },
+      { src: "assets/portofolio/TSP/6.jpg", name: "Brand F" },
+      { src: "assets/portofolio/TSP/7.jpg", name: "Brand G" },
+      { src: "assets/portofolio/TSP/8.jpg", name: "Brand H" }
+    ]
   }
 };
 
-function chunk(arr, size) {
-  const res = [];
-  for (let i = 0; i < arr.length; i += size) {
-    res.push(arr.slice(i, i + size));
-  }
-  return res;
-}
+const overlay = document.getElementById("portfolio-overlay");
+const track = document.querySelector(".slider-track");
+const modelImg = document.querySelector(".portfolio-model img");
+const prevBtn = document.querySelector(".nav.prev");
+const nextBtn = document.querySelector(".nav.next");
 
+let currentIndex = 0;
+let currentData = null;
+
+/* ===============================
+   OPEN OVERLAY
+================================ */
 document.querySelectorAll(".porto-btn").forEach(btn => {
   btn.addEventListener("click", () => {
     const type = btn.dataset.type;
-    const d = data[type];
-
-    box.className = "portfolio-box " + type;
-    modelImg.src = d.model;
-
-    document.querySelectorAll(".portfolio-carousel")
-      .forEach(c => c.classList.remove("active"));
-
-    const carousel = document.querySelector(`.${type}-carousel`);
-    carousel.classList.add("active");
-
-    const inner = type === "smm" ? carouselInnerSMM : carouselInnerTSP;
-    inner.innerHTML = "";
-
-    const isMobile = window.innerWidth <= 768;
-    const perSlide = isMobile ? 1 : (type === "smm" ? 3 : 1);
-
-    chunk(d.images, perSlide).forEach((group,i)=>{
-      const slide = document.createElement("div");
-      slide.className = `carousel-item ${i===0?"active":""}`;
-      slide.innerHTML = `
-        <div class="slide-group">
-          ${group.map(img=>`
-            <img class="portfolio-slide-img" src="${d.path+img}">
-          `).join("")}
-        </div>
-      `;
-      inner.appendChild(slide);
-    });
-
-    overlay.classList.add("active");
+    openPortfolio(type);
   });
 });
 
-closeBtn.onclick = () => overlay.classList.remove("active");
-document.addEventListener("keydown", e=>{
-  if(e.key==="Escape") overlay.classList.remove("active");
+function openPortfolio(type) {
+  currentData = data[type];
+
+  overlay.classList.add("active");
+  overlay.classList.remove("smm","tsp");
+  overlay.classList.add(type);
+
+  modelImg.src = currentData.model;
+  currentIndex = 0;
+
+  // ⬇️ INI PENTING
+  document.querySelector(".portfolio-header").textContent =
+    type === "smm" ? "PORTOFOLIO SMM" : "PORTOFOLIO TSP";
+
+  buildSlides();
+  updateSlide();
+}
+
+/* ===============================
+   CLOSE
+================================ */
+document.querySelector(".portfolio-close").addEventListener("click", () => {
+  overlay.classList.remove("active");
+  track.innerHTML = "";
 });
 
-const partnersSwiper = new Swiper('.partners-swiper', {
-  slidesPerView: 'auto',        // penting buat smooth
-  spaceBetween: 24,
-  loop: true,
+/* ===============================
+   BUILD SLIDES
+================================ */
+function buildSlides() {
+  track.innerHTML = "";
 
-  speed: 6000,                  // makin besar = makin smooth
-  autoplay: {
-    delay: 1,                   // JANGAN 0
-    disableOnInteraction: false,
-  },
+  const { images, perSlide } = currentData;
 
-  allowTouchMove: false,
-  grabCursor: false,
+  for (let i = 0; i < images.length; i += perSlide) {
+    const slide = document.createElement("div");
+    slide.className = "slide";
 
-  freeMode: true,               // KUNCI UTAMA
-  freeModeMomentum: false,      // biar stabil
+    const group = document.createElement("div");
+    group.className = "slide-group";
 
-  breakpoints: {
-    0: {
-      spaceBetween: 16,
-    },
-    768: {
-      spaceBetween: 20,
-    },
-    1200: {
-      spaceBetween: 24,
-    }
+    images.slice(i, i + perSlide).forEach(item => {
+      const card = document.createElement("div");
+      card.className = "portfolio-card";
+
+      card.innerHTML = `
+      <div class="portfolio-image">
+        <img src="${item.src}" alt="${item.name}">
+      </div>
+      <div class="portfolio-brand">${item.name}</div>
+    `;
+
+      group.appendChild(card);
+    });
+
+    slide.appendChild(group);
+    track.appendChild(slide);
   }
+}
+
+/* ===============================
+   NAV
+================================ */
+nextBtn.addEventListener("click", () => {
+  currentIndex++;
+  updateSlide();
 });
 
+prevBtn.addEventListener("click", () => {
+  currentIndex--;
+  updateSlide();
+});
+
+function updateSlide() {
+  const total = track.children.length;
+  if (!total) return;
+
+  currentIndex = (currentIndex + total) % total;
+  track.style.transform = `translateX(-${currentIndex * 100}%)`;
+}
+
+/* ================= SWIPER ================= */
+App.swiper = (() => {
+  let swiperInstance = null;
+
+  function init() {
+    if (typeof Swiper === "undefined") return;
+
+    swiperInstance = new Swiper('.partners-swiper', {
+      slidesPerView: 'auto',
+      spaceBetween: 24,
+      loop: true,
+
+      speed: 6000,
+
+      autoplay: {
+        delay: 0, // ⬅️ BUKAN 1
+        disableOnInteraction: false
+      },
+
+      allowTouchMove: false,
+
+      freeMode: false, // ⬅️ PENTING
+    });
+
+    // 🔥 FORCE RESUME AUTOPLAY
+        document.querySelector('.partners-swiper')
+          .addEventListener('click', () => {
+            swiperInstance.autoplay.start();
+          });
+
+          swiperInstance.on('touchEnd', () => {
+      swiperInstance.autoplay.start();
+    });
+
+    swiperInstance.on('click', () => {
+      swiperInstance.autoplay.start();
+    });
+
+  }
+
+  return { init };
+})();
 
 
+/* ================= INIT ALL ================= */
+Object.values(App).forEach(m => m.init && m.init());
 
 });

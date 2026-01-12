@@ -458,7 +458,7 @@ body :where(p, span)
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
-  column-gap: 10px;
+  column-gap: 50px;
   min-height: 100dvh;
   margin-bottom: 12%;
 }
@@ -518,6 +518,7 @@ body :where(p, span)
   font-weight: 800;  
   color: black;
   margin-bottom: 10px;
+  text-align: center;
 }
 
 .hero-tagline {
@@ -528,6 +529,7 @@ body :where(p, span)
   font-style: italic;
   max-width: fit-content;
   margin-bottom: 50px;
+  text-align: center;
 }
 
 /* ================= SLIDE 2 ================= */
@@ -745,23 +747,23 @@ body :where(p, span)
    CARD VISI & MISI
 ========================================================= */
 .vm-card {
-  background: #f5f5f5;
-  padding: 2rem;
+  position: relative;
+  background: #f3e4c8;
+  padding: 3.5rem 2rem 2rem; /* top padding BESAR */
   border-radius: 20px;
   height: 100%;
   width: 100%;
+  min-height: 420px;
+
   box-shadow:
     0 10px 25px rgba(0, 0, 0, 0.12),
     inset 0 1px 0 rgba(255, 255, 255, 0.6);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
 
   display: flex;
-  flex-direction: column;
+  align-items: center;   /* vertical center CONTENT */
   justify-content: center;
 
-  margin-top: 50%;
-  margin-bottom: 50%;
-  min-height: 420px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .vm-card:hover {
@@ -773,11 +775,15 @@ body :where(p, span)
    TITLE & TEXT
 ========================================================= */
 #vision-mission .vm-title {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+
   color: rgb(188, 0, 0);
   font-weight: 800;
-  margin-bottom: 1rem;
-  text-align: center;
   font-style: italic;
+  text-align: center;
 }
 
 #vision-mission .vm-text {
@@ -804,7 +810,7 @@ body :where(p, span)
 
 #vision-mission .vm-logo:hover {
   transform: scale(1.05);
-  filter: drop-shadow(0 0 25px rgba(0, 0, 0, 0.4));
+  filter: drop-shadow(0 0 25px rgba(255, 255, 255, 0.4));
 }
 
 /* =========================================================
@@ -938,23 +944,18 @@ body :where(p, span)
    CARD
 ================================================= */
 .lk-card {
+  width: 280px;
+  flex-shrink: 0; /* ⬅️ KRUSIAL */
   border: 10px solid rgb(188, 0, 0);
-  cursor: pointer;
-  background: #f8f1e1; /* beige card */
+  background: #f8f1e1;
   transition: transform .25s ease, box-shadow .25s ease;
 }
 
 .lk-card:hover {
-  transform: scale(1.05);
+  transform: translateZ(0) scale(1.05);
   box-shadow: 0 14px 32px rgba(120, 60, 40, 0.35);
 }
 
-.lk-card img {
-  width: 100%;
-  aspect-ratio: 9 / 16;
-  object-fit: cover;
-  display: block;
-}
 
 /* =================================================
    TEXT BAWAH
@@ -973,7 +974,7 @@ body :where(p, span)
    IMAGE SIZE
 ================================================= */
 .lk-card img {
-  width: clamp(180px, 18vw, 280px);
+  width: 100%;
   aspect-ratio: 9 / 16;
   object-fit: cover;
   display: block;
@@ -1114,7 +1115,7 @@ body :where(p, span)
   padding-top: 40px;
   font-size: 28px;
   font-weight: 800;
-  color: rgb(188,0,0);
+  color: beige;
   align-items: center;
   text-align: center;
   margin-bottom: 40px;
@@ -1130,7 +1131,7 @@ body :where(p, span)
 
 /* ================= CARD ================= */
 .pkg-card {
-  border: 10px solid rgb(188,0,0);
+  border: 10px solid rgb(188, 0, 0);
   cursor: pointer;
   transition: transform .25s ease, box-shadow .25s ease;
 }
@@ -1144,13 +1145,13 @@ body :where(p, span)
 
 /* HOVER — MAIN PAGE */
 .pkg-card:hover img {
-  filter: blur(3px) brightness(0.8);
+  filter: blur(3px) brightness(1);
   transform: scale(1.03);
 }
 
 .pkg-card:hover {
   transform: scale(1.05);
-  box-shadow: 0 12px 30px rgba(107,30,30,.45);
+  box-shadow: 0 12px 30px rgba(255, 255, 255, 0.45);
 }
 
 /* SHOW ALL PACKAGE */
@@ -1181,7 +1182,7 @@ body :where(p, span)
   text-align: center;
   font-weight: 600;
   font-size: 21px;
-  color: rgb(188,0,0);
+  color: beige;
   line-height: 1.3;
   min-height: 3.6em; /* biar rapi */
 }
@@ -1199,7 +1200,7 @@ body :where(p, span)
 
 /* card tetep merah */
 .pkg-item.pkg-muted .pkg-card {
-  border-color: rgb(188,0,0);
+  border-color: rgb(188, 0, 0);
   background: transparent;
 }
 
@@ -1268,6 +1269,7 @@ body :where(p, span)
   margin: 0 auto;
   box-sizing: border-box;
   z-index: 1;
+  padding-top: 200px;
 }
 
 .pkg-popup-item {
@@ -1283,27 +1285,30 @@ body :where(p, span)
 .pkg-popup-text {
   margin-top: 8px;
   font-size: 30px;
-  color: rgb(188, 0, 0); /* merah sesuai request */
+  color: beige;
   text-align: center;   /* CENTER ke card */
   font-weight: 500;
   font-family: poppins;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
-/* SLIDE GROUP */
-.slide-group {
+
+/* ================= PACKAGE POPUP ONLY ================= */
+#pkg-popup-carousel .slide-group {
   display: flex;
   gap: 5px; /* 🔥 SWEET SPOT */
   justify-content: center;
 }
 
 /* POPUP IMAGES */
-.slide-group img {
+#pkg-popup-carousel .slide-group img {
   border: 5px solid rgb(188,0,0);
   cursor: pointer;
   transition: transform .25s ease;
 }
 
-.slide-group img:hover {
+#pkg-popup-carousel .slide-group img:hover {
   transform: scale(1.05);
 }
 
@@ -1351,10 +1356,6 @@ body :where(p, span)
 }
 
 /* ================= CAROUSEL BUTTON VISIBILITY ================= */
-.carousel-control-prev,
-.carousel-control-next {
-  display: none;
-}
 
 /* DESKTOP */
 @media (min-width: 769px) {
@@ -1393,346 +1394,431 @@ body :where(p, span)
   }
 }
 
-/* ================= PORTFOLIO SECTION ================= */
-#portfolio-trigger {
+/* ===============================
+   PORTFOLIO TRIGGER (MAIN PAGE)
+================================ */
+
+#portfolio-trigger{
   position: relative;
-  padding: 60px 20px;
-  height: 100vh;
-  overflow: hidden;
-
-  font-family: 'Poppins';
-  font-weight: 800;
-
-  background-image: url("assets/model/kenapa harus kami bg.png");
-  background-size: cover;
-  background-position: center;
-}
-
-/* BEIGE LAYER (SAMA KAYAK LK) */
-#portfolio-trigger::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: #f3ead6;
-  z-index: 1;
-}
-
-#portfolio-trigger::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: url("assets/model/kenapa harus kami bg.png");
-  background-size: cover;
-  background-position: center;
-  opacity: 0.18;
-  z-index: 2;
-  pointer-events: none;
-}
-
-#portfolio-trigger > * {
-  position: relative;
-  z-index: 3;
-}
-
-/* HEADER */
-.portfolio-title {
+  padding: 100px 20px;
   text-align: center;
-  color: rgb(188,0,0);
-  font-size: 28px;
-  margin-bottom: 40px;
-}
-
-/* CONTENT */
-.portfolio-content {
-  height: calc(100vh - 160px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 40px;
-}
-
-/* BUTTON */
-.porto-btn {
-  position: relative;
-  cursor: pointer;
-}
-
-.porto-btn img {
-  width: 240px;
-  aspect-ratio: 9 / 16;
-  object-fit: cover;
-  border: 10px solid rgb(188,0,0);
-}
-
-.porto-btn span {
-  display: block;
-  text-align: center;
-  margin-top: 10px;
-  color: rgb(188,0,0);
-}
-
-/* ================= PORTFOLIO SECTION ================= */
-#portfolio-trigger {
-  position: relative;
-  height: 100vh;
-  padding: 60px 20px;
-  font-family: 'Poppins';
-  font-weight: 800;
   overflow: hidden;
 
   background-image: url("assets/model/kenapa harus kami bg.png");
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
+  font-family: poppins;
 }
 
-/* BEIGE BASE (COPY LK) */
-#portfolio-trigger::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: #f3ead6;
-  z-index: 1;
+/* LAYER 1 — BEIGE SOLID */
+#portfolio-trigger::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:#f3ead6;
+  z-index:1;
 }
 
-/* NOISE */
-#portfolio-trigger::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: url("assets/model/kenapa harus kami bg.png");
-  background-size: cover;
-  background-position: center;
-  opacity: .18;
-  pointer-events: none;
-  z-index: 2;
+/* LAYER 2 — TEXTURE */
+#portfolio-trigger::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image:url("assets/model/kenapa harus kami bg.png");
+  background-size:cover;
+  background-position:center;
+  opacity:0.18;
+  pointer-events:none;
+  z-index:2;
 }
 
-#portfolio-trigger > * {
-  position: relative;
-  z-index: 3;
+/* CONTENT DI ATAS SEMUA LAYER */
+#portfolio-trigger > *{
+  position:relative;
+  z-index:3;
 }
 
-.portfolio-title {
-  text-align: center;
-  font-size: 28px;
-  color: rgb(188,0,0);
-  margin-bottom: 40px;
+.portfolio-title{
+  font-size:32px;
+  color:#b80000;
+  margin-bottom:50px;
 }
 
-.portfolio-content {
-  height: calc(100vh - 160px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 40px;
+.portfolio-content{
+  display:flex;
+  justify-content:center;
+  gap:120px; /* ⬅️ JARAK ANTAR CARD LEBIH LEGA */
 }
 
-/* BUTTON CARD */
-.porto-btn {
-  position: relative;
-  cursor: pointer;
+.porto-btn{
+  cursor:pointer;
 }
 
-.porto-btn img {
-  width: 220px;
-  aspect-ratio: 9 / 16;
-  object-fit: cover;
-  border: 10px solid rgb(188,0,0);
+.porto-btn img{
+  width:320px;              /* ⬅️ NAIKIN DARI 220px */
+  aspect-ratio:9/16;
+  object-fit:cover;
+  border:10px solid #b80000;
+  transition:transform .3s ease;
 }
 
-.porto-btn span {
-  display: block;
-  margin-top: 12px;
-  text-align: center;
-  font-size: 18px;
-  color: rgb(188,0,0);
+/* OPTIONAL: dikit interaksi */
+.porto-btn:hover img{
+  transform:scale(1.04);
 }
 
-/* ================= OVERLAY ================= */
-#portfolio-overlay {
-  position: fixed;
-  inset: 0;
-  display: none;
-  background: rgba(0,0,0,.85);
-  z-index: 9999;
+
+.porto-btn span{
+  margin-top:18px;
+  font-size:20px;           /* ⬅️ TEXT IKUT NAIK */
+  font-weight:700;
+  letter-spacing:1px;
+  color: #b80000;
 }
 
-#portfolio-overlay.active {
-  display: block;
-}
 
-.portfolio-box {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
+/* ===============================
+   OVERLAY
+================================ */
+#portfolio-overlay{
+  position:fixed;
+  inset:0;
+  display:none;
+  z-index:9999;
+  overflow:hidden;
 
-  background-image: url("assets/model/kenapa harus kami bg.png");
-  background-size: cover;
-  background-position: center;
+  background-image:url("assets/model/kenapa harus kami bg.png");
+  background-size:cover;
+  background-position:center;
+  font-family: poppins;
 }
 
 /* BEIGE BASE */
-.portfolio-box::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: #f3ead6;
-  z-index: 1;
+#portfolio-overlay::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:#f3ead6;
+  z-index:1;
 }
 
-/* NOISE */
-.portfolio-box::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: url("assets/model/kenapa harus kami bg.png");
-  background-size: cover;
-  background-position: center;
-  opacity: .18;
-  pointer-events: none;
-  z-index: 2;
+/* TEXTURE */
+#portfolio-overlay::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image:url("assets/model/kenapa harus kami bg.png");
+  background-size:cover;
+  background-position:center;
+  opacity:0.18;
+  pointer-events:none;
+  z-index:2;
 }
 
-/* ISI DI ATAS */
-.portfolio-box > * {
-  position: relative;
-  z-index: 3;
+#portfolio-overlay.active{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* SEMUA ISI DI ATAS LAYER */
+#portfolio-overlay .portfolio-box{
+  position:relative;
+  z-index:3;
+}
+
+#portfolio-overlay.active{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* HAPUS BORDER DI IMG */
+.portfolio-image img{
+  width:100%;
+  height:auto;
+  max-height:520px;
+  border:none;        /* ⬅️ penting */
+}
+
+/* FRAME IMAGE YANG BENER */
+.portfolio-image{
+  width:100%;                 /* ⬅️ KUNCI */
+  display:flex;
+  justify-content:center;
+  border:10px solid #b80000;
+  box-sizing:border-box;
+}
+
+#portfolio-overlay.tsp .portfolio-image img{
+  max-height:780px;
 }
 
 
-/* CLOSE */
-.portfolio-close {
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  font-size: 40px;
-  color: #fff;
-  background: none;
-  border: none;
-  cursor: pointer;
-  z-index: 50;
-}
+/* ===============================
+   SMM FIX (HORIZONTAL 3 ITEM)
+================================ */
 
-/* MODEL */
-.portfolio-model {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  z-index: 10;
-  pointer-events: none;
-}
-
-.portfolio-model img {
-  height: 65vh;
-}
-
-/* CAROUSEL */
-.portfolio-carousel {
-  position: absolute;
-  top: 50%;
-  left: 5%;
-  transform: translateY(-50%);
-  width: 60%;
-  display: none;
-  z-index: 30;
-  pointer-events: auto;
-}
-
-.portfolio-carousel.active {
-  display: block;
-}
-
-/* 🔥 INI KUNCI BOOTSTRAP */
-.carousel {
-  position: relative;
-}
-
-.carousel-control-prev,
-.carousel-control-next {
-  z-index: 50;
-  width: 60px;
-  opacity: 1;
-}
-
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-  filter: invert(1);
-  width: 40px;
-  height: 40px;
-}
-
-/* SLIDE */
-.slide-group {
+/* slide-group HARUS horizontal */
+#portfolio-overlay.smm .slide-group{
   display: flex;
-  gap: 10px;
+  gap: 30px;
   justify-content: center;
+  width: 100%;
 }
 
-.portfolio-slide-img {
-  border: 10px solid rgb(188,0,0);
-  transition: .3s ease;
+/* setiap card punya lebar pasti */
+#portfolio-overlay.smm .portfolio-card{
+  width: 34%;          /* sebelumnya 30–32% */
+  max-width: 360px;    /* ⬅️ PENTING */
 }
 
-.portfolio-slide-img:hover {
-  transform: scale(1.05);
-  filter: brightness(.8);
+/* image mengikuti card, bukan full div */
+#portfolio-overlay.smm .portfolio-image img{
+  max-height: 620px;   /* sebelumnya 520–560 */
 }
 
-/* SMM */
-.portfolio-box.smm .portfolio-slide-img {
-  width: calc(90% / 3);
+
+/* ===============================
+   BOX
+================================ */
+.portfolio-box{
+  width:90vw;
+  max-width:1600px;
+  height:85vh;
+  position:relative;
 }
 
-/* TSP */
-.portfolio-box.tsp .slide-group {
-  display: block;
+.portfolio-close{
+  position:absolute;
+  top:20px;
+  right:25px;
+  font-size:32px;
+  background:none;
+  border:none;
+  cursor:pointer;
 }
 
-.portfolio-box.tsp .portfolio-slide-img {
-  width: 80%;
+/* ===============================
+   PORTFOLIO HEADER
+================================ */
+.portfolio-header{
+  position:absolute;
+  top:30px;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:28px;
+  font-weight:700;
+  color:#b80000;
+  z-index:4;
+  pointer-events:none;
+  text-align:center;
 }
+
+
+/* ===============================
+   ROW
+================================ */
+.portfolio-row{
+  height:100%;
+  display:flex;
+  align-items:center;
+}
+
+
+/* ===============================
+   CAROUSEL BASE
+================================ */
+.portfolio-carousel{
+  width:65%;
+  margin-left:5%;
+  position:relative;
+}
+
+.slider-window{
+  overflow:hidden;
+  width:100%;
+}
+
+.slider-track{
+  display:flex;
+  transition:transform .5s ease;
+}
+
+.slide{
+  flex:0 0 100%;
+  display:flex;
+  justify-content:center;
+}
+
+
+/* ===============================
+   NAV
+================================ */
+.nav{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:48px;
+  background:none;
+  border:none;
+  cursor:pointer;
+}
+
+.nav.prev{ left:-50px; }
+.nav.next{ right:-50px; }
+
+
+/* ===============================
+   MODEL (KANAN BAWAH)
+================================ */
+.portfolio-model{
+  position:fixed;   /* ⬅️ BUKAN absolute */
+  right:0;
+  bottom:0;
+  pointer-events:none;
+  z-index:2;
+}
+
+.portfolio-model img{
+  max-height:80vh;
+}
+
+
+/* =================================================
+   =============== SMM STYLING =====================
+================================================= */
+#portfolio-overlay.smm .slide{
+  gap:30px;
+}
+
+#portfolio-overlay.smm .portfolio-card{
+  width:560px;
+  width: 32%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+#portfolio-overlay.smm .portfolio-image img{
+  width:100%;
+  aspect-ratio:9/16;
+  object-fit:cover;
+  max-height: 560px;
+}
+
+#portfolio-overlay.smm .portfolio-brand{
+  margin-top:10px;
+  font-weight:600;
+  color:#b80000;
+}
+
+
+
+
+/* =================================================
+   =============== TSP STYLING =====================
+================================================= */
+#portfolio-overlay.tsp .slide{
+  justify-content:center;
+}
+
+#portfolio-overlay.tsp .portfolio-card{
+  width: 1100px;   /* ⬅️ GAS */
+  max-width: 95%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+#portfolio-overlay.tsp .portfolio-image img{
+  width:100%;
+  max-height: 1000px;   /* sebelumnya 780 */
+  aspect-ratio:16/9;
+  object-fit:contain;
+  max-height: none;
+}
+
+#portfolio-overlay.tsp .portfolio-brand{
+  margin-top:14px;
+  font-size:18px;
+  font-weight:600;
+  color:#b80000;
+}
+
+/* =========================================
+   PORTFOLIO OVERLAY — CAROUSEL SIZE FIX
+========================================= */
+
+/* BASE – gedein carousel */
+#portfolio-overlay .portfolio-carousel{
+  width:75%;
+  margin-left:4%;
+}
+
+/* ===============================
+   SMM – lebih lega untuk 3 item
+================================ */
+#portfolio-overlay.smm .portfolio-carousel{
+  width:78%;
+}
+
+/* ===============================
+   TSP – fokus ke 1 item gede
+================================ */
+#portfolio-overlay.tsp .portfolio-carousel{
+  width:82%;
+}
+
 
 
 /* PARTNERS SECTION */
 #partners {
   position: relative;
+  height: 100vh;
+  overflow: hidden;
+
+  /* BASE IMAGE */
+  background-image: url("assets/model/BG PATNER.jpg");
   background-size: cover;
   background-position: center;
-  overflow: hidden;
-  color: rgb(188, 0, 0);
-  font-weight: 800;
-  font-family:'poppins';
+  background-repeat: no-repeat;
+
+  font-family: 'Poppins';
+  padding: 60px 20px;
+  color: #f3e4c8;
 }
 
-/* BEIGE BASE */
 #partners::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: #f3e4c8; /* beige tebel */
-  z-index: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(35,35,35,0.75) 0%,
+    rgba(55,55,55,0.65) 50%,
+    rgba(35,35,35,0.75) 100%
+  );
+  z-index: 1;
 }
 
-/* NOISE — NON REPEAT, FULL COVER */
 #partners::after {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("assets/background/Image_fx\ \(9).png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  opacity: 0.2; /* adjust feel */
+  background-image: url("assets/background/noise-dark.png");
+  background-size: 160px 160px;
+  opacity: 0.35;
   pointer-events: none;
-  z-index: 1;
-}
-
-/* CONTENT */
-#partners > * {
-  position: relative;
   z-index: 2;
 }
+
+#partners > * {
+  position: relative;
+  z-index: 3;
+}
+
 
 .section-title {
   font-weight: 600;
@@ -1776,67 +1862,6 @@ body :where(p, span)
   }
 }
 
-
-
-
-/* =========================================================
-   PORTFOLIO (Simple Carousel)
-========================================================= */
-/* Portfolio Section */
-#portfolio {
-  background: #2c2c2c;  /* dark grey clean */
-  padding-top: 80px;
-  padding-bottom: 80px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
-}
-
-
-/* Biar carousel lebih besar dan center */
-.portfolio-swiper {
-  padding-left: 60px;
-  padding-right: 60px;
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
-
-.portfolio-swiper .swiper-slide {
-  transition: 0.35s ease;
-  transform: scale(0.85);       /* slide samping mengecil */
-  opacity: 0.5;                 /* sedikit blur */
-}
-
-.portfolio-swiper .swiper-slide-active {
-  transform: scale(1);          /* slide tengah full size */
-  opacity: 1;
-}
-
-.portfolio-swiper .swiper-slide img {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-  border-radius: 16px;
-}
-
-/* Invisible navigation buttons */
-.portfolio-swiper .swiper-button-next,
-.portfolio-swiper .swiper-button-prev {
-  width: 80px;             /* area klik lebih besar */
-  height: 100%;
-  opacity: 0;              /* transparan */
-  background: transparent; /* no visual */
-  color: transparent;      /* hilang iconnya */
-}
-
-.portfolio-swiper .swiper-button-next:hover,
-.portfolio-swiper .swiper-button-prev:hover {
-  opacity: 0;              /* tetap invisible saat hover */
-}
-
-
-
-
-
 /* =========================================================
    PRICING / OTHER SECTIONS
 ========================================================= */
@@ -1862,105 +1887,118 @@ body :where(p, span)
 .why-us {
   position: relative;
   min-height: 100vh;
-  background-image: url("assets/model/bg\ contact\ us\ .png");
+  overflow: hidden;
+  padding: 100px 80px 40px;
+
+  font-family: 'Poppins';
+
+  /* BASE IMAGE (TETAP) */
+  background-image: url("./assets/model/kenapa\ harus\ kami\ bg.png");
   background-size: cover;
   background-position: center;
-  padding-top: 100px;
-  padding-bottom: 20px;
-  padding-left: 100px;
-  color: #000;
-  overflow: hidden;
+  background-repeat: no-repeat;
 }
 
-/* overlay dark grey */
+/* ================= LAYER 1 — BEIGE BASE ================= */
 .why-us::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.35); /* dark grey */
-  z-index: 0;
-}
-
-/* semua isi section tetap di atas overlay */
-.why-us > * {
-  position: relative;
+  background: #f3ead6;
   z-index: 1;
 }
 
-.why-overlay {
+/* ================= LAYER 2 — TEXTURE ================= */
+.why-us::after {
+  content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.45);
-  z-index: 0;
+  background-image: url("./assets/model/kenapa\ harus\ kami\ bg.png");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.18;
+  pointer-events: none;
+  z-index: 2;
 }
 
-.why-title {
+/* ================= CONTENT LAYER ================= */
+.why-us > * {
   position: relative;
-  z-index: 1;
+  z-index: 3;
+}
+
+/* ================= TITLE ================= */
+.why-title {
   text-align: center;
-  color: #fff;
+  color: #b80000;
   font-weight: 700;
   letter-spacing: 1px;
-  margin-bottom: 60px;
+  margin-bottom: 70px;
 }
 
+/* ================= CONTENT WRAPPER ================= */
 .why-content {
-  position: relative;
-  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 60px;
+  gap: 80px;
+
+  /* MODEL KIRI — TEXT KANAN */
+  flex-direction: row-reverse;
 }
 
-/* LEFT */
-.why-points {
-  width: 55%;
-  display: flex;
-  flex-direction: column;
-  gap: 22px;
-}
-
-.why-bubble {
-  position: relative;
-  background: #fff4df;
-  color: #c40000;
-  padding: 20px 40px 20px 56px;
-  border-radius: 999px;
-  max-width: 720px;
-  font-size: 15px;
-  line-height: 1.6;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.18);
-}
-
-/* NOTCH CUT */
-.why-bubble::before {
-  content: "";
-  position: absolute;
-  left: 14px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 18px;
-  height: 18px;
-  background: #8f8a7c; /* warna background section */
-  border-radius: 50%;
-}
-
-
-/* RIGHT IMAGE */
+/* ================= LEFT — MODEL ================= */
 .why-image {
-  width: 80%;
+  width: 45%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
+  align-items: flex-end;
 }
 
 .why-image img {
   width: 100%;
-  max-width: 620px;
+  max-width: 640px;
   object-fit: contain;
 }
 
-/* RESPONSIVE */
+/* ================= RIGHT — POINTS ================= */
+.why-points {
+  width: 55%;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+/* ================= BUBBLE ================= */
+.why-bubble {
+  position: relative;
+  background: #fff4df;
+  color: #b80000;
+  padding: 22px 44px 22px 60px;
+  border-radius: 999px;
+  max-width: 760px;
+
+  font-size: 15px;
+  line-height: 1.6;
+  font-weight: 500;
+
+  box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+}
+
+/* ================= BUBBLE NOTCH ================= */
+.why-bubble::before {
+  content: "";
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  background: #f3ead6;
+  border-radius: 50%;
+}
+
+/* ================= RESPONSIVE ================= */
 @media (max-width: 992px) {
   .why-content {
     flex-direction: column;
@@ -1980,31 +2018,55 @@ body :where(p, span)
     max-width: 90%;
   }
 }
-
+/* ================= CONTACT US ================= */
 #contact-us {
   position: relative;
   width: 100%;
   min-height: 420px;
-  background: url('./assets/background/Image_fx\ \(11\).png') center / cover no-repeat;
+  overflow: hidden;
+
+  /* BASE IMAGE (KEEP) */
+  background: url('./assets/model/bg\ contact\ us\ .png') center / cover no-repeat;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   font-family: 'Poppins', sans-serif;
   text-align: center;
+  padding: 60px 20px;
 }
 
-/* beige transparent overlay */
+/* ================= LAYER 1 — GREY GRADIENT ================= */
 #contact-us::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(252, 241, 219, 0.35); /* beige soft */
-  z-index: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(35,35,35,0.75) 0%,
+    rgba(55,55,55,0.65) 50%,
+    rgba(35,35,35,0.75) 100%
+  );
+  z-index: 1;
 }
 
+/* ================= LAYER 2 — NOISE / GRAIN ================= */
+#contact-us::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("assets/background/noise-dark.png");
+  background-size: 160px 160px;
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* ================= CONTENT ================= */
 #contact-us > * {
   position: relative;
-  z-index: 1;
+  z-index: 3;
 }
 
 #contact-us .content {
@@ -2016,7 +2078,7 @@ body :where(p, span)
   font-size: 24px;
   font-weight: 700;
   margin-bottom: 10px;
-  color: #000;
+  color: beige;
 }
 
 #contact-us i.fa-whatsapp {
@@ -2026,7 +2088,7 @@ body :where(p, span)
 #contact-us p {
   font-size: 16px;
   margin-bottom: 30px;
-  color: #000;
+  color: beige;
 }
 
 #contact-us a {
