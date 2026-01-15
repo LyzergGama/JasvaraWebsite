@@ -63,10 +63,10 @@ document.addEventListener("DOMContentLoaded", () => {
         { src: "assets/package/19.webp", title: "Paket Gen Sandwich" }
       ],
       2: [
-        { src: "assets/package/21.webp", title: "Paket Gen Z" },
-        { src: "assets/package/22.webp", title: "Paket Gen Alpha" },
-        { src: "assets/package/23.webp", title: "Paket Gen Beta" },
-        { src: "assets/package/24.webp", title: "Paket Gen Sandwich" }
+        { src: "assets/package/21.jpg", title: "Paket Gen Z" },
+        { src: "assets/package/22.jpg", title: "Paket Gen Alpha" },
+        { src: "assets/package/23.jpg", title: "Paket Gen Beta" },
+        { src: "assets/package/24.jpg", title: "Paket Gen Sandwich" }
       ]
     };
 
@@ -162,8 +162,7 @@ const data = {
       { src: "assets/portofolio/SMM/13.jpg", name: "Brand 13" },
       { src: "assets/portofolio/SMM/14.jpg", name: "Brand 14" },
       { src: "assets/portofolio/SMM/15.jpg", name: "Brand 15" },
-      { src: "assets/portofolio/SMM/16.jpg", name: "Brand 16" },
-      { src: "assets/portofolio/SMM/17.jpg", name: "Brand 17" }
+      { src: "assets/portofolio/SMM/16.jpg", name: "Brand 16" }
     ]
   },
 
@@ -183,22 +182,45 @@ const data = {
   }
 };
 
-const overlay = document.getElementById("portfolio-overlay");
-const track = document.querySelector(".slider-track");
+/* ===============================
+   ELEMENTS
+================================ */
+const overlay  = document.getElementById("portfolio-overlay");
+const track    = document.querySelector(".slider-track");
 const modelImg = document.querySelector(".portfolio-model img");
-const prevBtn = document.querySelector(".nav.prev");
-const nextBtn = document.querySelector(".nav.next");
+const prevBtn  = document.querySelector(".nav.prev");
+const nextBtn  = document.querySelector(".nav.next");
 
 let currentIndex = 0;
-let currentData = null;
+let currentData  = null;
+
+/* ===============================
+   AUTOSCROLL STATE
+================================ */
+let autoTimer = null;
+const AUTO_DELAY = 4000; // ms
+
+function startAutoScroll() {
+  stopAutoScroll();
+  autoTimer = setInterval(() => {
+    currentIndex++;
+    updateSlide();
+  }, AUTO_DELAY);
+}
+
+function stopAutoScroll() {
+  if (autoTimer) {
+    clearInterval(autoTimer);
+    autoTimer = null;
+  }
+}
 
 /* ===============================
    OPEN OVERLAY
 ================================ */
 document.querySelectorAll(".porto-btn").forEach(btn => {
   btn.addEventListener("click", () => {
-    const type = btn.dataset.type;
-    openPortfolio(type);
+    openPortfolio(btn.dataset.type);
   });
 });
 
@@ -206,26 +228,27 @@ function openPortfolio(type) {
   currentData = data[type];
 
   overlay.classList.add("active");
-  overlay.classList.remove("smm","tsp");
+  overlay.classList.remove("smm", "tsp");
   overlay.classList.add(type);
 
   modelImg.src = currentData.model;
   currentIndex = 0;
 
-  // ⬇️ INI PENTING
   document.querySelector(".portfolio-header").textContent =
     type === "smm" ? "PORTOFOLIO SMM" : "PORTOFOLIO TSP";
 
   buildSlides();
   updateSlide();
+  startAutoScroll();
 }
 
 /* ===============================
-   CLOSE
+   CLOSE OVERLAY
 ================================ */
 document.querySelector(".portfolio-close").addEventListener("click", () => {
   overlay.classList.remove("active");
   track.innerHTML = "";
+  stopAutoScroll();
 });
 
 /* ===============================
@@ -248,11 +271,11 @@ function buildSlides() {
       card.className = "portfolio-card";
 
       card.innerHTML = `
-      <div class="portfolio-image">
-        <img src="${item.src}" alt="${item.name}">
-      </div>
-      <div class="portfolio-brand">${item.name}</div>
-    `;
+        <div class="portfolio-image">
+          <img src="${item.src}" alt="${item.name}">
+        </div>
+        <div class="portfolio-brand">${item.name}</div>
+      `;
 
       group.appendChild(card);
     });
@@ -263,18 +286,23 @@ function buildSlides() {
 }
 
 /* ===============================
-   NAV
+   NAVIGATION
 ================================ */
 nextBtn.addEventListener("click", () => {
   currentIndex++;
   updateSlide();
+  startAutoScroll();
 });
 
 prevBtn.addEventListener("click", () => {
   currentIndex--;
   updateSlide();
+  startAutoScroll();
 });
 
+/* ===============================
+   UPDATE SLIDE
+================================ */
 function updateSlide() {
   const total = track.children.length;
   if (!total) return;
@@ -283,6 +311,7 @@ function updateSlide() {
   track.style.transform = `translateX(-${currentIndex * 100}%)`;
 }
 
+
 /* ================= SWIPER ================= */
 App.swiper = (() => {
   let swiperInstance = null;
@@ -290,36 +319,23 @@ App.swiper = (() => {
   function init() {
     if (typeof Swiper === "undefined") return;
 
-    swiperInstance = new Swiper('.partners-swiper', {
-      slidesPerView: 'auto',
-      spaceBetween: 24,
-      loop: true,
+      swiperInstance = new Swiper('.partners-swiper', {
+        slidesPerView: 'auto',
+        spaceBetween: 24,
+        loop: true,
 
-      speed: 6000,
+        speed: 6000, // kecepatan jalan
+        freeMode: true, // ⬅️ PENTING
+        freeModeMomentum: false, // biar smooth terus
 
-      autoplay: {
-        delay: 0, // ⬅️ BUKAN 1
-        disableOnInteraction: false
-      },
+        autoplay: {
+          delay: 0,
+          disableOnInteraction: false, // ⬅️ autoplay LANJUT
+        },
 
-      allowTouchMove: false,
-
-      freeMode: false, // ⬅️ PENTING
-    });
-
-    // 🔥 FORCE RESUME AUTOPLAY
-        document.querySelector('.partners-swiper')
-          .addEventListener('click', () => {
-            swiperInstance.autoplay.start();
-          });
-
-          swiperInstance.on('touchEnd', () => {
-      swiperInstance.autoplay.start();
-    });
-
-    swiperInstance.on('click', () => {
-      swiperInstance.autoplay.start();
-    });
+        allowTouchMove: true, // ⬅️ USER BISA GESER
+        grabCursor: true,
+      });
 
   }
 
