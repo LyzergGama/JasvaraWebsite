@@ -1886,7 +1886,9 @@ body :where(p, span)
 
 .portfolio-model img{
   max-height:80vh;
-  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.45));
+  filter:
+    drop-shadow(0 15px 30px rgba(0,0,0,.6))
+    drop-shadow(0 40px 100px rgba(0,0,0,.5));
 }
 
 /* PARTNERS SECTION */
@@ -2090,7 +2092,9 @@ body :where(p, span)
   max-width: 640px;
   object-fit: contain;
 
-  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.45));
+  filter:
+  drop-shadow(0 15px 30px rgba(0,0,0,.6))
+  drop-shadow(0 40px 100px rgba(0,0,0,.5));
 }
 
 /* ================= RIGHT — POINTS ================= */
