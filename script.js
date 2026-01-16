@@ -145,17 +145,16 @@ document.addEventListener("DOMContentLoaded", () => {
 const data = {
   smm: {
     model: "assets/model/POP UP ORANG SMM.png",
-    perSlide: 3,
     images: [
-      { src: "assets/portofolio/SMM/1.jpg", name: "Brand 1" },
-      { src: "assets/portofolio/SMM/2.jpg", name: "Brand 2" },
-      { src: "assets/portofolio/SMM/3.jpg", name: "Brand 3" },
-      { src: "assets/portofolio/SMM/4.jpg", name: "Brand 4" },
-      { src: "assets/portofolio/SMM/5.jpg", name: "Brand 5" },
-      { src: "assets/portofolio/SMM/6.jpg", name: "Brand 6" },
-      { src: "assets/portofolio/SMM/7.jpg", name: "Brand 7" },
-      { src: "assets/portofolio/SMM/8.jpg", name: "Brand 8" },
-      { src: "assets/portofolio/SMM/9.jpg", name: "Brand 9" },
+      { src: "assets/portofolio/SMM/1.jpg",  name: "Brand 1"  },
+      { src: "assets/portofolio/SMM/2.jpg",  name: "Brand 2"  },
+      { src: "assets/portofolio/SMM/3.jpg",  name: "Brand 3"  },
+      { src: "assets/portofolio/SMM/4.jpg",  name: "Brand 4"  },
+      { src: "assets/portofolio/SMM/5.jpg",  name: "Brand 5"  },
+      { src: "assets/portofolio/SMM/6.jpg",  name: "Brand 6"  },
+      { src: "assets/portofolio/SMM/7.jpg",  name: "Brand 7"  },
+      { src: "assets/portofolio/SMM/8.jpg",  name: "Brand 8"  },
+      { src: "assets/portofolio/SMM/9.jpg",  name: "Brand 9"  },
       { src: "assets/portofolio/SMM/10.jpg", name: "Brand 10" },
       { src: "assets/portofolio/SMM/11.jpg", name: "Brand 11" },
       { src: "assets/portofolio/SMM/12.jpg", name: "Brand 12" },
@@ -168,7 +167,6 @@ const data = {
 
   tsp: {
     model: "assets/model/POP UP ORANG TSP.png",
-    perSlide: 1,
     images: [
       { src: "assets/portofolio/TSP/1.jpg", name: "Brand A" },
       { src: "assets/portofolio/TSP/2.jpg", name: "Brand B" },
@@ -182,134 +180,143 @@ const data = {
   }
 };
 
+
 /* ===============================
    ELEMENTS
 ================================ */
 const overlay  = document.getElementById("portfolio-overlay");
 const track    = document.querySelector(".slider-track");
 const modelImg = document.querySelector(".portfolio-model img");
-const prevBtn  = document.querySelector(".nav.prev");
-const nextBtn  = document.querySelector(".nav.next");
-
-let currentIndex = 0;
-let currentData  = null;
 
 /* ===============================
-   AUTOSCROLL STATE
+   STATE
 ================================ */
-let autoTimer = null;
-const AUTO_DELAY = 4000; // ms
+let currentData = null;
 
-function startAutoScroll() {
-  stopAutoScroll();
-  autoTimer = setInterval(() => {
-    currentIndex++;
-    updateSlide();
-  }, AUTO_DELAY);
-}
+let scrollX   = 0;
+let baseSpeed = 0.45;
+let velocity  = 0;
 
-function stopAutoScroll() {
-  if (autoTimer) {
-    clearInterval(autoTimer);
-    autoTimer = null;
-  }
-}
+let paused    = false;
+let dragging  = false;
+
+let startX    = 0;
+let lastX     = 0;
+let lastTime  = 0;
 
 /* ===============================
-   OPEN OVERLAY
+   OPEN
 ================================ */
 document.querySelectorAll(".porto-btn").forEach(btn => {
-  btn.addEventListener("click", () => {
-    openPortfolio(btn.dataset.type);
-  });
+  btn.addEventListener("click", () => openPortfolio(btn.dataset.type));
 });
 
 function openPortfolio(type) {
   currentData = data[type];
 
-  overlay.classList.add("active");
-  overlay.classList.remove("smm", "tsp");
-  overlay.classList.add(type);
-
+  overlay.classList.add("active", type);
   modelImg.src = currentData.model;
-  currentIndex = 0;
 
   document.querySelector(".portfolio-header").textContent =
-    type === "smm" ? "PORTOFOLIO SMM" : "PORTOFOLIO TSP";
+    type === "smm" ? "PORTFOLIO SMM" : "PORTFOLIO TSP";
 
-  buildSlides();
-  updateSlide();
-  startAutoScroll();
+  buildItems();
+  scrollX = 0;
+  velocity = 0;
 }
 
 /* ===============================
-   CLOSE OVERLAY
+   CLOSE
 ================================ */
-document.querySelector(".portfolio-close").addEventListener("click", () => {
-  overlay.classList.remove("active");
+document.querySelector(".portfolio-close").onclick = () => {
+  overlay.classList.remove("active", "smm", "tsp");
   track.innerHTML = "";
-  stopAutoScroll();
-});
+};
 
 /* ===============================
-   BUILD SLIDES
+   BUILD ITEMS
 ================================ */
-function buildSlides() {
+function buildItems() {
   track.innerHTML = "";
 
-  const { images, perSlide } = currentData;
+  currentData.images.forEach(item => {
+    const card = document.createElement("div");
+    card.className = "portfolio-card";
+    card.innerHTML = `
+      <div class="portfolio-image">
+        <img src="${item.src}">
+      </div>
+      <div class="portfolio-brand">${item.name}</div>
+    `;
+    track.appendChild(card);
+  });
 
-  for (let i = 0; i < images.length; i += perSlide) {
-    const slide = document.createElement("div");
-    slide.className = "slide";
+  // duplicate for infinite loop
+  track.innerHTML += track.innerHTML;
+}
 
-    const group = document.createElement("div");
-    group.className = "slide-group";
+/* ===============================
+   ANIMATION LOOP
+================================ */
+function animate() {
 
-    images.slice(i, i + perSlide).forEach(item => {
-      const card = document.createElement("div");
-      card.className = "portfolio-card";
+  if (!dragging) {
+    // inertia decay
+    velocity *= 0.92;
 
-      card.innerHTML = `
-        <div class="portfolio-image">
-          <img src="${item.src}" alt="${item.name}">
-        </div>
-        <div class="portfolio-brand">${item.name}</div>
-      `;
-
-      group.appendChild(card);
-    });
-
-    slide.appendChild(group);
-    track.appendChild(slide);
+    // auto scroll base
+    scrollX += baseSpeed + velocity;
   }
+
+  const limit = track.scrollWidth / 2;
+  if (scrollX >= limit) scrollX -= limit;
+  if (scrollX < 0) scrollX += limit;
+
+  track.style.transform = `translateX(-${scrollX}px)`;
+
+  requestAnimationFrame(animate);
 }
+animate();
 
 /* ===============================
-   NAVIGATION
+   INTERACTION — DRAG + INERTIA
 ================================ */
-nextBtn.addEventListener("click", () => {
-  currentIndex++;
-  updateSlide();
-  startAutoScroll();
+track.addEventListener("mousedown", e => {
+  dragging = true;
+  paused = true;
+
+  startX   = e.pageX;
+  lastX    = scrollX;
+  lastTime = performance.now();
+  velocity = 0;
+
+  e.preventDefault();
 });
 
-prevBtn.addEventListener("click", () => {
-  currentIndex--;
-  updateSlide();
-  startAutoScroll();
+window.addEventListener("mouseup", () => {
+  dragging = false;
+  paused = false;
+});
+
+window.addEventListener("mousemove", e => {
+  if (!dragging) return;
+
+  const now = performance.now();
+  const dx  = e.pageX - startX;
+  const dt  = now - lastTime || 16;
+
+  scrollX = lastX - dx;
+
+  velocity = (dx / dt) * 6; // 🔥 inertia strength
+
+  lastTime = now;
 });
 
 /* ===============================
-   UPDATE SLIDE
+   PAUSE ON HOVER
 ================================ */
-function updateSlide() {
-  const total = track.children.length;
-  if (!total) return;
-
-  currentIndex = (currentIndex + total) % total;
-  track.style.transform = `translateX(-${currentIndex * 100}%)`;
-}
+track.addEventListener("mouseenter", () => paused = true);
+track.addEventListener("mouseleave", () => paused = false);
 
 
 /* ================= SWIPER ================= */
