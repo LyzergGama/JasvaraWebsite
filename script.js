@@ -182,27 +182,34 @@ const data = {
 
 
 /* ===============================
-   ELEMENTS
+   PORTFOLIO OVERLAY CAROUSEL
+   STABLE PNP VERSION
 ================================ */
-const overlay  = document.getElementById("portfolio-overlay");
-const track    = document.querySelector(".slider-track");
-const modelImg = document.querySelector(".portfolio-model img");
 
-/* ===============================
-   STATE
-================================ */
+const overlay  = document.getElementById("portfolio-overlay");
+const track    = overlay.querySelector(".slider-track");
+const modelImg = overlay.querySelector(".portfolio-model img");
+const header   = overlay.querySelector(".portfolio-header");
+const closeBtn = overlay.querySelector(".portfolio-close");
+
 let currentData = null;
 
 let scrollX   = 0;
-let baseSpeed = 0.45;
 let velocity  = 0;
-
-let paused    = false;
 let dragging  = false;
 
-let startX    = 0;
-let lastX     = 0;
-let lastTime  = 0;
+let startX = 0;
+let lastX  = 0;
+let lastTime = 0;
+
+const AUTO_SPEED = 0.35;   // base auto scroll
+const FRICTION   = 0.88;   // inertia decay
+
+/* ===============================
+   PREVENT NATIVE DRAG
+================================ */
+track.addEventListener("dragstart", e => e.preventDefault());
+track.addEventListener("mousedown", e => e.preventDefault());
 
 /* ===============================
    OPEN
@@ -211,32 +218,32 @@ document.querySelectorAll(".porto-btn").forEach(btn => {
   btn.addEventListener("click", () => openPortfolio(btn.dataset.type));
 });
 
-function openPortfolio(type) {
+function openPortfolio(type){
   currentData = data[type];
+  if (!currentData) return;
 
   overlay.classList.add("active", type);
   modelImg.src = currentData.model;
-
-  document.querySelector(".portfolio-header").textContent =
-    type === "smm" ? "PORTFOLIO SMM" : "PORTFOLIO TSP";
+  header.textContent = type === "smm" ? "PORTFOLIO SMM" : "PORTFOLIO TSP";
 
   buildItems();
-  scrollX = 0;
+  scrollX  = track.scrollWidth / 4;
   velocity = 0;
 }
 
 /* ===============================
    CLOSE
 ================================ */
-document.querySelector(".portfolio-close").onclick = () => {
+closeBtn?.addEventListener("click", () => {
   overlay.classList.remove("active", "smm", "tsp");
-  track.innerHTML = "";
-};
+  dragging = false;
+  velocity = 0;
+});
 
 /* ===============================
-   BUILD ITEMS
+   BUILD
 ================================ */
-function buildItems() {
+function buildItems(){
   track.innerHTML = "";
 
   currentData.images.forEach(item => {
@@ -244,81 +251,63 @@ function buildItems() {
     card.className = "portfolio-card";
     card.innerHTML = `
       <div class="portfolio-image">
-        <img src="${item.src}">
+        <img src="${item.src}" draggable="false">
       </div>
       <div class="portfolio-brand">${item.name}</div>
     `;
     track.appendChild(card);
   });
 
-  // duplicate for infinite loop
+  /* duplicate for infinite loop */
   track.innerHTML += track.innerHTML;
 }
 
 /* ===============================
-   ANIMATION LOOP
-================================ */
-function animate() {
-
-  if (!dragging) {
-    // inertia decay
-    velocity *= 0.92;
-
-    // auto scroll base
-    scrollX += baseSpeed + velocity;
-  }
-
-  const limit = track.scrollWidth / 2;
-  if (scrollX >= limit) scrollX -= limit;
-  if (scrollX < 0) scrollX += limit;
-
-  track.style.transform = `translateX(-${scrollX}px)`;
-
-  requestAnimationFrame(animate);
-}
-animate();
-
-/* ===============================
-   INTERACTION — DRAG + INERTIA
+   DRAG
 ================================ */
 track.addEventListener("mousedown", e => {
   dragging = true;
-  paused = true;
-
   startX   = e.pageX;
-  lastX    = scrollX;
+  lastX   = scrollX;
   lastTime = performance.now();
   velocity = 0;
-
-  e.preventDefault();
 });
 
 window.addEventListener("mouseup", () => {
   dragging = false;
-  paused = false;
 });
 
 window.addEventListener("mousemove", e => {
   if (!dragging) return;
 
-  const now = performance.now();
-  const dx  = e.pageX - startX;
-  const dt  = now - lastTime || 16;
+  const dx = e.movementX;
 
-  scrollX = lastX - dx;
-
-  velocity = (dx / dt) * 6; // 🔥 inertia strength
-
-  lastTime = now;
+  scrollX -= dx;
+  velocity = dx * -0.8;
 });
 
 /* ===============================
-   PAUSE ON HOVER
+   LOOP
 ================================ */
-track.addEventListener("mouseenter", () => paused = true);
-track.addEventListener("mouseleave", () => paused = false);
+function animate(){
+  if (!dragging) {
+    velocity *= FRICTION;
 
+    if (Math.abs(velocity) < 0.02) velocity = 0;
 
+    scrollX += velocity + AUTO_SPEED;
+  }
+
+  const limit = track.scrollWidth / 2;
+
+  if (scrollX >= limit) scrollX -= limit;
+  if (scrollX < 0)      scrollX += limit;
+
+  track.style.transform = `translateX(${-scrollX}px)`;
+  requestAnimationFrame(animate);
+}
+
+animate();
 /* ================= SWIPER ================= */
 App.swiper = (() => {
   let swiperInstance = null;
