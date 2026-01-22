@@ -2051,9 +2051,9 @@ body :where(p, span)
 ========================================================= */
 .why-us {
   position: relative;
-  min-height: 100vh;
   overflow: hidden;
   padding-top: 60px;
+  align-items: stretch;
 
   font-family: 'Poppins';
 
@@ -2061,7 +2061,8 @@ body :where(p, span)
   background-image: url("./assets/model/kenapa\ harus\ kami\ bg.png");
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
+  justify-content: flex-start !important;
+  min-height: calc(100vh - var(--nav-height));
 }
 
 /* ================= LAYER 1 — BEIGE BASE ================= */
@@ -2104,9 +2105,11 @@ body :where(p, span)
 /* ================= CONTENT WRAPPER ================= */
 .why-content {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: space-between;
   gap: 80px;
+  flex: 1;
+  
 
   /* MODEL KIRI — TEXT KANAN */
   flex-direction: row-reverse;
@@ -2118,11 +2121,17 @@ body :where(p, span)
   display: flex;
   justify-content: flex-start;
   align-items: flex-end;
+  position: relative;
 }
 
 .why-image img {
+
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
   width: 100%;
-  max-width: 640px;
+  max-height: 100%;
   object-fit: contain;
 
   filter:
