@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
   })();
 
 
-  /* ================= PACKAGE POPUP ================= */
+  /* ================= PACKAGE POPUP - MOBILE CAROUSEL MODE ================= */
   App.packagePopup = (() => {
     const data = {
       1: [
@@ -96,15 +96,19 @@ document.addEventListener("DOMContentLoaded", () => {
           if (!items) return;
 
           inner.innerHTML = "";
+          
+          // MOBILE: 1 card per slide (carousel mode)
+          // DESKTOP: 4 cards per slide (grid mode)
           const perSlide = isMobile() ? 1 : 4;
 
           chunk(items, perSlide).forEach((group, i) => {
             const slide = document.createElement("div");
             slide.className = `carousel-item ${i === 0 ? "active" : ""}`;
+            
             slide.innerHTML = `
               <div class="slide-group">
                 ${group.map(it => `
-                  <div class="pkg-popup-item" style="width:${100/perSlide}%">
+                  <div class="pkg-popup-item">
                     <img src="${it.src}" class="pkg-popup-img">
                     <div class="pkg-popup-text">${it.title}</div>
                   </div>`).join("")}
@@ -114,12 +118,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
           overlay.classList.add("active");
 
+          // Setup image click handlers
           document.querySelectorAll(".pkg-popup-img").forEach(img => {
-            img.onclick = () => {
-              if (isMobile()) return;
-              zoomImg.src = img.src;
-              zoomOverlay.classList.add("active");
-            };
+            if (isMobile()) {
+              // MOBILE: No zoom functionality
+              img.style.cursor = "default";
+              img.onclick = null;
+            } else {
+              // DESKTOP: Zoom on click
+              img.style.cursor = "pointer";
+              img.onclick = () => {
+                zoomImg.src = img.src;
+                zoomOverlay.classList.add("active");
+              };
+            }
           });
         };
       });
@@ -133,7 +145,21 @@ document.addEventListener("DOMContentLoaded", () => {
         if (e.target === overlay) closeBtn.onclick();
       };
 
-      zoomOverlay.onclick = () => zoomOverlay.classList.remove("active");
+      // Desktop zoom overlay close
+      if (zoomOverlay) {
+        zoomOverlay.onclick = () => zoomOverlay.classList.remove("active");
+      }
+
+      // ESC key to close
+      document.addEventListener("keydown", e => {
+        if (e.key === "Escape") {
+          if (zoomOverlay && zoomOverlay.classList.contains("active")) {
+            zoomOverlay.classList.remove("active");
+          } else if (overlay.classList.contains("active")) {
+            closeBtn.onclick();
+          }
+        }
+      });
     }
 
     return { init };

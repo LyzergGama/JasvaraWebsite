@@ -30,10 +30,13 @@
 html, body { height: 100%; }
 
 body {
+  margin: 0;
+  line-height: 1.5;
+  overflow-x: hidden;
+
   background: var(--bg);
   color: var(--main);
-  font-family: Inter, system-ui;
-  -webkit-font-smoothing: antialiased;
+  font-family: 'Poppins', system-ui;
   padding-top: var(--nav-height);
 }
 
@@ -52,13 +55,6 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
-body {
-  margin: 0;
-  line-height: 1.5;
-  background: #fff;
-  color: #111;
-  overflow-x: hidden;
-}
 
 /* =========================
    SAFE VIEWPORT SYSTEM
@@ -75,13 +71,12 @@ body {
 section {
   position: relative;
   width: 100%;
-  min-height: var(--vh-safe);
+  min-height: auto;   /* ✅ DESKTOP FULL */
+  height: auto;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
-
-  overflow: hidden;
 }
 
 /* CONTENT LAYER */
@@ -165,21 +160,10 @@ a:focus {
    MOBILE ADJUSTMENT
    ========================= */
 
-@media (max-width: 768px) {
-  section {
-    padding: 48px 20px;
-  }
-}
-
 /* ===============================
    GLOBAL ZOOM & ACCESSIBILITY SAFE
 ================================ */
 
-/* SEMUA SECTION KECUALI HERO */
-section:not(#hero) {
-  min-height: 100vh;
-  height: auto;
-}
 
 /* Jangan crop konten pas zoom */
 section:not(#hero) {
@@ -190,8 +174,7 @@ section:not(#hero) {
 #lk-section,
 #pkg-section,
 #portfolio-trigger {
-  min-height: 100vh;
-  height: auto;
+  min-height: auto;
 }
 
 
@@ -392,21 +375,18 @@ body :where(p, span)
 /* HERO WRAPPER */
 #hero {
   width: 100%;
-  height: 100vh;
   position: relative;
   overflow: hidden;
-  margin-top:20px;
 }
 
-/* BOOTSTRAP CAROUSEL FIX */
 #hero .carousel,
 #hero .carousel-inner,
 #hero .carousel-item {
-  height: 100%;
-} 
+  height: auto;
+}
 
 .carousel-item {
-  min-height: 100vh;
+  min-height: auto;
 }
 
 /* SLIDE BASE */
@@ -451,6 +431,7 @@ body :where(p, span)
    CONTENT WRAPPER
 ========================================================= */
 .hero-inner {
+  height: 80vh;
   position: relative;
   z-index: 3;
   max-width: 1200px;
@@ -460,7 +441,7 @@ body :where(p, span)
   grid-template-columns: 1fr 1fr;
   align-items: center;
   column-gap: 50px;
-  min-height: 100dvh;
+  min-height: auto;
   margin-bottom: 12%;
 }
 
@@ -483,6 +464,7 @@ body :where(p, span)
   line-height: 1.05;
   letter-spacing: 2px;
   margin-bottom: 20%;
+  margin-top: 30px;
 }
 
 .hero-title span {
@@ -539,7 +521,7 @@ body :where(p, span)
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: auto;
+  height: 80vh;
   max-width: 900px;
 }
 
@@ -569,7 +551,7 @@ body :where(p, span)
 #heroCarousel .carousel-inner,
 #heroCarousel .carousel-item,
 .hero-slide {
-  min-height: 100vh;
+  min-height: auto;
 }
 
 /* ================= BACKGROUND PER SLIDE ================= */
@@ -584,66 +566,7 @@ body :where(p, span)
 
 /* ================= MOBILE ================= */
 
-@media (max-width: 768px) {
 
-  /* HERO JANGAN TERLALU TINGGI */
-  #hero {
-    min-height: 100svh;
-  }
-
-  .hero-slide {
-    align-items: flex-start;
-  }
-
-  /* TETAP 2 KOLOM, TAPI DIKECILIN */
-  .hero-inner {
-    grid-template-columns: 0.9fr 1.1fr; /* logo : text */
-    column-gap: 16px;
-    padding: 90px 16px 48px;
-    min-height: auto;
-    align-items: flex-start;
-  }
-
-  /* LOGO — NAIK & DIKECILIN */
-  .hero-logo img {
-    max-width: 200px;
-    margin-top: 0;
-  }
-
-  /* TEXT ALIGNMENT */
-  .hero-text {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .hero-text h1 {
-    font-size: 34px;
-    line-height: 1.1;
-    margin-top: 0;
-  }
-
-  .hero-tagline {
-    font-size: 16px;
-    margin-top: 10px;
-    white-space: normal;
-  }
-
-  /* SLIDE 2 */
-  .hero-inner.center {
-    grid-template-columns: 1fr;
-    text-align: left;
-  }
-
-  .hero-title-red {
-    font-size: 26px;
-  }
-
-  .hero-desc {
-    font-size: 15px;
-    line-height: 1.45;
-  }
-}
 #heroCarousel .carousel-control-prev,
 #heroCarousel .carousel-control-next {
   width: 70px;
@@ -691,7 +614,6 @@ body :where(p, span)
 /* ================= VISION & MISSION ================= */
 #vision-mission {
   position: relative;
-  height: 100vh;
   overflow: hidden;
 
   background-image: url("assets/background/Image_fx (6).png");
@@ -816,49 +738,6 @@ body :where(p, span)
 /* =========================================================
    MOBILE FIX — TETAP HORIZONTAL
 ========================================================= */
-@media (max-width: 767px) {
-
-  /* ROW TETAP 3 KOLOM */
-  #vision-mission .row {
-    flex-wrap: nowrap;
-    align-items: stretch;
-  }
-
-  #vision-mission .col-md-4 {
-    flex: 0 0 33.3333%;
-    max-width: 33.3333%;
-    display: flex;
-  }
-
-  /* SCALE DOWN SECTION */
-  #vision-mission {
-    transform: scale(0.85);
-    transform-origin: top center;
-    padding: 140px 0;
-  }
-
-  /* CARD */
-  #vision-mission .vm-card {
-    min-height: 360px;
-    padding: 1.4rem;
-    margin-bottom: 50%;
-  }
-
-  /* TEXT */
-  #vision-mission .vm-title {
-    font-size: 0.95rem;
-  }
-
-  #vision-mission .vm-text {
-    font-size: 0.85rem;
-    line-height: 1.5;
-  }
-
-  /* LOGO */
-  #vision-mission .vm-logo {
-    width: 140px;
-  }
-}
 
 
 
@@ -878,7 +757,6 @@ body :where(p, span)
   text-align: center;
   font-weight: 500;
   font-family: 'Poppins';
-  height: 100vh;
   overflow: hidden;
 
   background-image: url("assets/background/Image_fx (7).png");
@@ -951,8 +829,8 @@ body :where(p, span)
 
 /* tiap item = 1 kolom */
 .lk-content {
-  height: calc(100vh - 160px); /* ⬅️ PENTING */
-  margin-top: 160px;          /* ⬅️ RUANG BUAT TITLE */
+  height: auto;        /* ✅ */
+  margin-top: 160px;
 
   display: flex;
   align-items: center;
@@ -1005,19 +883,7 @@ body :where(p, span)
 /* =================================================
    MOBILE
 ================================================= */
-@media (max-width: 768px) {
-  .lk-card-wrapper {
-    gap: 20px;
-  }
 
-  .lk-item {
-    width: 110px;
-  }
-
-  .lk-text {
-    font-size: 13px;
-  }
-}
 
 /* =================================================
    POPUP OVERLAY
@@ -1070,36 +936,6 @@ body :where(p, span)
   object-fit: contain;
 }
 
-/* ================= PACKAGE SECTION ================= */
-#pkg-section {
-  position: relative;
-  height: 100vh;
-  overflow: hidden;
-
-  /* BASE IMAGE */
-  background-image: url("assets/background/Image_fx (9).png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  font-family: poppins;
-  padding: 60px 20px;
-}
-
-/* ================= LAYER 1 — GREY GRADIENT ================= */
-#pkg-section::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    90deg,
-    rgba(35,35,35,0.75) 0%,
-    rgba(55,55,55,0.65) 50%,
-    rgba(35,35,35,0.75) 100%
-  );
-  z-index: 1;
-}
-
 /* ================= LAYER 2 — NOISE / GRAIN ================= */
 #pkg-section::after {
   content: "";
@@ -1125,7 +961,6 @@ body :where(p, span)
 /* ================= PACKAGE SECTION ================= */
 #pkg-section {
   position: relative;
-  height: 100vh;
   overflow: hidden;
   display: block;
 
@@ -1181,33 +1016,6 @@ body :where(p, span)
   align-items: center;
   gap: 40px; /* DESKTOP = SAMA */
   margin-top: 5%;
-}
-
-/* TITLE */
-.pkg-title {
-  position: absolute;
-  top: 28px;
-  left: 50%;
-  transform: translateX(-50%);
-
-  z-index: 5; /* 🔥 PASTI DI ATAS OVERLAY */
-
-  font-size: 60px;
-  font-weight: 500;
-  color: rgb(188, 0, 0);
-  text-align: center;
-
-  margin: 0;
-  pointer-events: none;
-}
-
-
-/* CONTENT AREA — IKUT POLA LK */
-.pkg-content {
-  height: calc(100vh - 120px); /* IDENTIK */
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 /* ================= CARD ================= */
@@ -1343,7 +1151,7 @@ body :where(p, span)
 
 /* CONTENT AREA — IKUT POLA LK */
 .pkg-content {
-  height: calc(100vh - 120px); /* IDENTIK */
+  height: auto;        /* ✅ */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1582,35 +1390,6 @@ body :where(p, span)
   .carousel-control-prev.desktop,
   .carousel-control-next.desktop {
     display: flex;
-  }
-}
-
-/* MOBILE */
-@media (max-width: 768px) {
-  .carousel-control-prev.mobile,
-  .carousel-control-next.mobile {
-    display: flex;
-  }
-
-  .pkg-card-wrapper {
-    gap: 10px;
-  }
-
-  .pkg-item {
-    width: 110px;
-  }
-
-  .pkg-text {
-    font-size: 13px;
-  }
-
-  .slide-group {
-    display: block;
-  }
-
-  .slide-group img {
-    width: 100% !important;
-    margin-bottom: 10px;
   }
 }
 
@@ -1910,7 +1689,7 @@ body :where(p, span)
   display: block;
 
   /* IMPORTANT */
-  min-height: 200vh;              /* biar sticky jalan */
+  min-height: auto;              /* biar sticky jalan */
   padding-top: 120px;             /* offset navbar */
 
   background-image: url("assets/model/BG PATNER.jpg");
@@ -2030,20 +1809,7 @@ body :where(p, span)
    MOBILE
 ================================ */
 
-@media (max-width: 768px) {
-  .partners-title {
-    font-size: 40px;
-    top: 70px;
-  }
 
-  .partners-swiper {
-    height: 420px;
-  }
-
-  .partner-slide img {
-    transform: scale(2);
-  }
-}
 
 
 /* =========================================================
@@ -2062,7 +1828,7 @@ body :where(p, span)
   background-size: cover;
   background-position: center;
   justify-content: flex-start !important;
-  min-height: calc(100vh - var(--nav-height));
+  min-height: auto;
 }
 
 /* ================= LAYER 1 — BEIGE BASE ================= */
@@ -2145,6 +1911,7 @@ body :where(p, span)
   display: flex;
   flex-direction: column;
   gap: 26px;
+  margin-bottom: 100px;
 }
 
 /* ================= BUBBLE ================= */
@@ -2174,33 +1941,17 @@ body :where(p, span)
   height: 18px;
   background: #f3ead6;
   border-radius: 50%;
+  margin-bottom: 30px;
 }
 
 /* ================= RESPONSIVE ================= */
-@media (max-width: 992px) {
-  .why-content {
-    flex-direction: column;
-    text-align: center;
-  }
 
-  .why-points,
-  .why-image {
-    width: 100%;
-  }
-
-  .why-points {
-    align-items: center;
-  }
-
-  .why-bubble {
-    max-width: 90%;
-  }
-}
 /* ================= CONTACT US ================= */
 #contact-us {
   position: relative;
   width: 100%;
-  min-height: 420px;
+  height: 100vh;
+  min-height: auto;
   overflow: hidden;
 
   /* BASE IMAGE (KEEP) */
@@ -2367,49 +2118,6 @@ body :where(p, span)
   opacity: 0.8;
 }
 
-@media (max-width: 768px) {
-
-  #footer {
-    padding: 30px 20px;
-  }
-
-  .footer-container {
-    grid-template-columns: 1fr;
-    gap: 30px;
-    text-align: center;
-  }
-
-  /* LEFT */
-  .footer-left p {
-    font-size: 14px;
-  }
-
-  /* CENTER */
-  .footer-menu {
-    flex-wrap: wrap;
-    gap: 15px 20px;
-  }
-
-  .footer-menu li a {
-    font-size: 14px;
-  }
-
-  .footer-copy {
-    display: block;
-    margin-top: 15px;
-    font-size: 12px;
-  }
-
-  /* RIGHT */
-  .footer-right {
-    align-items: center;
-  }
-
-  .footer-right a {
-    justify-content: center;
-    font-size: 14px;
-  }
-}
 
 /* ===============================
    GLOBAL RESPONSIVE SAFETY
@@ -2423,4 +2131,818 @@ html, body {
 img {
   max-width: 100%;
   height: auto;
+}
+/* =========================================================
+   MOBILE RESPONSIVE STYLES
+   Add this to your existing CSS or merge with main stylesheet
+========================================================= */
+
+/* ===============================
+   MOBILE BREAKPOINTS
+================================ */
+
+/* Tablets & Small Laptops (768px - 1024px) */
+@media (max-width: 1024px) {
+  .nav-container {
+    padding: 18px 30px;
+  }
+
+  .nav-menu {
+    gap: 18px;
+  }
+
+  .hero-inner {
+    padding: 0 40px;
+    column-gap: 30px;
+  }
+}
+
+/* ===============================
+   MAIN MOBILE (max-width: 768px)
+================================ */
+
+@media (max-width: 768px) {
+
+  /* GLOBAL */
+  body {
+    padding-top: 60px;
+  }
+
+  :root {
+    --nav-height: 60px;
+  }
+
+  /* HERO SECTION */
+  .hero-inner {
+    grid-template-columns: 1fr;
+    padding: 0 24px;
+    text-align: center;
+    row-gap: 30px;
+    height: auto;
+    min-height: 70vh;
+    margin-bottom: 0;
+  }
+
+  .hero-title {
+    font-size: clamp(32px, 10vw, 48px);
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+
+  .hero-tagline {
+    font-size: clamp(14px, 4vw, 20px);
+  }
+
+  .hero-logo img {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .hero-text h1 {
+    font-size: clamp(36px, 12vw, 60px);
+    margin-top: 40px;
+  }
+
+  /* SLIDE 2 */
+  .carousel-item:nth-child(2) .hero-inner.center {
+    height: auto;
+    min-height: 70vh;
+    padding: 40px 24px;
+  }
+
+  .hero-title-red {
+    font-size: clamp(28px, 8vw, 40px);
+  }
+
+  .hero-desc {
+    font-size: clamp(18px, 5vw, 28px);
+    line-height: 1.5;
+  }
+
+  /* CAROUSEL ARROWS */
+  #heroCarousel .carousel-control-prev,
+  #heroCarousel .carousel-control-next {
+    width: 50px;
+    height: 50px;
+  }
+
+  #heroCarousel .carousel-control-prev {
+    left: 15px;
+  }
+
+  #heroCarousel .carousel-control-next {
+    right: 15px;
+  }
+
+  .custom-arrow {
+    width: 50px;
+    height: 50px;
+    font-size: 28px;
+  }
+
+  /* ================= VISION & MISSION - HIDE ON MOBILE ================= */
+  #vision-mission {
+    display: none !important;
+  }
+
+  /* ================= LAYANAN KAMI - KEEP HORIZONTAL ================= */
+  #lk-section {
+    padding: 40px 10px;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  .lk-title {
+    font-size: clamp(24px, 6vw, 40px);
+    top: 20px;
+  }
+
+  .lk-card-wrapper {
+    flex-direction: row; /* TETAP HORIZONTAL */
+    gap: 20px;
+    margin-top: 100px;
+    align-items: center;
+    justify-content: flex-start;
+    overflow-x: auto;
+    overflow-y: visible;
+    padding: 0 10px 20px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Scrollbar styling */
+  .lk-card-wrapper::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .lk-card-wrapper::-webkit-scrollbar-track {
+    background: rgba(188, 0, 0, 0.1);
+    border-radius: 10px;
+  }
+
+  .lk-card-wrapper::-webkit-scrollbar-thumb {
+    background: rgb(188, 0, 0);
+    border-radius: 10px;
+  }
+
+  .lk-content {
+    margin-top: 0;
+  }
+
+  .lk-card {
+    width: 220px; /* FIXED WIDTH untuk scrolling */
+    flex-shrink: 0;
+  }
+
+  .lk-card img {
+    width: 100%;
+  }
+
+  .lk-text {
+    font-size: 16px;
+    margin-top: 20px;
+  }
+
+  /* POPUP */
+  .lk-popup {
+    max-width: 90%;
+  }
+
+  /* ================= PACKAGE SECTION - KEEP HORIZONTAL ================= */
+  #pkg-section {
+    padding: 40px 10px;
+    overflow-x: auto;
+  }
+
+  .pkg-title {
+    font-size: clamp(20px, 5vw, 32px);
+    top: 20px;
+  }
+
+  .pkg-card-wrapper {
+    flex-direction: row; /* TETAP HORIZONTAL */
+    gap: 20px;
+    margin-top: 80px;
+    align-items: center;
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding: 0 10px 20px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Scrollbar styling */
+  .pkg-card-wrapper::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .pkg-card-wrapper::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+  }
+
+  .pkg-card-wrapper::-webkit-scrollbar-thumb {
+    background: beige;
+    border-radius: 10px;
+  }
+
+  .pkg-item {
+    flex-shrink: 0;
+  }
+
+  .pkg-card {
+    width: 220px; /* FIXED WIDTH */
+  }
+
+  .pkg-card img {
+    width: 220px;
+  }
+
+  .pkg-text {
+    font-size: 16px;
+    margin-top: 20px;
+  }
+
+  .pkg-card::after {
+    font-size: 14px;
+  }
+
+  /* ================= POPUP OVERLAY - MOBILE CAROUSEL MODE ================= */
+  #pkg-popup-carousel {
+    width: 100%;
+    max-width: 100vw;
+    padding-top: 100px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* WRAPPER untuk carousel item */
+  .pkg-popup-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  /* MOBILE: Langsung CAROUSEL 1 CARD */
+  #pkg-popup-carousel .slide-group {
+    flex-direction: column;
+    gap: 0;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+    padding: 0;
+  }
+
+  /* Setiap item jadi slide */
+  #pkg-popup-carousel .pkg-popup-item {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* CARD langsung BESAR (1 aja) */
+  #pkg-popup-carousel .slide-group img {
+    width: 85vw;
+    max-width: 320px;
+    height: auto;
+    aspect-ratio: 9/16;
+    object-fit: cover;
+    border: 6px solid rgb(188,0,0);
+    flex-shrink: 0;
+    cursor: default; /* NO ZOOM */
+  }
+
+  /* TEXT BAWAH */
+  .pkg-popup-text {
+    font-size: 20px;
+    margin-top: 20px;
+    text-align: center;
+    color: beige;
+  }
+
+  /* HIDE ZOOM OVERLAY di MOBILE */
+  #pkg-zoom-overlay {
+    display: none !important;
+  }
+
+  /* ================= PORTFOLIO TRIGGER - KEEP HORIZONTAL ================= */
+  #portfolio-trigger {
+    padding: 60px 10px;
+    overflow-x: auto;
+  }
+
+  .portfolio-title {
+    font-size: clamp(24px, 6vw, 40px);
+    margin-bottom: 40px;
+  }
+
+  .portfolio-content {
+    flex-direction: row; /* TETAP HORIZONTAL */
+    gap: 30px;
+    align-items: center;
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding: 0 10px 20px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Scrollbar styling */
+  .portfolio-content::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .portfolio-content::-webkit-scrollbar-track {
+    background: rgba(188, 0, 0, 0.1);
+    border-radius: 10px;
+  }
+
+  .portfolio-content::-webkit-scrollbar-thumb {
+    background: rgb(188, 0, 0);
+    border-radius: 10px;
+  }
+
+  .porto-btn {
+    flex-shrink: 0;
+  }
+
+  .porto-btn img {
+    width: 220px; /* FIXED WIDTH */
+    border: 6px solid #b80000;
+  }
+
+  .porto-btn span {
+    font-size: 16px;
+    margin-top: 20px;
+  }
+
+  /* PORTFOLIO OVERLAY */
+  .portfolio-box {
+    width: 95vw;
+    height: 90vh;
+    padding-top: 80px;
+  }
+
+  .portfolio-close {
+    font-size: 28px;
+    top: 15px;
+    right: 15px;
+  }
+
+  /* PACKAGE POPUP CLOSE - TOP RIGHT */
+  #pkg-popup-close {
+    position: fixed;
+    top: 20px;
+    right: 25px;
+    font-size: 32px;
+    background: none;
+    border: none;
+    color: beige;
+    cursor: pointer;
+    z-index: 10000;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .portfolio-header-wrap {
+    top: 20px;
+  }
+
+  .portfolio-header {
+    font-size: clamp(20px, 5vw, 28px); /* BIGGER */
+  }
+
+  .slider-track {
+    gap: 20px;
+    padding: 0 3vw;
+  }
+
+  /* SMM */
+  #portfolio-overlay.smm .portfolio-card {
+    width: clamp(180px, 50vw, 280px);
+  }
+
+  #portfolio-overlay.smm img {
+    max-height: 55vh;
+  }
+
+  /* TSP */
+  #portfolio-overlay.tsp .portfolio-card {
+    width: clamp(280px, 85vw, 600px);
+  }
+
+  .portfolio-brand {
+    font-size: 14px;
+  }
+
+  .portfolio-model {
+    display: none;
+  }
+
+  /* ================= PARTNERS ================= */
+  #partners {
+    padding-top: 80px;
+  }
+
+  .partners-title {
+    font-size: clamp(32px, 9vw, 48px); /* BIGGER */
+    top: 70px;
+    letter-spacing: 2px;
+  }
+
+  .partners-swiper {
+    height: 400px;
+    margin-top: 80px;
+  }
+
+  .partner-slide {
+    width: 280px !important;
+  }
+
+  .partner-slide img {
+    max-height: 200px; /* BIGGER */
+    transform: scale(3.5); /* BIGGER SCALE */
+  }
+
+  /* ================= WHY US ================= */
+  .why-us {
+    padding: 40px 20px;
+  }
+
+  .why-title {
+    font-size: clamp(32px, 9vw, 48px); /* BIGGER */
+    margin-bottom: 40px;
+  }
+
+  .why-content {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  /* HIDE MODEL ON MOBILE */
+  .why-image {
+    display: none;
+  }
+
+  .why-points {
+    width: 100%;
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+
+  .why-bubble {
+    font-size: 16px;
+    padding: 16px 30px 16px 40px;
+    border-radius: 30px;
+  }
+
+  .why-bubble::before {
+    width: 12px;
+    height: 12px;
+    left: 12px;
+  }
+
+  /* ================= CONTACT US ================= */
+  #contact-us {
+    height: auto;
+    min-height: 70vh;
+    padding: 60px 20px;
+  }
+
+  #contact-us h2 {
+    font-size: 20px;
+  }
+
+  #contact-us p {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
+  #contact-us a {
+    font-size: 16px;
+    padding: 12px 24px;
+    gap: 10px;
+  }
+
+  #contact-us a i {
+    font-size: 80px;
+  }
+
+  /* ================= FOOTER ================= */
+  #footer {
+    padding: 30px 20px;
+  }
+
+  .footer-container {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    text-align: center;
+  }
+
+  .footer-left p {
+    font-size: 13px;
+  }
+
+  .footer-menu {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .footer-menu li a {
+    font-size: 13px;
+  }
+
+  .footer-copy {
+    font-size: 12px;
+  }
+
+  .footer-right {
+    align-items: center;
+    gap: 12px;
+  }
+
+  .footer-right a {
+    font-size: 13px;
+  }
+}
+
+/* ===============================
+   EXTRA SMALL MOBILE (max-width: 480px)
+================================ */
+
+@media (max-width: 480px) {
+  
+  /* HERO */
+  .hero-inner {
+    padding: 0 16px;
+  }
+
+  .hero-title {
+    font-size: 28px;
+  }
+
+  .hero-text h1 {
+    font-size: 32px;
+    margin-top: 30px;
+  }
+
+  .hero-tagline {
+    font-size: 16px;
+    margin-bottom: 30px;
+  }
+
+  /* CAROUSEL ARROWS */
+  #heroCarousel .carousel-control-prev,
+  #heroCarousel .carousel-control-next {
+    width: 40px;
+    height: 40px;
+  }
+
+  .custom-arrow {
+    width: 40px;
+    height: 40px;
+    font-size: 22px;
+  }
+
+  #heroCarousel .carousel-control-prev {
+    left: 10px;
+  }
+
+  #heroCarousel .carousel-control-next {
+    right: 10px;
+  }
+
+  /* PACKAGE CLOSE BUTTON - SMALLER */
+  #pkg-popup-close {
+    font-size: 28px;
+    top: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+  }
+
+  /* SECTIONS - Titles bigger */
+  .lk-title,
+  .pkg-title,
+  .portfolio-title,
+  .partners-title,
+  .why-title {
+    font-size: 28px; /* BIGGER */
+  }
+
+  .portfolio-header {
+    font-size: 18px; /* Adjusted */
+  }
+
+  /* CARDS - Keep horizontal, just smaller */
+  .lk-card,
+  .pkg-card {
+    width: 180px;
+  }
+
+  .pkg-card img {
+    width: 180px;
+  }
+
+  .lk-text,
+  .pkg-text {
+    font-size: 14px;
+  }
+
+  .why-bubble {
+    font-size: 14px;
+    padding: 14px 24px 14px 36px;
+  }
+
+  .porto-btn img {
+    width: 180px;
+  }
+
+  .porto-btn span {
+    font-size: 14px;
+  }
+
+  /* PORTFOLIO OVERLAY */
+  #portfolio-overlay.smm .portfolio-card {
+    width: 75vw;
+    max-width: 240px;
+  }
+
+  #portfolio-overlay.tsp .portfolio-card {
+    width: 85vw;
+  }
+
+  .slider-track {
+    gap: 15px;
+  }
+
+  /* PARTNERS */
+  .partner-slide {
+    width: 220px !important; /* Wider */
+  }
+
+  .partner-slide img {
+    max-height: 160px; /* BIGGER */
+    transform: scale(3); /* BIGGER */
+  }
+
+  /* Package popup - smaller carousel */
+  #pkg-popup-carousel .slide-group img {
+    width: 75vw;
+    max-width: 260px;
+  }
+
+  .pkg-popup-text {
+    font-size: 18px;
+  }
+
+
+
+}
+
+/* ===============================
+   LANDSCAPE MOBILE FIX
+================================ */
+
+@media (max-width: 768px) and (orientation: landscape) {
+  
+  .hero-inner {
+    height: auto;
+    min-height: 50vh;
+    padding: 20px 24px;
+  }
+
+  #contact-us {
+    min-height: 50vh;
+  }
+
+  .why-image {
+    height: 200px;
+  }
+
+  .partners-swiper {
+    height: 300px;
+  }
+}
+
+/* ===============================
+   TABLET PORTRAIT (768px - 1024px)
+================================ */
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  
+  .hero-inner {
+    column-gap: 40px;
+  }
+
+  .lk-card-wrapper,
+  .pkg-card-wrapper {
+    gap: 30px;
+  }
+
+  .portfolio-content {
+    gap: 80px;
+  }
+
+  .why-content {
+    gap: 60px;
+  }
+
+  .why-bubble {
+    font-size: 20px;
+  }
+}
+
+/* ===============================
+   SAFE AREA (iPhone Notch)
+================================ */
+
+@supports (padding: max(0px)) {
+  body {
+    padding-left: max(0px, env(safe-area-inset-left));
+    padding-right: max(0px, env(safe-area-inset-right));
+  }
+
+  #navbar-mobile .mobile-top {
+    padding-left: max(24px, env(safe-area-inset-left));
+    padding-right: max(24px, env(safe-area-inset-right));
+  }
+}
+
+/* ===============================
+   TOUCH OPTIMIZATION
+================================ */
+
+@media (hover: none) and (pointer: coarse) {
+  
+  /* Larger touch targets */
+  .nav-menu a,
+  .mobile-menu a,
+  button,
+  .lk-card,
+  .pkg-card,
+  .porto-btn {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Remove hover states on touch devices */
+  .lk-card:hover,
+  .pkg-card:hover,
+  .porto-btn:hover img {
+    transform: none;
+  }
+
+  /* Tap highlight */
+  * {
+    -webkit-tap-highlight-color: rgba(188, 0, 0, 0.1);
+  }
+}
+
+/* ===============================
+   ACCESSIBILITY - REDUCED MOTION
+================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ===============================
+   PRINT STYLES
+================================ */
+
+@media print {
+  #navbar,
+  #navbar-mobile,
+  .hamburger,
+  .mobile-hamburger,
+  .carousel-control-prev,
+  .carousel-control-next,
+  .portfolio-close,
+  #contact-us {
+    display: none !important;
+  }
+
+  body {
+    background: white;
+    color: black;
+  }
+
+  section {
+    page-break-inside: avoid;
+  }
 }
